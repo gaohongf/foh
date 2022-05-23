@@ -14,7 +14,7 @@
     <name>foh</name>
     <description>foh</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>

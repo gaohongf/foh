@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册/登录</title>
+    <script th:src="@{/jquery-3.6.0.min.js}"></script>
+</head>
+<body>
+<form method="post">
+    <label>
+        用户名:
+        <input type="text" name="username" oninput="$('#loginError').load('login/has/user?username='+this.value)">
+    </label>
+    <div id="loginError">
+        <span th:text="#{${loginErr}}" th:fragment="loginError"></span>
+    </div>
+    <br/>
+    <label>
+        密码:<input type="password" name="password">
+    </label>
+    <input type="submit">
+</form>
+</body>
+</html>

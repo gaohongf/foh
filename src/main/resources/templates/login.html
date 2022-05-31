@@ -6,17 +6,15 @@
     <script th:src="@{/jquery-3.6.0.min.js}"></script>
 </head>
 <body>
-<form method="post">
+<form method="post" th:action="@{/user/login}" th:object="${user}">
     <label>
         用户名:
-        <input type="text" name="username" oninput="$('#loginError').load('login/has/user?username='+this.value)">
+        <input type="text" name="username" th:field="*{username}">
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
     </label>
-    <div id="loginError">
-        <span th:text="#{${loginErr}}" th:fragment="loginError"></span>
-    </div>
-    <br/>
     <label>
-        密码:<input type="password" name="password">
+        密码:<input type="password" name="password" th:field="*{password}">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
     </label>
     <input type="submit">
 </form>

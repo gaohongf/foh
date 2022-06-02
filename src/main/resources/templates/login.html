@@ -63,7 +63,7 @@
 						<div class="regiter-center-img"><img src="../static/img/password.png" /></div>
 						<div class="regiter-center-input">
 							<input type="password" name="" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''"
-								onblur="this.placeholder='请输入您的密码'" />
+								onblur="this.placeholder='请输入您的密码'" id="a" />
 							<div class="regiter-center-input-text">密码</div>
 						</div>
 					</div>
@@ -71,12 +71,15 @@
 						<div class="regiter-center-img"><img src="../static/img/password.png"></div>
 						<div class="regiter-center-input">
 							<input type="text" name="" value="" placeholder="确认密码" onfocus="this.placeholder=''"
-								onblur="this.placeholder='确认密码'" />
+								onblur="this.placeholder='确认密码'" id="b" onkeyup="checkpassword()"/>
 							<div class="regiter-center-input-text">确认密码</div>
 						</div>
 					</div>
+					<div class="regiter-center" style="margin-bottom: 0px;">
+						<span id="tishi"></span>
+					</div>
 					<div class="button">
-							<input type="submit" value="提交" class="sub-button" style="border: 0px;"/>
+							<input type="submit" id="submit" value="提交" class="sub-button" style="border: 0px;"/>
 						<div class="res-button">
 							重置
 						</div>
@@ -107,6 +110,19 @@
 			})
 			$(".register").css("display", "none")
 		})
+		
+		 function checkpassword() {
+		        var password = document.getElementById("a").value;
+		        var repassword = document.getElementById("b").value;
+		
+		        if(password == repassword) {
+		            document.getElementById("submit").disabled = false;
+					 document.getElementById("tishi").innerHTML="<br><font color='green'>两次密码输入一致</font>";
+		        }else {
+		            document.getElementById("tishi").innerHTML="<br><font color='red'>两次输入密码不一致!</font>";
+		            document.getElementById("submit").disabled = true;
+		        }
+		    }
 	</script>
 
 	<script src="../static/js/particles.min.js" type="text/javascript" charset="utf-8"></script>

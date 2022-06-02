@@ -25,11 +25,16 @@ public class UserPageController {
     }
 
     @PostMapping("/user/register")
-    String registered(@ModelAttribute("user") @Validated User user, BindingResult result) {
+    String registered(@ModelAttribute("user") @Validated User user, Model model, HttpSession session, BindingResult result) {
         if (result.hasErrors()) {
             return "/login";
         }
-        return "/index";
+        KeyAndValue<Boolean, String> keyAndValue = userService.addUser(user);
+        if (keyAndValue.getKey()) {
+            return login(user, model, session);
+        }else {
+            return "/login";
+        }
     }
 
     @PostMapping("/user/login")

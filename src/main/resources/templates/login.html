@@ -3,129 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <title>注册/登录</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/login.css"/>
-    <script th:src="@{/js/jquery-3.6.0.min.js}" src="../static/js/jquery-3.6.0.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css" th:href="@{/css/login.css}"/>
+    <script th:src="@{/js/jquery-3.6.0.min.js}" src="../static/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-		<div id="particles-js">
-			<form action="" method="post" th:action="@{/user/login}" th:object="${user}">
-				<div class="login">
-					<div class="login-top" style="text-align: center;">
-						登录
-					</div>
-					<div id="container">
-						<div class="login-center" style="margin-top: 100px;">
-							<div class="login-center-img"><img src="../static/img/name.png" ></div>
-							<div class="login-center-input">
-								<input type="text" name="" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''"
-									onblur="this.placeholder='请输入您的用户名'" />
-								<div class="login-center-input-text">用户名</div>
-							</div>
-						</div>
-						<div class="login-center">
-							<div class="login-center-img"><img src="../static/img/password.png" /></div>
-							<div class="login-center-input">
-								<input type="password" name="" value="" placeholder="请输入您的密码"
-									onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'" />
-								<div class="login-center-input-text">密码</div>
-							</div>
-						</div>
-					</div>
+<div id="particles-js">
+    <form action="" method="post" th:action="@{/user/login}">
+        <div class="login">
+            <div class="login-top" style="text-align: center;">
+                登录
+            </div>
+            <div id="container">
+                <div class="login-center" style="margin-top: 100px;">
+                    <div class="login-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt=""></div>
+                    <div class="login-center-input">
+                        <input type="text" name="username" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''"
+                               onblur="this.placeholder='请输入您的用户名'"/>
+                        <div class="login-center-input-text">用户名</div>
+                    </div>
+                </div>
+                <div class="login-center">
+                    <div class="login-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}" alt="锁"/>
+                    </div>
+                    <div class="login-center-input">
+                        <input type="password" name="password" placeholder="请输入您的密码"
+                               onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
+                        <div class="login-center-input-text">密码</div>
+                    </div>
+                </div>
+            </div>
 
-					<div class="button">
-							<input type="submit" value="登录" class="login-button" style="border: 0px;"/>
-						<div class="register-button">
-							注册
-						</div>
-					</div>
-				</div>
-				
-			</form>
-			<form action="" method="post">
-				<div class="register">
-					<div class="register-top" style="text-align: center;">
-						<div class="back">
-							<img src="../static/img/jiantou.png">
-						</div>
-						注册
-					</div>
+            <div class="button">
+                <input type="submit" value="登录" class="login-button" style="border: 0;"/>
+                <div class="register-button">
+                    注册
+                </div>
+            </div>
+        </div>
 
-					<div class="regiter-center">
-						<div class="regiter-center-img"><img src="../static/img/name.png" /></div>
-						<div class="regiter-center-input">
-							<input type="text" name="" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''"
-								onblur="this.placeholder='请输入您的用户名'" />
-							<div class="regiter-center-input-text">用户名</div>
-						</div>
-					</div>
-					<div class="regiter-center">
-						<div class="regiter-center-img"><img src="../static/img/password.png" /></div>
-						<div class="regiter-center-input">
-							<input type="password" name="" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''"
-								onblur="this.placeholder='请输入您的密码'" id="a" />
-							<div class="regiter-center-input-text">密码</div>
-						</div>
-					</div>
-					<div class="regiter-center" style="margin-bottom: 39px;">
-						<div class="regiter-center-img"><img src="../static/img/password.png"></div>
-						<div class="regiter-center-input">
-							<input type="text" name="" value="" placeholder="确认密码" onfocus="this.placeholder=''"
-								onblur="this.placeholder='确认密码'" id="b" onkeyup="checkpassword()"/>
-							<div class="regiter-center-input-text">确认密码</div>
-						</div>
-					</div>
-					<div class="regiter-center" style="margin-bottom: 0px;">
-						<span id="tishi"></span>
-					</div>
-					<div class="button">
-							<input type="submit" id="submit" value="提交" class="sub-button" style="border: 0px;"/>
-						<div class="res-button">
-							重置
-						</div>
-					</div>
-				</div>
-				
-			</form>
+    </form>
+    <form method="post" th:action="@{/user/register}" th:object="${user}">
+        <div class="register">
+            <div class="register-top" style="text-align: center;">
+                <div class="back">
+                    <img src="../static/img/jiantou.png" th:src="@{/img/jiantou.png}">
+                </div>
+                注册
+            </div>
 
-		</div>
+            <div class="regiter-center">
+                <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/></div>
+                <div class="regiter-center-input">
+                    <input type="text" name="username" placeholder="请输入您的用户名" th:field="*{username}"
+                           onfocus="this.placeholder=''"
+                           onblur="this.placeholder='请输入您的用户名'"/>
+                    <div class="regiter-center-input-text">用户名</div>
+                </div>
+            </div>
+            <div class="regiter-center">
+                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png" th:src="@{/img/password.png}"/>
+                </div>
+                <div class="regiter-center-input">
+                    <input type="password" name="password" placeholder="请输入您的密码" th:field="*{password}"
+                           onfocus="this.placeholder=''"
+                           onblur="this.placeholder='请输入您的密码'" id="a"/>
+                    <div class="regiter-center-input-text">密码</div>
+                </div>
+            </div>
+            <div class="regiter-center" style="margin-bottom: 39px;">
+                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png" th:src="@{/img/password.png}">
+                </div>
+                <div class="regiter-center-input">
+                    <input type="text" placeholder="确认密码" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='确认密码'" id="b" onkeyup="checkpassword()"/>
+                    <div class="regiter-center-input-text">确认密码</div>
+                </div>
+            </div>
+            <div class="regiter-center" style="margin-bottom: 0px;">
+                <span id="tishi"></span>
+            </div>
+            <div class="button">
+                <input type="submit" id="submit" value="提交" class="sub-button" style="border: 0px;"/>
+                <div class="res-button">
+                    重置
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
 <script type="text/javascript">
-		$(".register-button").click(function() {
-			$(".login").css("display", "none")
-			$(".register").css({
-				"display": "block",
-				"animation": "trans 1s ease 0s",
-				"animation-fill-mode": "forwards"
-			})
-			$(".regiter-center-input input").css({
-				"animation": "inputtrans 1s ease 0s",
-				"animation-fill-mode": "forwards"
-			})
-		})
-		$(".back img").click(function() {
-			$(".login").css({
-				"display": "block",
-				"animation": "back 1s ease 0s",
-				"animation-fill-mode": "forwards"
-			})
-			$(".register").css("display", "none")
-		})
-		
-		 function checkpassword() {
-		        var password = document.getElementById("a").value;
-		        var repassword = document.getElementById("b").value;
-		
-		        if(password == repassword) {
-		            document.getElementById("submit").disabled = false;
-					 document.getElementById("tishi").innerHTML="<br><font color='green'>两次密码输入一致</font>";
-		        }else {
-		            document.getElementById("tishi").innerHTML="<br><font color='red'>两次输入密码不一致!</font>";
-		            document.getElementById("submit").disabled = true;
-		        }
-		    }
-	</script>
+    $(".register-button").click(function () {
+        $(".login").css("display", "none")
+        $(".register").css({
+            "display": "block",
+            "animation": "trans 1s ease 0s",
+            "animation-fill-mode": "forwards"
+        })
+        $(".regiter-center-input input").css({
+            "animation": "inputtrans 1s ease 0s",
+            "animation-fill-mode": "forwards"
+        })
+    })
+    $(".back img").click(function () {
+        $(".login").css({
+            "display": "block",
+            "animation": "back 1s ease 0s",
+            "animation-fill-mode": "forwards"
+        })
+        $(".register").css("display", "none")
+    })
 
-	<script src="../static/js/particles.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../static/js/app.js" type="text/javascript" charset="utf-8"></script>
+    function checkpassword() {
+        let password = document.getElementById("a").value;
+        let repassword = document.getElementById("b").value;
+
+        if (password === repassword) {
+            document.getElementById("submit").disabled = false;
+            document.getElementById("tishi").innerHTML = "<br><font color='green'>两次密码输入一致</font>";
+        } else {
+            document.getElementById("tishi").innerHTML = "<br><font color='red'>两次输入密码不一致!</font>";
+            document.getElementById("submit").disabled = true;
+        }
+    }
+</script>
+<script src="../static/js/particles.min.js" th:src="@{/js/particles.min.js}" type="text/javascript"
+        charset="utf-8"></script>
+<script src="../static/js/app.js" th:src="@{/js/app.js}" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

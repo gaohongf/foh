@@ -23,7 +23,8 @@ public class UserPageController {
     private UserService userService;
 
     @RequestMapping("/login")
-    String loginPage(@ModelAttribute("user") User user) {
+    String loginPage(@ModelAttribute("user") User user,Model model) {
+        model.addAttribute("user",user);
         return "/login";
     }
 
@@ -36,6 +37,7 @@ public class UserPageController {
         if (keyAndValue.getKey()) {
             return login(user, model, session);
         }else {
+            model.addAttribute("reg_err",keyAndValue.getValue());
             return "/login";
         }
     }

@@ -5,49 +5,88 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
-    private Integer uid;
+
+
+    private Integer id;
+
+    private Integer age;
+
+    private String gender;
+
+    private String sign;
+
 
     @NotEmpty(message = "用户名不能为空")
-    @Size(min = 4,max = 20,message = "用户名字符位数在4-20位之间")
-    @Pattern(regexp = "^[a-zA-Z\\d]{4,20}$",message = "")
-    private String username;
+    private String name;
+
+    @NotEmpty(message = "手机号不能为空")
+    @Pattern(regexp = "^(\\d){11}$", message = "手机号为11位数字")
+    private String phone;
 
     @NotEmpty(message = "密码不能为空")
-    @Size(min = 6,max = 30,message = "密码字符位数在6-30位之间")
+    @Size(min = 6, max = 30, message = "密码字符位数在6-30位之间")
     private String password;
-    @Size(max = 20)
-    private String nickname;
 
-    public User() {
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", sign='" + sign + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
-    public User(String username, String password, String nickname) {
-        this.username = username;
-        this.password = password;
-        this.nickname = nickname;
+    public Integer getId() {
+        return id;
     }
 
-    public User(Integer uid, String username, String password, String nickname) {
-        this.uid = uid;
-        this.username = username;
-        this.password = password;
-        this.nickname = nickname;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public String getUsername() {
-        return username;
+    public String getGender() {
+        return gender;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -58,21 +97,17 @@ public class User {
         this.password = password;
     }
 
-    public String getNickname() {
-        return nickname;
+    public User(Integer id, Integer age, String gender, String sign, String name, String phone, String password) {
+        this.id = id;
+        this.age = age;
+        this.gender = gender;
+        this.sign = sign;
+        this.name = name;
+        this.phone = phone;
+        this.password = password;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public User() {
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid=" + uid +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", nickname='" + nickname + '\'' +
-                '}';
-    }
 }

@@ -15,27 +15,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public KeyAndValue<Boolean, String> addUser(User user) {
-        if (user == null || hasUserByUserName(user.getUsername())) return new KeyAndValue<>(false, "msg2");
+        if (user == null || hasUserByPhone(user.getPhone())) return new KeyAndValue<>(false, "msg2");
         return userMapper.addUser(user) > 0 ? new KeyAndValue<>(true, "msg1") : new KeyAndValue<>(false, "msg2");
     }
 
     @Override
-    public boolean hasUserByUserName(String username) {
-        return findUserByUserName(username) != null;
-    }
-
-    @Override
-    public boolean updateUserNickname(User user) {
-        if (user == null || (user.getUid() == null && user.getUsername() == null) || "".equals(user.getUsername())) {
-            return false;
-        }
-        return userMapper.updateUserNickname(user) > 0;
+    public boolean hasUserByPhone(String phone) {
+        return findUserByPhone(phone) != null;
     }
 
     @Override
     public KeyAndValue<Boolean, Object> login(User user) {
         if (user == null) return new KeyAndValue<>(false, "err3");
-        User userByUserName = findUserByUserName(user.getUsername());
+        User userByUserName = findUserByPhone(user.getPhone());
         if (userByUserName != null) {
             if (userByUserName.getPassword().equals(user.getPassword())) {
                 return new KeyAndValue<>(true, userByUserName);
@@ -51,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUserName(String username) {
-        return userMapper.findUserByUserName(username);
+    public User findUserByPhone(String phone) {
+        return userMapper.findUserByPhone(phone);
     }
 }

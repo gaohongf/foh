@@ -9,21 +9,24 @@
 <body>
 
 <div id="particles-js">
-    <form action="" method="post" th:action="@{/user/login}">
+    <form action="/user/login" method="post" th:action="@{/user/login}">
         <div class="login">
             <div class="login-top" style="text-align: center;">
                 登录
             </div>
             <div id="container">
                 <div class="login-center" style="margin-top: 100px;">
+                    <div th:if="${error != null}" class="user_error"
+                         style="position: relative;text-align: right;color: red;font-size: 15px" th:text="#{${error}}">
+                        错误信息
+                    </div>
                     <div class="login-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
                     </div>
                     <div class="login-center-input">
-                        <input type="text" id="username1" name="username" value="" placeholder="请输入您的用户名"
+                        <input type="text" id="phone1" name="phone" value="" placeholder="请输入您的手机号"
                                onfocus="this.placeholder=''"
-                               onblur="this.placeholder='请输入您的用户名'"/>
-                        <label for="username1" class="login-center-input-text">用户名</label>
-						<span class="user_error">7777777777</span>
+                               onblur="this.placeholder='请输入您的手机号'"/>
+                        <label for="phone1" class="login-center-input-text">手机号</label>
                     </div>
                 </div>
                 <div class="login-center">
@@ -34,7 +37,6 @@
                         <input id="password1" type="password" name="password" placeholder="请输入您的密码"
                                onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
                         <label for="password1" class="login-center-input-text">密码</label>
-						<span class="pas_errors">666</span>
                     </div>
                 </div>
             </div>
@@ -46,31 +48,50 @@
                 </div>
             </div>
         </div>
-
     </form>
     <form method="post" th:action="@{/user/register}" th:object="${user}">
         <div class="register">
             <div class="register-top" style="text-align: center;">
                 <div class="back">
-                    <img src="../static/img/jiantou.png" th:src="@{/img/jiantou.png}">
+                    <img src="../static/img/jiantou.png" th:src="@{/img/jiantou.png}" alt="箭头">
                 </div>
                 注册
             </div>
-
             <div class="regiter-center">
                 <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/>
                 </div>
+                <div th:if="${#fields.hasErrors('phone')}" class="user_error"
+                     style="position: relative;text-align: right;color: red;font-size: 15px" th:errors="*{phone}">
+                    错误信息
+                </div>
                 <div class="regiter-center-input">
-                    <input id="username2" type="text" name="username" placeholder="请输入您的用户名" th:field="*{username}"
+                    <input id="phone2" type="text" name="phone" placeholder="请输入您的手机号" th:field="*{phone}"
+                           onfocus="this.placeholder=''"
+                           onblur="this.placeholder='请输入您的手机号'"/>
+                    <label for="phone2" class="regiter-center-input-text">手机号</label>
+                </div>
+            </div>
+            <div class="regiter-center">
+                <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/>
+                </div>
+                <div th:if="${#fields.hasErrors('name')}" class="user_error"
+                     style="position: relative;text-align: right;color: red;font-size: 15px" th:errors="*{name}">
+                    错误信息
+                </div>
+                <div class="regiter-center-input">
+                    <input id="name" type="text" name="name" placeholder="请输入您的用户名" th:field="*{name}"
                            onfocus="this.placeholder=''"
                            onblur="this.placeholder='请输入您的用户名'"/>
-                    <label for="username2" class="regiter-center-input-text">用户名</label>
-                    
+                    <label for="name" class="regiter-center-input-text">用户名</label>
                 </div>
             </div>
             <div class="regiter-center">
                 <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png"
                                                      th:src="@{/img/password.png}"/>
+                </div>
+                <div th:if="${#fields.hasErrors('password')}" class="user_error"
+                     style="position: relative;text-align: right;color: red;font-size: 15px" th:errors="*{password}">
+                    错误信息
                 </div>
                 <div class="regiter-center-input">
                     <input type="password" name="password" placeholder="请输入您的密码" th:field="*{password}"

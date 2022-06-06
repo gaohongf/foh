@@ -14,16 +14,11 @@ public interface UserService {
 
     /**
      * 判断是否已有用户
-     * @param username 用户名
-     * @return  true:用户已存在 false:用户不存在
-     */
-    boolean hasUserByUserName(String username);
-    /**
-     * 修改用户的昵称
      *
-     * @param user 用户资料:添加新昵称并至少包含准确的-uid-或-username-其中一项
+     * @param phone 用户名
+     * @return true:用户已存在 false:用户不存在
      */
-    boolean updateUserNickname(User user);
+    boolean hasUserByPhone(String phone);
 
     /**
      * 账号密码登录
@@ -39,8 +34,8 @@ public interface UserService {
 
     /**
      * 通过用户的-username-来查询用户
-     * @param username 用户名
+     * @param phone 手机号
      * @return 用户实体对象
      */
-    User findUserByUserName(String username);
+    User findUserByPhone(String phone);
 }

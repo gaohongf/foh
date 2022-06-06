@@ -6,6 +6,9 @@ import xyz.fmcy.foh.pojo.User;
 
 import java.util.List;
 
+/**
+ * @author 付高宏
+ */
 @Mapper
 public interface UserMapper {
     /**
@@ -16,13 +19,6 @@ public interface UserMapper {
     int addUser(User user);
 
     /**
-     * 修改用户的昵称
-     *
-     * @param user 用户资料:添加新昵称并至少包含准确的-uid-或-username-其中一项
-     */
-    int updateUserNickname(User user);
-
-    /**
      * 通过用户的-uid-来查询用户
      * @param uid 用户的id
      * @return 用户实体对象
@@ -31,10 +27,10 @@ public interface UserMapper {
 
     /**
      * 通过用户的-username-来查询用户
-     * @param username 用户名
+     * @param phone 用户名
      * @return 用户实体对象
      */
-    User findUserByUserName(String username);
+    User findUserByPhone(String phone);
 
     /*以下内容为管理需要*/
 

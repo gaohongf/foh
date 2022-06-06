@@ -16,20 +16,23 @@
             </div>
             <div id="container">
                 <div class="login-center" style="margin-top: 100px;">
-                    <div class="login-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt=""></div>
+                    <div class="login-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
+                    </div>
                     <div class="login-center-input">
-                        <input type="text" name="username" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''"
+                        <input type="text" id="username1" name="username" value="" placeholder="请输入您的用户名"
+                               onfocus="this.placeholder=''"
                                onblur="this.placeholder='请输入您的用户名'"/>
-                        <div class="login-center-input-text">用户名</div>
+                        <label for="username1" class="login-center-input-text">用户名</label>
                     </div>
                 </div>
                 <div class="login-center">
-                    <div class="login-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}" alt="锁"/>
+                    <div class="login-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}"
+                                                       alt="锁"/>
                     </div>
                     <div class="login-center-input">
-                        <input type="password" name="password" placeholder="请输入您的密码"
+                        <input id="password1" type="password" name="password" placeholder="请输入您的密码"
                                onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
-                        <div class="login-center-input-text">密码</div>
+                        <label for="password1" class="login-center-input-text">密码</label>
                     </div>
                 </div>
             </div>
@@ -53,38 +56,41 @@
             </div>
 
             <div class="regiter-center">
-                <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/></div>
+                <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/>
+                </div>
                 <div class="regiter-center-input">
-                    <input type="text" name="username" placeholder="请输入您的用户名" th:field="*{username}"
+                    <input id="username2" type="text" name="username" placeholder="请输入您的用户名" th:field="*{username}"
                            onfocus="this.placeholder=''"
                            onblur="this.placeholder='请输入您的用户名'"/>
-                    <div class="regiter-center-input-text">用户名</div>
+                    <label for="username2" class="regiter-center-input-text">用户名</label>
                 </div>
             </div>
             <div class="regiter-center">
-                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png" th:src="@{/img/password.png}"/>
+                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png"
+                                                     th:src="@{/img/password.png}"/>
                 </div>
                 <div class="regiter-center-input">
                     <input type="password" name="password" placeholder="请输入您的密码" th:field="*{password}"
                            onfocus="this.placeholder=''"
-                           onblur="this.placeholder='请输入您的密码'" id="a"/>
-                    <div class="regiter-center-input-text">密码</div>
+                           onblur="this.placeholder='请输入您的密码'" id="password2"/>
+                    <label for="password2" class="regiter-center-input-text">密码</label>
                 </div>
             </div>
             <div class="regiter-center" style="margin-bottom: 39px;">
-                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png" th:src="@{/img/password.png}">
+                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png"
+                                                     th:src="@{/img/password.png}">
                 </div>
                 <div class="regiter-center-input">
-                    <input type="text" placeholder="确认密码" onfocus="this.placeholder=''"
-                           onblur="this.placeholder='确认密码'" id="b" onkeyup="checkpassword()"/>
-                    <div class="regiter-center-input-text">确认密码</div>
+                    <input id="lodepassword" type="text" placeholder="确认密码" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='确认密码'" onkeyup="checkpassword()"/>
+                    <label for="lodepassword" class="regiter-center-input-text">确认密码</label>
                 </div>
             </div>
-            <div class="regiter-center" style="margin-bottom: 0px;">
+            <div class="regiter-center" style="margin-bottom: 0;">
                 <span id="tishi"></span>
             </div>
             <div class="button">
-                <input type="submit" id="submit" value="提交" class="sub-button" style="border: 0px;"/>
+                <input type="submit" id="submit" value="提交" class="sub-button" style="border: 0;"/>
                 <div class="res-button">
                     重置
                 </div>

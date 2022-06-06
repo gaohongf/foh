@@ -14,6 +14,9 @@ import xyz.fmcy.foh.service.UserService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 付高宏
+ */
 @Controller
 public class UserPageController {
     @Resource
@@ -42,7 +45,7 @@ public class UserPageController {
         KeyAndValue<Boolean, Object> login = userService.login(user);
         if (login.getKey()) {
             session.setAttribute("user", login.getValue());
-            return "/index";
+            return "redirect:/index";
         } else {
             model.addAttribute("error", login.getValue());
             return "/login";

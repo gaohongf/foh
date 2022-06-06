@@ -1,119 +1,129 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="../static/css/user.css"/>
-		<link rel="stylesheet" type="text/css" href="../static/css/layout.css"/>
-		<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
-	</head>
-	<body>
-		<div id="container">
-			<div class="top grid">
-				<div class="top-img grid-cell-1">
-					<div class="container_top_img">
-						<img src="../static/img/name.png" >
-					</div>
-				</div>
-				<div class="container_text grid-cell-5">
-					<div class="container_text_name">
-						张三
-					</div>
-					<div class="container_text_status">
-						我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三
-					</div>
-					<div class="container_text_lable grid">
-						<div class="grid-cell-1">
-							标签1
-							<span>123</span>
-						</div>
-						<div class="grid-cell-1">
-							标签2
-							<span>333</span>
-						</div>
-						<div class="grid-cell-1">
-							标签3
-							<span>444</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container_body grid">
-				<div class="container_body_left grid-cell-1">
-					<div class="container_body_left_text_first">
-						<div class="container_body_left_text_first_title">
-							<span class="title_first_text">我是战三</span>
-							<hr class="line">
-						</div>
-						<div class="title_first_ul">
-							<ul>
-								<li><a href="#">2</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">2</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="container_body_left_text_second">
-						<div class="container_body_left_title">
-							<span class="title_second_text">我是其他</span>
-							<hr class="line">
-						</div>
-						
-					</div>
-				</div>
-				<div class="container_body_right grid-cell-3">
-					<div class="container_body_right_text">
-						<span class="right_text">我是主体</span>
-						<hr class="right_line">
-					</div>
-					<div class="container_body_right_item">
-						<div class="container_body_right_item_list">
-							<div class="container_body_right_item_list_title" style="margin-top: 10px;">
-								<span class="time">2021-06</span>
-								<div class="list_time">
-									<img src="../static/img/roll.png" >
-								</div>
-							</div>
-							<div class="container_body_right_item_list_text">
-								666我是内容
-							</div>
-						</div>
-						<div class="container_body_right_item_list">
-							
-						</div>
-					</div>
-					<button type="button" class="btn1">666</button>
-				</div>
-			</div>
-			
-		</div>
-		<div class="range">
-			<div class="try_button">
-				Try it
-			</div>
-			<div class="roll_btn">
-				<span class="btn_roll"><img src="../static/img/pan.png" alt=""></span>
-			</div>
-		</div>
-		<script type="text/javascript">
-			function change(){
-			                var color = "#";
-			                var randomArr=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];//这是颜色构成的所有情况
-			                for (var i=0;i<6;i++) {
-			                    color += randomArr[parseInt(Math.random()*15)];
-			                }
-			                return color;
-			            }
-						$(".btn1").click(function(){
-							
-							$("<div class='container_body_right_item_list'></div>").appendTo(".container_body_right_item")
-							$("<div class='container_body_right_item_list_title'></div>").appendTo(".container_body_right_item_list")
-							$("<div class='list_time'></div>").appendTo(".container_body_right_item_list_title")
-							$("<img src='../static/img/roll.png' >").appendTo(".list_time")
-							var color = change()
-							$(".list_time").css("background-color",color)
-							$("6666").appendTo(".container_body_right_item_list_text")
-						})
-		</script>
-	</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../static/css/user.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css"/>
+    <script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="container">
+    <div class="top grid">
+        <div class="top-img grid-cell-1">
+            <div class="container_top_img">
+                <img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
+            </div>
+        </div>
+        <div class="container_text grid-cell-5">
+            <div class="container_text_name">
+                张三
+            </div>
+            <div class="container_text_status">
+                我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三
+            </div>
+            <div class="container_text_lable grid">
+                <div class="grid-cell-1">
+                    标签1
+                    <span>123</span>
+                </div>
+                <div class="grid-cell-1">
+                    标签2
+                    <span>333</span>
+                </div>
+                <div class="grid-cell-1">
+                    标签3
+                    <span>444</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_body grid">
+        <div class="container_body_left grid-cell-1">
+            <div class="container_body_left_text_first">
+                <div class="container_body_left_text_first_title">
+                    <span class="title_first_text">我是战三</span>
+                    <hr class="line">
+                </div>
+                <div class="title_first_ul">
+                    <ul>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">2</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container_body_left_text_second">
+                <div class="container_body_left_title">
+                    <span class="title_second_text">我是其他</span>
+                    <hr class="line">
+                </div>
+
+            </div>
+        </div>
+        <div class="container_body_right grid-cell-3">
+            <div class="container_body_right_text">
+                <span class="right_text">我是主体</span>
+                <hr class="right_line">
+            </div>
+            <div id="container_body_right_item">
+                <div class="container_body_right_item_list">
+                    <div class="container_body_right_item_list_title" style="margin-top: 10px;">
+                        <span class="time">2021-06</span>
+                        <div class="list_time">
+                            <img src="../static/img/roll.png">
+                        </div>
+                    </div>
+                    <div class="container_body_right_item_list_text">
+                        666我是内容
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn1">666</button>
+        </div>
+    </div>
+
+</div>
+<div class="range">
+    <div class="try_button">
+        Try it
+    </div>
+    <div class="roll_btn">
+        <span class="btn_roll"><img src="../static/img/pan.png" alt=""></span>
+    </div>
+</div>
+<script type="text/javascript">
+    function change() {
+		let colorStr="#";
+		for (let i = 0; i < 6; i++) {
+			let e = Math.floor(Math.random()*16);
+			if(e < 10){
+				colorStr+=e;
+			}else{
+				switch(e-10){
+					case 0:colorStr+="A";break;
+					case 1:colorStr+="B";break;
+					case 2:colorStr+="C";break;
+					case 3:colorStr+="D";break;
+					case 4:colorStr+="E";break;
+					case 5:colorStr+="F";break;
+				}
+			}
+		}
+        return colorStr;
+    }
+
+    $(".btn1").click(function () {
+		let $list = $("<div class='container_body_right_item_list'></div>")
+		let $title = $("<div class='container_body_right_item_list_title'></div>")
+		let $time = $("<div class='list_time' style='background-color:"+change()+" '></div>")
+		let $img =	$("<img src='../static/img/roll.png'>")
+		$list.append($title)
+		$title.append($time)
+		$time.append($img)
+		$list.appendTo("#container_body_right_item")
+    })
+</script>
+</body>
 </html>
+

@@ -15,7 +15,6 @@ public class User {
 
     private String sign;
 
-
     @NotEmpty(message = "用户名不能为空")
     private String name;
 

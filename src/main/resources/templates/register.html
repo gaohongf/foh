@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <form th:action="@{/user/register}" method="post" th:object="${user}">
+        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">错误信息</span>
+        <span th:if="${reg_err != null}" th:text="#{${reg_err}}"></span>
+        <!--  reg_err指的是可能发生的注册错误,如手机号重复了      -->
+        <input id="phone" name="phone" th:field="*{phone}">
+        <label for="phone">手机号</label>
+
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">错误信息</span>
+        <input id="name" name="name" th:field="*{name}">
+        <label for="name">用户名</label>
+
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">错误信息</span>
+        <input id="password" type="password" name="password" th:field="*{password}">
+        <label for="password">用户名</label>
+
+        <span>错误信息</span>
+        <input id="re-password" type="password">
+        <label for="re-password">用户名</label>
+
+        <input type="submit" value="登录">
+    </form>
+</body>
+</html>

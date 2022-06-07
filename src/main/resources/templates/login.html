@@ -49,103 +49,30 @@
             </div>
         </div>
     </form>
-    <form method="post" th:action="@{/user/register}" th:object="${user}">
-        <div class="register">
-            <div class="register-top" style="text-align: center;">
-                <div class="back">
-                    <img src="../static/img/jiantou.png" th:src="@{/img/jiantou.png}" alt="箭头">
-                </div>
-                注册
-            </div>
-            <div class="regiter-center">
-                <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/>
-                </div>
-                <div th:if="${#fields.hasErrors('phone')}" class="user_error"
-                     style="position: relative;text-align: right;color: red;font-size: 15px" th:errors="*{phone}">
-                    错误信息
-                </div>
-                <div class="regiter-center-input">
-                    <input id="phone2" type="text" name="phone" placeholder="请输入您的手机号" th:field="*{phone}"
-                           onfocus="this.placeholder=''"
-                           onblur="this.placeholder='请输入您的手机号'"/>
-                    <label for="phone2" class="regiter-center-input-text">手机号</label>
-                </div>
-            </div>
-            <div class="regiter-center">
-                <div class="regiter-center-img"><img alt="姓名" src="../static/img/name.png" th:src="@{/img/name.png}"/>
-                </div>
-                <div th:if="${#fields.hasErrors('name')}" class="user_error"
-                     style="position: relative;text-align: right;color: red;font-size: 15px" th:errors="*{name}">
-                    错误信息
-                </div>
-                <div class="regiter-center-input">
-                    <input id="name" type="text" name="name" placeholder="请输入您的用户名" th:field="*{name}"
-                           onfocus="this.placeholder=''"
-                           onblur="this.placeholder='请输入您的用户名'"/>
-                    <label for="name" class="regiter-center-input-text">用户名</label>
-                </div>
-            </div>
-            <div class="regiter-center">
-                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png"
-                                                     th:src="@{/img/password.png}"/>
-                </div>
-                <div th:if="${#fields.hasErrors('password')}" class="user_error"
-                     style="position: relative;text-align: right;color: red;font-size: 15px" th:errors="*{password}">
-                    错误信息
-                </div>
-                <div class="regiter-center-input">
-                    <input type="password" name="password" placeholder="请输入您的密码" th:field="*{password}"
-                           onfocus="this.placeholder=''"
-                           onblur="this.placeholder='请输入您的密码'" id="password2"/>
-                    <label for="password2" class="regiter-center-input-text">密码</label>
-                </div>
-            </div>
-            <div class="regiter-center" style="margin-bottom: 39px;">
-                <div class="regiter-center-img"><img alt="密码" src="../static/img/password.png"
-                                                     th:src="@{/img/password.png}">
-                </div>
-                <div class="regiter-center-input">
-                    <input id="lodepassword" type="text" placeholder="确认密码" onfocus="this.placeholder=''"
-                           onblur="this.placeholder='确认密码'" onkeyup="checkpassword()"/>
-                    <label for="lodepassword" class="regiter-center-input-text">确认密码</label>
-                </div>
-            </div>
-            <div class="regiter-center" style="margin-bottom: 0;">
-                <span id="tishi"></span>
-            </div>
-            <div class="button">
-                <input type="submit" id="submit" value="提交" class="sub-button" style="border: 0;"/>
-                <div class="res-button">
-                    重置
-                </div>
-            </div>
-        </div>
-
-    </form>
-
 </div>
 <script type="text/javascript">
-    $(".register-button").click(function () {
-        $(".login").css("display", "none")
-        $(".register").css({
-            "display": "block",
-            "animation": "trans 1s ease 0s",
-            "animation-fill-mode": "forwards"
+    $(function (){
+        $(".register-button").click(function () {
+            $(".login").css("display", "none")
+            $(".register").css({
+                "display": "block",
+                "animation": "trans 1s ease 0s",
+                "animation-fill-mode": "forwards"
+            })
+            $(".regiter-center-input input").css({
+                "animation": "inputtrans 1s ease 0s",
+                "animation-fill-mode": "forwards"
+            })
         })
-        $(".regiter-center-input input").css({
-            "animation": "inputtrans 1s ease 0s",
-            "animation-fill-mode": "forwards"
+        $(".back img").click(function () {
+            $(".login").css({
+                "display": "block",
+                "animation": "back 1s ease 0s",
+                "animation-fill-mode": "forwards"
+            })
+            $(".register").css("display", "none")
         })
     })
-    $(".back img").click(function () {
-        $(".login").css({
-            "display": "block",
-            "animation": "back 1s ease 0s",
-            "animation-fill-mode": "forwards"
-        })
-        $(".register").css("display", "none")
-    })
-
     function checkpassword() {
         let password = document.getElementById("a").value;
         let repassword = document.getElementById("b").value;

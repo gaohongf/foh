@@ -11,8 +11,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 /**
- * @author 付高宏
  * 快速拦截器设置工具
+ * @author 付高宏
  */
 public class InterceptorLoader {
 
@@ -22,9 +22,13 @@ public class InterceptorLoader {
             for (Class<?> clazz : classes) {
                 WebInterceptor webInterceptor = clazz.getAnnotation(WebInterceptor.class);
                 if (webInterceptor != null) {
-                    HandlerInterceptor interceptor = (HandlerInterceptor) clazz.getDeclaredConstructor().newInstance();
-                    registry.addInterceptor(interceptor).addPathPatterns(webInterceptor.pathPatterns())
-                            .excludePathPatterns(webInterceptor.exclude());
+                    try {
+                        HandlerInterceptor interceptor = (HandlerInterceptor) clazz.getDeclaredConstructor().newInstance();
+                        registry.addInterceptor(interceptor).addPathPatterns(webInterceptor.pathPatterns())
+                                .excludePathPatterns(webInterceptor.exclude());
+                    }catch (ClassCastException e){
+                        System.err.println(clazz + ":未实现 org.springframework.web.servlet.HandlerInterceptor 接口,无法识别为拦截器,添加失败");
+                    }
                 }
             }
         } catch (IOException | URISyntaxException | ClassNotFoundException | NoSuchMethodException |

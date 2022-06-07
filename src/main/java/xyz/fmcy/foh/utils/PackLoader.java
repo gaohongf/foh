@@ -9,8 +9,8 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * @author 付高宏
  * 包扫描工具类
+ * @author 付高宏
  */
 public final class PackLoader {
 

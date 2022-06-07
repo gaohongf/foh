@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import xyz.fmcy.foh.annotation.Module;
 import xyz.fmcy.foh.pojo.User;
 import xyz.fmcy.foh.pojo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author 付高宏
  */
+@Module(modulename = "用户")
 @Controller
 public class UserPageController {
     @Resource

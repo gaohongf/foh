@@ -1,9 +1,10 @@
 package xyz.fmcy.foh.pojo.combo;
 
 /**
- * 简单键值对模型  类似于{@link java.util.Map.Entry}
+ * 简单键值对模型  类似于{@link java.util.Map.Entry} {true:"张三"}
  * @param <K> key
  * @param <V> value
+ * @author 付高宏
  */
 public class KeyAndValue<K,V> {
 

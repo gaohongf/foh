@@ -1,12 +1,13 @@
 package xyz.fmcy.foh.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
+import java.lang.annotation.*;
+/**
+ * @author 付高宏
+ * 用于帮助区分模块
+ */
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.CLASS)
+@Documented
 public @interface Module {
     String[] modulename();
 }

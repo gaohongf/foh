@@ -6,37 +6,66 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="../static/css/layout.css"/>
 	<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
-</head>
-<body>
-    <div class="container">
-    	<div class="search">
-    		<input type="text" name="" id="" value="" />
-    	</div>
-		<div class="hobby grid">
-			<div class="item grid-cell-1">
-				<div class="hobby_item">
-					<img src="../static/img/password.png" >
-					<div class="hobby_item_text">
-						123
+	<style>
+				body {
+	
+					overflow: hidden;
+				}
+	
+				canvas {
+	
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: black;
+				}
+	
+				a {
+	
+					width: 200px;
+					height: 200px;
+					position: absolute;
+					left: calc(100% - 200px);
+					top: calc(100% - 130px);
+				}
+	
+				img {
+					width: 200px;
+				}
+			</style>
+	
+		</head>
+		<body>
+			<div class="container">
+				<div class="search">
+					<input type="text" name="" id="" value="" />
+				</div>
+				<div class="hobby grid">
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="item grid-cell-1">
-				<div class="hobby_item">
-					<img src="../static/img/password.png" >
-					<div class="hobby_item_text">
-						123
-					</div>
-				</div>
-			</div>
-			<div class="add grid-cell-1">
-				<div class="hobby_add">
-					<img src="../static/img/add.png" >
-				</div>
-			</div>
-		</div>
-    </div>
-</body>
+			<canvas id="c" style="z-index : -1;
+	position : absolute;"></canvas>
+	
+			<script src="../static/js/dat.gui.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../static/js/index.js" type="text/javascript" charset="utf-8"></script>
+	
+		</body>
 <script type="text/javascript">
 	$(".add").click(function(){
 		let $item = $("<div class='item grid-cell-1'></div>")
@@ -52,4 +81,5 @@
 		
 	})
 </script>
+
 </html>

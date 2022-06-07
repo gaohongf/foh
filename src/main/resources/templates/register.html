@@ -75,19 +75,28 @@
     </form>
 	</div>
 </body>
+<script src="../static/js/particles.min.js" th:src="@{/js/particles.min.js}" type="text/javascript"
+        charset="utf-8"></script>
+		<script src="../static/js/app.js" th:src="@{/js/app.js}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$("#phone").focus(function(){
 		$(".user_error").text("")
 	})
 	let flag = false;
 	$("form").submit(function(){
+		let phone = $("#phone").val();
+		let name = $("#name").val();
 		let pas = $("#password").val();
 		let repas = $("#re-password").val();
-		if(pas == repas){
-			flag = true;
-			return flag;
+		if(phone == ''|| name == ''|| pas == '' || repas == ''){
+			return false;
 		}else{
-			return flag;
+			if(pas == repas){
+				flag = true;
+				return flag;
+			}else{
+				return flag;
+			}
 		}
 	})
 	

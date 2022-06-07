@@ -3,11 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>醉心项目启动测试</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/css/layout.css"/>
+	<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-    <h2 th:text="#{author.cxd}">测试</h2>
-    <h2 th:text="#{author.fgh}">测试</h2>
-    <h2 th:text="#{author.ysc}">测试</h2>
-    <h2 th:text="#{author.mzh}">测试</h2>
+    <div class="container">
+    	<div class="search">
+    		<input type="text" name="" id="" value="" />
+    	</div>
+		<div class="hobby grid">
+			<div class="item grid-cell-1">
+				<div class="hobby_item">
+					<img src="../static/img/password.png" >
+					<div class="hobby_item_text">
+						123
+					</div>
+				</div>
+			</div>
+			<div class="item grid-cell-1">
+				<div class="hobby_item">
+					<img src="../static/img/password.png" >
+					<div class="hobby_item_text">
+						123
+					</div>
+				</div>
+			</div>
+			<div class="add grid-cell-1">
+				<div class="hobby_add">
+					<img src="../static/img/add.png" >
+				</div>
+			</div>
+		</div>
+    </div>
 </body>
+<script type="text/javascript">
+	$(".add").click(function(){
+		let $item = $("<div class='item grid-cell-1'></div>")
+		let $hobby_item = $("<div class='hobby_item'></div>")
+		let $img = $("<img alt='闹钟图片' src='../static/img/roll.png'>")
+		let $hobby_item_text = $("<div class='hobby_item_text'>131</div>")
+		
+		
+		$hobby_item.appendTo($item)
+		$img.appendTo($hobby_item)
+		$hobby_item_text.appendTo($hobby_item)
+		$item.insertBefore(".add")
+		
+	})
+</script>
 </html>

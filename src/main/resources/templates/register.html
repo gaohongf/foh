@@ -1,30 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>注册</title>
-</head>
-<body>
-    <form th:action="@{/user/register}" method="post" th:object="${user}">
-        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">错误信息</span>
-        <span th:if="${reg_err != null}" th:text="#{${reg_err}}"></span>
-        <!--  reg_err指的是可能发生的注册错误,如手机号重复了      -->
-        <input id="phone" name="phone" th:field="*{phone}">
-        <label for="phone">手机号</label>
-
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">错误信息</span>
-        <input id="name" name="name" th:field="*{name}">
-        <label for="name">用户名</label>
-
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">错误信息</span>
-        <input id="password" type="password" name="password" th:field="*{password}">
-        <label for="password">用户名</label>
-
-        <span>错误信息</span>
-        <input id="re-password" type="password">
-        <label for="re-password">用户名</label>
-
-        <input type="submit" value="登录">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/register.css" />
+		<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="particles-js">
+			<form th:action="@{/user/register}" method="post" th:object="${user}">
+				<div class="register">
+					<div class="register-top" style="text-align: center;">
+						注册
+					</div>
+					<div id="container">
+						<!-- <span  >错误信息</span>
+				<span th:if="${reg_err != null}" th:text="#{${reg_err}}"></span> -->
+						<!--  reg_err指的是可能发生的注册错误,如手机号重复了      -->
+						<div class="register-center">
+							<div th:if="${#fields.hasErrors('phone')}" class="user_error" th:errors="*{phone}"  style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;"> 
+				    错误信息
+				</div>
+			    <div class="register-center-img"><img src="../static/img/phone.png" th:src="@{/img/phone.png}" alt=""></div>
+			    <div class="register-center-input" style="margin-top: 20px;">
+			       <input id="phone" name="phone" th:field="*{phone}" type="text" placeholder="请输入您的手机号"
+			                  onfocus="this.placeholder=''"
+			                  onblur="this.placeholder='请输入您的手机号'">
+			       <label for="phone" class="register-center-input-text">手机号</label>
+			    </div>
+			</div>
+				
+				<div class="register-center">
+					<div th:if="${#fields.hasErrors('name')}" class="user_error" th:errors="*{name}"  style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;">
+					    错误信息
+					</div>
+				    <div class="register-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt=""></div>
+				    <div class="register-center-input" style="margin-top: 20px;">
+				       <input id="name" name="name" th:field="*{name}" type="text" placeholder="请输入您的用户名"
+				                  onfocus="this.placeholder=''"
+				                  onblur="this.placeholder='请输入您的用户名'">
+				       <label for="name" class="register-center-input-text">用户名</label>
+				    </div>
+				</div>
+				
+				<div class="register-center" style="margin-top: 40px;margin-bottom: 0px;">
+				    <div class="register-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}" alt=""></div>
+				    <div class="register-center-input" style="margin-top: 20px;">
+				       <input id="password" name="password" th:field="*{password}" type="password" placeholder="请输入您的密码"
+				                  onfocus="this.placeholder=''"
+				                  onblur="this.placeholder='请输入您的密码'">
+				       <label for="password" class="register-center-input-text">密码</label>
+				    </div>
+				</div>
+				
+				<div class="register-center">
+					<div class="user_error"  style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;">
+					    错误信息
+					</div>
+				    <div class="register-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}" alt=""></div>
+				    <div class="register-center-input" style="margin-top: 20px;">
+				       <input id="re-password"  type="password" placeholder="请确认您的密码"
+				                  onfocus="this.placeholder=''"
+				                  onblur="this.placeholder='请确认您的密码'">
+				       <label for="re-password" class="register-center-input-text">确认密码</label>
+				    </div>
+				</div>
+				
+				<div class="button">
+				    <input type="submit" value="登录" class="register-button" style="border: 0;"/>
+					<input type="reset" name="" id="" class="res-button" value="重置" style="border: 0;"/>
+				</div>
+			</div>
+		</div>
     </form>
+	</div>
 </body>
+<script type="text/javascript">
+	$("#phone").focus(function(){
+		$(".user_error").text("")
+	})
+	let flag = false;
+	$("form").submit(function(){
+		let pas = $("#password").val();
+		let repas = $("#re-password").val();
+		if(pas == repas){
+			flag = true;
+			return flag;
+		}else{
+			return flag;
+		}
+	})
+	
+</script>
 </html>

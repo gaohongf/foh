@@ -27,10 +27,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public KeyAndValue<Boolean, Object> login(User user) {
         if (user == null) return new KeyAndValue<>(false, "err3");
-        User userByUserName = findUserByPhone(user.getPhone());
-        if (userByUserName != null) {
-            if (userByUserName.getPassword().equals(user.getPassword())) {
-                return new KeyAndValue<>(true, userByUserName);
+        User UserByPhone = findUserByPhone(user.getPhone());
+        if (UserByPhone != null) {
+            if (UserByPhone.getPassword().equals(user.getPassword())) {
+                return new KeyAndValue<>(true, UserByPhone);
             }
             return new KeyAndValue<>(false, "err2");
         }

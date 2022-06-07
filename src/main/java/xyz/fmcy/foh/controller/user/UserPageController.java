@@ -14,7 +14,6 @@ import xyz.fmcy.foh.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 /**
  * @author 付高宏

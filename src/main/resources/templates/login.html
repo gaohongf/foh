@@ -16,8 +16,8 @@
             </div>
             <div id="container">
                 <div class="login-center" style="margin-top: 100px;">
-                    <div th:if="${error != null}" class="user_error"
-                         style="position: relative;text-align: right;color: red;font-size: 15px" th:text="#{${error}}">
+                   <div th:if="${error != null}" class="user_error"
+                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;" th:text="#{${error}}">
                         错误信息
                     </div>
                     <div class="login-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
@@ -73,6 +73,9 @@
             $(".register").css("display", "none")
         })
     })
+		$("#phone1").focus(function(){
+			$(".user_error").text("")
+		})
     function checkpassword() {
         let password = document.getElementById("a").value;
         let repassword = document.getElementById("b").value;

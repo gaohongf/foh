@@ -2,17 +2,10 @@
 	margin: 0;
 	padding: 0;
 }
-
-
 html,
 body {
 	width: 100%;
 	height: 100%;
-}
-
-canvas {
-	display: block;
-	vertical-align: bottom;
 }
 
 .count-particles {
@@ -50,8 +43,6 @@ canvas {
 	border-radius: 0 0 3px 3px;
 }
 
-
-
 #particles-js {
 	width: 100%;
 	height: 100%;
@@ -64,13 +55,12 @@ canvas {
 	margin-right: auto;
 }
 
-/* 登录 */
-.login {
+.register {
 	z-index: 2;
 	position: absolute;
 	width: 350px;
 	border-radius: 5px;
-	height: 500px;
+	height: 550px;
 	background: white;
 	box-shadow: 0px 0px 5px #333333;
 	top: 50%;
@@ -80,8 +70,7 @@ canvas {
 	transition: all 1s;
 }
 
-
-.login-top {
+.register-top {
 	font-size: 24px;
 	margin-top: 50px;
 	box-sizing: border-box;
@@ -89,41 +78,40 @@ canvas {
 	margin-bottom: 50px;
 }
 
-.login-center {
+.register-center {
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 40px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	height: 50px;
-
 }
 
-.login-center-img {
+.register-center-img {
 	width: 20px;
 	height: 20px;
 	float: left;
 	margin-top: 5px;
 }
 
-.login-center-img>img {
+.register-center-img>img {
 	width: 100%;
 }
 
-.login-center-input {
+.register-center-input {
 	float: left;
 	width: 230px;
 	margin-left: 15px;
 	height: 30px;
 	position: relative;
-
+	top: -20px;
 }
 
-.login-center-input input {
+.register-center-input input {
 	z-index: 2;
 	transition: all 0.5s;
 	padding-left: 10px;
 	color: #333333;
-	width: 100%;
+	width: 230px;
 	height: 30px;
 	border: 0;
 	border-bottom: 1px solid #cccccc;
@@ -136,11 +124,11 @@ canvas {
 
 }
 
-.login-center-input input:focus {
+.register-center-input input:focus {
 	border: 1px solid dodgerblue;
 }
 
-.login-center-input-text {
+.register-center-input-text {
 	background: white;
 	padding: 0 5px;
 	position: absolute;
@@ -156,7 +144,7 @@ canvas {
 	transition: all 0.5s;
 }
 
-.login-center-input input:focus~.login-center-input-text {
+.register-center-input input:focus~.register-center-input-text {
 	top: 0;
 	z-index: 3;
 	opacity: 1;
@@ -166,11 +154,12 @@ canvas {
 
 .button {
 	width: 80%;
-	height: 200px;
+	height: 100px;
 	margin: auto;
+	margin-top: 40px;
 }
 
-.login-button {
+.register-button {
 	float: left;
 	width: 40%;
 	height: 50px;
@@ -182,7 +171,7 @@ canvas {
 	font-size: 10px;
 }
 
-.register-button {
+.res-button {
 	float: right;
 	width: 40%;
 	height: 50px;
@@ -194,11 +183,56 @@ canvas {
 	font-size: 10px;
 }
 
-.login-button:hover,
-.register-button:hover {
+.register-button:hover,
+.res-button:hover {
 	background-color: #08bdfe;
 }
 
-#container {
-	height: 200px;
+.register-top .back img {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+}
+
+.back img:hover {
+	cursor: pointer;
+	width: 35px;
+	height: 35px;
+}
+
+.user_error{
+	color: red;
+	font-size: 15px;
+	text-align: center;
+}
+@keyframes trans {
+	from {
+		width: 350px;
+	}
+
+	to {
+		width: 450px;
+	}
+}
+
+@keyframes inputtrans {
+	from {
+		width: 230px;
+	}
+
+	to {
+		width: 320px;
+	}
+}
+
+@keyframes back {
+	from {
+		width: 450px;
+	}
+
+	to {
+		width: 350px;
+	}
 }

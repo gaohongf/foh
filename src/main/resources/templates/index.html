@@ -6,39 +6,20 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="../static/css/layout.css"/>
 	<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<style>
-				body {
-	
-					overflow: hidden;
-				}
-	
-				canvas {
-	
-					position: absolute;
-					top: 0;
-					left: 0;
-					background-color: black;
-				}
-	
-				a {
-	
-					width: 200px;
-					height: 200px;
-					position: absolute;
-					left: calc(100% - 200px);
-					top: calc(100% - 130px);
-				}
-	
-				img {
-					width: 200px;
-				}
-			</style>
-	
 		</head>
 		<body>
 			<div class="container">
 				<div class="search">
 					<input type="text" name="" id="" value="" />
+					<div class="text_item">
+						<ul class="search_text_item">
+							<li><a href="#" style="width: 0;height: 0;position: static;text-decoration: none;color: black;">112</a></li>
+							<li><a href="#" style="width: 0;height: 0;position: static;text-decoration: none;color: black;">112</a></li>
+							<li><a href="#" style="width: 0;height: 0;position: static;text-decoration: none;color: black;">112</a></li>
+							<li><a href="#" style="width: 0;height: 0;position: static;text-decoration: none;color: black;">112</a></li>
+							<li><a href="#" style="width: 0;height: 0;position: static;text-decoration: none;color: black;">112</a></li>
+						</ul>
+					</div>
 				</div>
 				<div class="hobby grid">
 					<div class="item grid-cell-1">
@@ -59,8 +40,7 @@
 					</div>
 				</div>
 			</div>
-			<canvas id="c" style="z-index : -1;
-	position : absolute;"></canvas>
+			<canvas id="c" style="z-index : -1;position : absolute;"></canvas>
 	
 			<script src="../static/js/dat.gui.min.js" type="text/javascript" charset="utf-8"></script>
 			<script src="../static/js/index.js" type="text/javascript" charset="utf-8"></script>
@@ -79,6 +59,23 @@
 		$hobby_item_text.appendTo($hobby_item)
 		$item.insertBefore(".add")
 		
+	})
+	$(".search input").focus(function(){
+		$(".text_item").css("display","block")
+		// $(this).css({
+		// 	"border": "0px",
+		// 	    "outline": "none",
+		// 	    "border-bottom-color": "black",
+		// 	    "border-bottom-left-radius": "0px",	
+		// 	    "border-bottom-right-radius": "0px",	
+		// 	    "border-bottom-width": "0.2px",
+		// 	    "border-bottom-style": "solid"
+
+		// })
+	})
+		$(".search input").blur(function(){
+			$(".text_item").css("display","none");
+
 	})
 </script>
 

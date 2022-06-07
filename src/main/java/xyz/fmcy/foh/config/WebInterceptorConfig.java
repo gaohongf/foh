@@ -8,6 +8,7 @@ import xyz.fmcy.foh.interceptor.LoginInterceptor;
 /**
  * @author 付高宏
  */
+@Configuration
 public class WebInterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

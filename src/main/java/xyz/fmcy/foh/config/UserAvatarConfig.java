@@ -18,7 +18,6 @@ public class UserAvatarConfig implements WebMvcConfigurer {
     private String filepath;
     private String resource;
 
-
     public void setResource(String resource) {
         this.resource = resource;
     }

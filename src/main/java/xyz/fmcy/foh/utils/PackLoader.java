@@ -19,6 +19,11 @@ public final class PackLoader {
     private PackLoader() {
     }
 
+    /**
+     * 扫描包下的所有类
+     * @param packName 被扫描包名
+     * @return  扫描出来的类
+     */
     public static List<Class<?>> getPackClasses(String packName) throws IOException, URISyntaxException, ClassNotFoundException {
         List<Class<?>> classes = new ArrayList<>();
         packName = packName.replace("/", ".");

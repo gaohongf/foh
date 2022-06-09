@@ -3,10 +3,11 @@
 	padding: 0;
 }
 
-a{
+a {
 	text-decoration: none;
 	color: white;
 }
+
 html,
 body {
 	width: 100%;
@@ -204,4 +205,56 @@ canvas {
 
 #container {
 	height: 200px;
+}
+
+.user_error {
+	position: relative;
+	text-align: right;
+	color: red;
+	font-size: 15px;
+	width: 100px;
+	height: 20px;
+	right: -160px;
+}
+.first{
+	margin-top: 100px; margin-bottom: 50px;
+}
+@media (max-width:1200px) {
+	html, body {
+	    max-width: 100%;
+		max-height: 100%;
+	    overflow-x: hidden;
+		 overflow-y: hidden;
+	}
+	.login {
+		width: 560px;
+		height: 600px;
+		left: 40%;
+	}
+	#container{
+		margin-top: 120px;
+		margin-bottom: 50px;
+	}
+	.login-top {
+		font-size: 25px;
+	}
+	.login-center{
+		margin-bottom: 100px;
+	}
+	.login-center-input input {
+		height: 40px;
+		left: 13px;
+		width: 400px;
+		font-size: 18px;
+	}
+	.login-center-img img{
+		width: 40px;
+		height: 40px;
+		position: relative;
+		top: -10px;
+	}
+	.user_error{
+		top: -30px;
+		font-size: 25px;
+	}
 }

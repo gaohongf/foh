@@ -15,9 +15,8 @@
                 登录
             </div>
             <div id="container">
-                <div class="login-center" style="margin-top: 100px;">
-                   <div th:if="${error != null}" class="user_error"
-                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;" th:text="#{${error}}">
+                <div class="login-center first">
+                   <div th:if="${error != null}" class="user_error" th:text="#{${error}}">
                         错误信息
                     </div>
                     <div class="login-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">

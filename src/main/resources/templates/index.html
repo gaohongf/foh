@@ -39,6 +39,54 @@
 							</div>
 						</div>
 					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png" th:src="@{/img/password.png}" alt="">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png" th:src="@{/img/password.png}" alt="">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png" th:src="@{/img/password.png}" alt="">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png" th:src="@{/img/password.png}" alt="">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png" th:src="@{/img/password.png}" alt="">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
+					<div class="item grid-cell-1">
+						<div class="hobby_item">
+							<img src="../static/img/password.png" th:src="@{/img/password.png}" alt="">
+							<div class="hobby_item_text">
+								123
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<canvas id="c" style="z-index : -1;position : absolute;"></canvas>
@@ -63,10 +111,17 @@
 	})
 	$(".search input").focus(function(){
 		$(".text_item").css("display","block")
+		$(this).css({
+			"border-bottom-left-radius": "0px",
+			"border-bottom-right-radius": "0px"
+		})
 
 	})
 		$(".search input").blur(function(){
 			$(".text_item").css("display","none");
+			$(this).css({
+				    "border-radius": "3px"
+			})
 
 	})
 </script>

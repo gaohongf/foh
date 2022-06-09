@@ -5,12 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.annotation.WebFilter;
 import java.nio.charset.StandardCharsets;
 
 /**
  * @author 付高宏
+ * 头像地址映射
  */
-
 @Configuration
 @ConfigurationProperties("user.avatar")
 public class UserAvatarConfig implements WebMvcConfigurer {

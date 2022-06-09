@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
  * @author 付高宏
  * @see xyz.fmcy.foh.config.WebInterceptorConfig
  */
-
 @WebInterceptor(
         pathPatterns = {"/*","/avatar/**"},
         exclude = {"/login", "/user/login", "/user/register", "/register"}

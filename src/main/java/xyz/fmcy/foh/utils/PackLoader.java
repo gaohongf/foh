@@ -2,6 +2,7 @@ package xyz.fmcy.foh.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,11 +11,13 @@ import java.util.List;
 
 /**
  * 包扫描工具类
+ *
  * @author 付高宏
  */
 public final class PackLoader {
 
-    private PackLoader(){}
+    private PackLoader() {
+    }
 
     public static List<Class<?>> getPackClasses(String packName) throws IOException, URISyntaxException, ClassNotFoundException {
         List<Class<?>> classes = new ArrayList<>();
@@ -34,6 +37,26 @@ public final class PackLoader {
                         }
                     }
                 }
+            }
+        }
+        return classes;
+    }
+
+    /**
+     * 搜索包下的所有传入类型的类以及其子类
+     * @param packName 被扫描包名
+     * @param clazz 扫描类型
+     * @return 类集合
+     * @param <T> 泛类型
+     */
+    public static <T> List<Class<? extends T>> getPackClasses(String packName, Class<T> clazz) throws IOException, URISyntaxException, ClassNotFoundException {
+        List<Class<?>> packClasses = getPackClasses(packName);
+        List<Class<? extends T>> classes = new ArrayList<>();
+        for (Class<?> packClass : packClasses) {
+            try {
+                classes.add(packClass.asSubclass(clazz));
+            } catch (ClassCastException e) {
+                System.err.println(packClass + " 不是 " + clazz + " 的子类故该类自动排除搜索列表");
             }
         }
         return classes;

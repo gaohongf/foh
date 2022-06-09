@@ -15,7 +15,7 @@
                 注册
             </div>
             <div id="container">
-                <span th:if="${reg_err != null}" th:text="#{${reg_err}}">错误信息</span>
+                <span th:if="${reg_err != null}" th:text="#{${reg_err}}" style="position: relative;color: red;font-size: 20px;width: 100px;height: 20px;right: -130px;">错误信息</span>
                 <!--  reg_err指的是可能发生的注册错误,如手机号重复了      -->
                 <div class="register-center">
                     <div th:if="${#fields.hasErrors('phone')}" class="user_error" th:errors="*{phone}"
@@ -34,7 +34,7 @@
 
                 <div class="register-center">
                     <div th:if="${#fields.hasErrors('name')}" class="user_error" th:errors="*{name}"
-                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;">
+                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 18px;right: -160px;">
                         错误信息
                     </div>
                     <div class="register-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
@@ -47,7 +47,11 @@
                     </div>
                 </div>
 
-                <div class="register-center" style="margin-bottom: 0;">
+                <div class="register-center" style="margin-bottom: 25px;">
+					<div  class="hideen"
+					     style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 10px;right: -160px;">
+					   
+					</div>
                     <div class="register-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}"
                                                           alt=""></div>
                     <div class="register-center-input" style="margin-top: 20px;">
@@ -61,7 +65,7 @@
 
                 <div class="register-center">
                     <div id="pas_err" class="user_error"
-                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;display: none">
+                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 25px;right: -160px;display: none">
                         错误信息
                     </div>
                     <div class="register-center-img"><img src="../static/img/password.png" th:src="@{/img/password.png}"

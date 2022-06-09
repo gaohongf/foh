@@ -4,11 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import xyz.fmcy.foh.annotation.Module;
+import xyz.fmcy.foh.config.UserAvatarConfig;
 import xyz.fmcy.foh.pojo.User;
 import xyz.fmcy.foh.pojo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
@@ -25,13 +23,15 @@ public class UserPageController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private UserAvatarConfig userAvatarConfig;
     @RequestMapping("/login")
     String loginPage() {
         return "/login";
     }
 
     @GetMapping("/register")
-    String registerPage(@ModelAttribute("user") User user){
+    String registerPage(@ModelAttribute("user") User user) {
         return "/register";
     }
 
@@ -43,8 +43,8 @@ public class UserPageController {
         KeyAndValue<Boolean, String> keyAndValue = userService.addUser(user);
         if (keyAndValue.getKey()) {
             return login(user, model, session);
-        }else {
-            model.addAttribute("reg_err",keyAndValue.getValue());
+        } else {
+            model.addAttribute("reg_err", keyAndValue.getValue());
             return "/register";
         }
     }
@@ -59,5 +59,12 @@ public class UserPageController {
             model.addAttribute("error", login.getValue());
             return "/login";
         }
+    }
+
+    @GetMapping("/user/{uid}")
+    public String userPage(Model model, @PathVariable Integer uid) {
+        User user = userService.findUserByUid(uid);
+        model.addAttribute("user", user);
+        return "/user";
     }
 }

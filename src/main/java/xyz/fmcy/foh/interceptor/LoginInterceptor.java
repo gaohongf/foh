@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @WebInterceptor(
-        pathPatterns = "/*",
+        pathPatterns = {"/*","/avatar/**"},
         exclude = {"/login", "/user/login", "/user/register", "/register"}
 )
 public class LoginInterceptor implements HandlerInterceptor {

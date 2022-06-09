@@ -8,7 +8,7 @@
     <script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<div id="container">
+<div id="container" th:object="${user}">
     <div class="top grid">
         <div class="top-img grid-cell-1">
             <div class="container_top_img">
@@ -16,10 +16,10 @@
             </div>
         </div>
         <div class="container_text grid-cell-5">
-            <div class="container_text_name">
+            <div class="container_text_name" th:text="*{name}">
                 张三
             </div>
-            <div class="container_text_status">
+            <div class="container_text_status" th:src="*{sign}">
                 我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三
             </div>
             <div class="container_text_lable grid">
@@ -42,7 +42,7 @@
         <div class="container_body_left grid-cell-1">
             <div class="container_body_left_text_first">
                 <div class="container_body_left_text_first_title">
-                    <span class="title_first_text">我是战三</span>
+                    <span class="title_first_text">浏览历史</span>
                     <hr class="line">
                 </div>
                 <div class="title_first_ul">
@@ -55,7 +55,7 @@
             </div>
             <div class="container_body_left_text_second">
                 <div class="container_body_left_title">
-                    <span class="title_second_text">我是其他</span>
+                    <span class="title_second_text">收藏</span>
                     <hr class="line">
                 </div>
 

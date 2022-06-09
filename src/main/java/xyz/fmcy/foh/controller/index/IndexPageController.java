@@ -1,5 +1,6 @@
 package xyz.fmcy.foh.controller.index;
 
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,5 @@ public class IndexPageController {
     String index(Model model) {
         return "index";
     }
-
 
 }

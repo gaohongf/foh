@@ -1,7 +1,5 @@
 package xyz.fmcy.foh.config;
 
-import org.apache.catalina.util.URLEncoder;
-import org.apache.tomcat.util.buf.Utf8Encoder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,19 +12,18 @@ import java.nio.charset.StandardCharsets;
  */
 
 @Configuration
-@ConfigurationProperties(
-        "user.avatar"
-)
+@ConfigurationProperties("user.avatar")
 public class UserAvatarConfig implements WebMvcConfigurer {
     private String filepath;
     private String resource;
+
 
     public void setResource(String resource) {
         this.resource = resource;
     }
 
     public void setFilepath(String filepath) {
-        this.filepath = URLEncoder.DEFAULT.encode(filepath, StandardCharsets.UTF_8);
+        this.filepath = new String(filepath.getBytes(StandardCharsets.ISO_8859_1));
     }
 
     public String getResource() {

@@ -1,10 +1,10 @@
 @REM ----------------------------------------------------------------------------
 @REM Licensed to the Apache Software Foundation (ASF) under one
-@REM or more contributor license agreements.  See the NOTICE file
+@REM or more contributor license agreements.  See the NOTICE filepath
 @REM distributed with this work for additional information
-@REM regarding copyright ownership.  The ASF licenses this file
+@REM regarding copyright ownership.  The ASF licenses this filepath
 @REM to you under the Apache License, Version 2.0 (the
-@REM "License"); you may not use this file except in compliance
+@REM "License"); you may not use this filepath except in compliance
 @REM with the License.  You may obtain a copy of the License at
 @REM
 @REM    https://www.apache.org/licenses/LICENSE-2.0
@@ -21,10 +21,10 @@
 @REM Maven Start Up Batch script
 @REM
 @REM Required ENV vars:
-@REM JAVA_HOME - location of a JDK home dir
+@REM JAVA_HOME - resource of a JDK home dir
 @REM
 @REM Optional ENV vars
-@REM M2_HOME - location of maven2's installed home dir
+@REM M2_HOME - resource of maven2's installed home dir
 @REM MAVEN_BATCH_ECHO - set to 'on' to enable the echoing of the batch commands
 @REM MAVEN_BATCH_PAUSE - set to 'on' to wait for a keystroke before ending
 @REM MAVEN_OPTS - parameters passed to the Java VM when running Maven
@@ -63,7 +63,7 @@ if not "%JAVA_HOME%" == "" goto OkJHome
 echo.
 echo Error: JAVA_HOME not found in your environment. >&2
 echo Please set the JAVA_HOME variable in your environment to match the >&2
-echo location of your Java installation. >&2
+echo resource of your Java installation. >&2
 echo.
 goto error
 
@@ -74,7 +74,7 @@ echo.
 echo Error: JAVA_HOME is set to an invalid directory. >&2
 echo JAVA_HOME = "%JAVA_HOME%" >&2
 echo Please set the JAVA_HOME variable in your environment to match the >&2
-echo location of your Java installation. >&2
+echo resource of your Java installation. >&2
 echo.
 goto error
 

@@ -207,6 +207,18 @@ body {
 	font-size: 15px;
 	text-align: center;
 }
+.register_back{
+	position: absolute;
+	top: 10px;
+	left: 15px;
+}
+.register_back img{
+	width: 40px;
+	height: 40px;
+}
+.register_back img:hover{
+	transform: scale(1.2);
+}
 @keyframes trans {
 	from {
 		width: 350px;

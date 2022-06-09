@@ -13,6 +13,9 @@
         <div class="register">
             <div class="register-top" style="text-align: center;">
                 注册
+				<div class="register_back">
+					<img src="../static/img/jiantou.png" >
+				</div>
             </div>
             <div id="container">
                 <span th:if="${reg_err != null}" th:text="#{${reg_err}}" style="position: relative;color: red;font-size: 20px;width: 100px;height: 20px;right: -130px;">错误信息</span>
@@ -112,6 +115,9 @@
             }
         }
     })
+	$(".register_back img").click(function(){
+		location.href="login.html"
+	})
 
 </script>
 </html>

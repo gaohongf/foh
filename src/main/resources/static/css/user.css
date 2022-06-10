@@ -331,8 +331,9 @@ a {
 		
 	}
 	.try_button{
+		bottom: 300px;
 		z-index: 10;
-		width: 60px;
+		width: 150px;
 		height: 40px;
 	}
 	.roll_btn{

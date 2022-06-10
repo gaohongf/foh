@@ -42,36 +42,16 @@
 
             <div class="button">
                 <input type="submit" value="登录" class="login-button" style="border: 0;"/>
+				<a href="register.html" th:href="@{/register}">
                 <div class="register-button">
-                    <a href="register.html" th:href="@{/register}">注册</a>
+                    注册
                 </div>
+				</a>
             </div>
         </div>
     </form>
 </div>
 <script type="text/javascript">
-    $(function (){
-        $(".register-button").click(function () {
-            $(".login").css("display", "none")
-            $(".register").css({
-                "display": "block",
-                "animation": "trans 1s ease 0s",
-                "animation-fill-mode": "forwards"
-            })
-            $(".regiter-center-input input").css({
-                "animation": "inputtrans 1s ease 0s",
-                "animation-fill-mode": "forwards"
-            })
-        })
-        $(".back img").click(function () {
-            $(".login").css({
-                "display": "block",
-                "animation": "back 1s ease 0s",
-                "animation-fill-mode": "forwards"
-            })
-            $(".register").css("display", "none")
-        })
-    })
 		$("#phone1").focus(function(){
 			$(".user_error").text("")
 		})

@@ -12,23 +12,20 @@ import java.util.List;
 
 /**
  * 快速拦截器设置工具
+ *
  * @author 付高宏
  */
 public class InterceptorLoader {
 
     public static void setInterceptors(InterceptorRegistry registry, String packageName) {
         try {
-            List<Class<?>> classes = PackLoader.getPackClasses(packageName);
-            for (Class<?> clazz : classes) {
+            List<Class<? extends HandlerInterceptor>> classes = PackLoader.getPackClasses(packageName, HandlerInterceptor.class);
+            for (Class<? extends HandlerInterceptor> clazz : classes) {
                 WebInterceptor webInterceptor = clazz.getAnnotation(WebInterceptor.class);
                 if (webInterceptor != null) {
-                    try {
-                        HandlerInterceptor interceptor = (HandlerInterceptor) clazz.getDeclaredConstructor().newInstance();
-                        registry.addInterceptor(interceptor).addPathPatterns(webInterceptor.pathPatterns())
-                                .excludePathPatterns(webInterceptor.exclude());
-                    }catch (ClassCastException e){
-                        System.err.println(clazz + ":未实现 org.springframework.web.servlet.HandlerInterceptor 接口,无法识别为拦截器,添加失败");
-                    }
+                    HandlerInterceptor interceptor = clazz.getDeclaredConstructor().newInstance();
+                    registry.addInterceptor(interceptor).addPathPatterns(webInterceptor.pathPatterns())
+                            .excludePathPatterns(webInterceptor.exclude());
                 }
             }
         } catch (IOException | URISyntaxException | ClassNotFoundException | NoSuchMethodException |

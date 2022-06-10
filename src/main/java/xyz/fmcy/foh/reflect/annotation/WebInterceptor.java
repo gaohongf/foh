@@ -11,7 +11,13 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebInterceptor {
+    /**
+     * 拦截路径
+     */
     String[] pathPatterns();
 
+    /**
+     * 不拦截路径
+     */
     String[] exclude();
 }

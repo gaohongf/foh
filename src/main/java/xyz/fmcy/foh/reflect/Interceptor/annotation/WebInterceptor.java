@@ -1,11 +1,13 @@
-package xyz.fmcy.foh.reflect.annotation;
+package xyz.fmcy.foh.reflect.Interceptor.annotation;
+
+import xyz.fmcy.foh.reflect.Interceptor.InterceptorLoader;
 
 import java.lang.annotation.*;
 
 /**
  * 快速注册拦截器
  * @author 付高宏
- * @see xyz.fmcy.foh.reflect.driver.InterceptorLoader
+ * @see InterceptorLoader
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

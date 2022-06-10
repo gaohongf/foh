@@ -20,11 +20,11 @@ a {
 }
 
 .top .top-img {
-	width: 160px;
+	width: 180px;
 	position: relative;
 }
 
-.top img {
+.container_top_img img {
 	height: 100px !important;
 	width: 100px !important;
 }
@@ -160,7 +160,10 @@ a {
 	border: 0px;
 	margin-top: 10px;
 }
-
+.fa-tag{
+	position: absolute;
+	left: 20px;
+}
 .right_text {
 	margin-left: 50px;
 	color: #bfbfbf;
@@ -269,6 +272,7 @@ a {
 	transform: scale(1.2);
 }
 
+
 @keyframes backcolor {
 	0% {
 				background-position:0% 50% ;
@@ -288,7 +292,7 @@ a {
 				transform: rotate(360deg);
 		}
 }
-@media screen and (max-width: 800px) {
+@media (max-width:1200px) {
 	.container_text_name{
 		font-size:40px;
 		top: 40px;
@@ -299,14 +303,14 @@ a {
 		left: 100px;
 		width: 150px;
 		height: 26px;
-		border: 1px solid black;
 		line-height: 26px;
 		 overflow: hidden;
 		text-overflow:ellipsis;
 	}
 	.container_text_lable{
+		width: 300px;
 		left: 100px;
-		top: 130px;
+		top: 150px;
 	}
 	.container_body_left{
 		margin-bottom: 50px;
@@ -314,10 +318,12 @@ a {
 	.container_body_left_text_first{
 		display: block;
 		z-index: 10;
-		width: 100%;
+		width: 750px;
+		margin: auto;
 	}
 	.container_body_left_text_second{
-		width: 100%;
+	width: 750px;
+	margin: auto;
 		
 	}
 	.container_body_right{
@@ -325,11 +331,12 @@ a {
 		
 	}
 	.try_button{
+		bottom: 300px;
 		z-index: 10;
-		width: 60px;
+		width: 150px;
 		height: 40px;
 	}
-	.btn_roll{
+	.roll_btn{
 		display: none;
 	}
 }

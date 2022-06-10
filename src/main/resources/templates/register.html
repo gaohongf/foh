@@ -18,11 +18,10 @@
 				</div>
             </div>
             <div id="container">
-                <span th:if="${reg_err != null}" th:text="#{${reg_err}}" style="position: relative;color: red;font-size: 20px;width: 100px;height: 20px;right: -130px;">错误信息</span>
+                <span th:if="${reg_err != null}" th:text="#{${reg_err}}" class="reg_err">错误信息</span>
                 <!--  reg_err指的是可能发生的注册错误,如手机号重复了      -->
                 <div class="register-center">
-                    <div th:if="${#fields.hasErrors('phone')}" class="user_error" th:errors="*{phone}"
-                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 20px;right: -160px;">
+                    <div th:if="${#fields.hasErrors('phone')}" class="user_error" th:errors="*{phone}">
                         错误信息
                     </div>
                     <div class="register-center-img"><img src="../static/img/phone.png" th:src="@{/img/phone.png}"
@@ -35,9 +34,9 @@
                     </div>
                 </div>
 
-                <div class="register-center" style="margin-bottom: 10px;">
+                <div class="register-center user_center">
                     <div th:if="${#fields.hasErrors('name')}" class="user_error" th:errors="*{name}"
-                         style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 18px;right: -160px;">
+                         style="">
                         错误信息
                     </div>
                     <div class="register-center-img"><img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
@@ -50,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="register-center" style="margin-bottom: 30px;">
+                <div class="register-center pas_cen">
 					<div  class="hideen"
 					     style="position: relative;text-align: right;color: red;font-size: 15px;width: 100px;height: 10px;right: -160px;">
 					   

@@ -2,11 +2,12 @@ package xyz.fmcy.foh.pojo.combo;
 
 /**
  * 简单键值对模型  类似于{@link java.util.Map.Entry} {true:"张三"}
+ *
  * @param <K> key
  * @param <V> value
  * @author 付高宏
  */
-public class KeyAndValue<K,V> {
+public class KeyAndValue<K, V> {
 
     private K key;
 
@@ -42,5 +43,15 @@ public class KeyAndValue<K,V> {
     public KeyAndValue(K key, V value) {
         this.key = key;
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof KeyAndValue) {
+            return ((KeyAndValue<?,?>) obj).getKey().equals(this.key) && ((KeyAndValue<?,?>) obj).getValue().equals(this.value);
+        } else {
+            return false;
+        }
     }
 }

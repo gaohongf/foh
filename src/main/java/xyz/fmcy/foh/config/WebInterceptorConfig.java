@@ -3,7 +3,7 @@ package xyz.fmcy.foh.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import xyz.fmcy.foh.reflect.driver.InterceptorLoader;
+import xyz.fmcy.foh.reflect.Interceptor.InterceptorLoader;
 
 /**
  * @author 付高宏

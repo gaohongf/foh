@@ -3,7 +3,7 @@ package xyz.fmcy.foh.service;
 import org.springframework.stereotype.Service;
 import xyz.fmcy.foh.pojo.Avatar;
 import xyz.fmcy.foh.pojo.User;
-import xyz.fmcy.foh.pojo.combo.KeyAndValue;
+import xyz.fmcy.foh.vo.combo.KeyAndValue;
 
 @Service
 public interface UserService {

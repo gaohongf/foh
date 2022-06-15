@@ -9,7 +9,8 @@ import xyz.fmcy.foh.annotation.Module;
 import xyz.fmcy.foh.config.UserAvatarConfig;
 import xyz.fmcy.foh.pojo.Avatar;
 import xyz.fmcy.foh.pojo.User;
-import xyz.fmcy.foh.pojo.combo.KeyAndValue;
+import xyz.fmcy.foh.service.FansService;
+import xyz.fmcy.foh.vo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
 
 import javax.annotation.Resource;
@@ -25,6 +26,9 @@ public class UserPageController {
     private UserService userService;
     @Resource
     private UserAvatarConfig userAvatarConfig;
+
+    @Resource
+    private FansService fansService;
 
     @RequestMapping("/login")
     String loginPage() {
@@ -71,6 +75,8 @@ public class UserPageController {
                 "default-avatar/def01.png" :
                 userAvatarConfig.getResource().replaceFirst("/","") + avatar.getAvatar()
         );
+        model.addAttribute("fansNumber",fansService.userFansNumber(uid));
+        model.addAttribute("concernNumber",fansService.userConcernNumber(uid));
         return "/user";
     }
 }

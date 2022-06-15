@@ -5,7 +5,7 @@ import xyz.fmcy.foh.mapper.AvatarMapper;
 import xyz.fmcy.foh.mapper.UserMapper;
 import xyz.fmcy.foh.pojo.Avatar;
 import xyz.fmcy.foh.pojo.User;
-import xyz.fmcy.foh.pojo.combo.KeyAndValue;
+import xyz.fmcy.foh.vo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
 
 import javax.annotation.Resource;

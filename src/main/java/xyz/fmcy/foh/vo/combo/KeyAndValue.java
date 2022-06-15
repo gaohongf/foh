@@ -1,4 +1,4 @@
-package xyz.fmcy.foh.pojo.combo;
+package xyz.fmcy.foh.vo.combo;
 
 /**
  * 简单键值对模型  类似于{@link java.util.Map.Entry} {true:"张三"}

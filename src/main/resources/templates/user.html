@@ -13,14 +13,14 @@
     <div class="top grid">
         <div class="top-img grid-cell-1">
             <div class="container_top_img">
-                <img src="../static/img/name.png" th:src="@{/img/name.png}" alt="">
+                <img src="../static/default-avatar/def01.png" th:src="@{'/'+${avatar}}" alt="">
             </div>
         </div>
         <div class="container_text grid-cell-5">
             <div class="container_text_name" th:text="*{name}">
                 张三
             </div>
-            <div class="container_text_status" th:src="*{sign}">
+            <div class="container_text_status" th:text="*{sign}">
                 我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三我叫作张三
             </div>
             <div class="container_text_lable grid">

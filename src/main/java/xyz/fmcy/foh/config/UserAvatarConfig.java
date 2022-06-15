@@ -35,7 +35,7 @@ public class UserAvatarConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(resource).addResourceLocations("file:"+filepath);
+        registry.addResourceHandler(resource + "**").addResourceLocations("file:" + filepath);
         WebMvcConfigurer.super.addResourceHandlers(registry);
     }
 }

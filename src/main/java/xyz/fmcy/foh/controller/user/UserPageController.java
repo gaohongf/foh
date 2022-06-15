@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.fmcy.foh.annotation.Module;
 import xyz.fmcy.foh.config.UserAvatarConfig;
+import xyz.fmcy.foh.pojo.Avatar;
 import xyz.fmcy.foh.pojo.User;
 import xyz.fmcy.foh.pojo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
@@ -22,9 +23,9 @@ import javax.servlet.http.HttpSession;
 public class UserPageController {
     @Resource
     private UserService userService;
-
     @Resource
     private UserAvatarConfig userAvatarConfig;
+
     @RequestMapping("/login")
     String loginPage() {
         return "/login";
@@ -64,7 +65,12 @@ public class UserPageController {
     @GetMapping("/user/{uid}")
     public String userPage(Model model, @PathVariable Integer uid) {
         User user = userService.findUserByUid(uid);
+        Avatar avatar = userService.findByUid(uid);
         model.addAttribute("user", user);
+        model.addAttribute("avatar", avatar == null ?
+                "default-avatar/def01.png" :
+                userAvatarConfig.getResource().replaceFirst("/","") + avatar.getAvatar()
+        );
         return "/user";
     }
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
  * @see xyz.fmcy.foh.config.WebInterceptorConfig
  */
 @WebInterceptor(
-        pathPatterns = {"/*","/avatar/**"},
+        pathPatterns = {"/*","/avatar/**","/user/**"},
         exclude = {"/login", "/user/login", "/user/register", "/register"}
 )
 public class LoginInterceptor implements HandlerInterceptor {

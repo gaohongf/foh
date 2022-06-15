@@ -26,7 +26,6 @@ public class UserPageController {
     private UserService userService;
     @Resource
     private UserAvatarConfig userAvatarConfig;
-
     @Resource
     private FansService fansService;
 

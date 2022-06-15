@@ -8,7 +8,7 @@ package xyz.fmcy.foh.pojo;
  *
  * @author 付高宏
  */
-public class Avatar {
+public final class Avatar {
     private Integer id;
     private String avatar;
 

@@ -6,7 +6,7 @@ package xyz.fmcy.foh.pojo;
  * @author 付高宏
  * @date 2022/6/15 19:25
  */
-public class Fans {
+public final class Fans {
     private Integer uid;
     private Integer target;
 

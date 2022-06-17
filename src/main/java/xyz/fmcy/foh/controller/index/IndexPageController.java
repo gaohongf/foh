@@ -1,9 +1,9 @@
 package xyz.fmcy.foh.controller.index;
 
-import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import xyz.fmcy.foh.service.TopicService;
 import xyz.fmcy.foh.service.UserService;
 
 import javax.annotation.Resource;
@@ -14,10 +14,11 @@ import javax.annotation.Resource;
 public class IndexPageController {
 
     @Resource
-    private UserService userService;
+    private TopicService topicService;
 
     @RequestMapping({"/", "/index"})
     String index(Model model) {
+        model.addAttribute("topicTypes",topicService.getTopicTypes());
         return "index";
     }
 

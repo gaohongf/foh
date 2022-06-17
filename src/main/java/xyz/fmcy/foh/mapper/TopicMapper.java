@@ -30,6 +30,8 @@ public interface TopicMapper {
 
     TopicType findTopicTypeByTypename(String typename);
 
+    List<Topic> findTopicLikeTitleAndType(@Param("title") String title,@Param("type") TopicType type);
+
     /**
      * 查询一位用户对应数量的帖子
      *
@@ -50,7 +52,9 @@ public interface TopicMapper {
     List<Topic> findTopicsById(@Param("ids") Integer... ids);
 
     List<Topic> findTopicByType(@Param("type") TopicType type, @Param("start") Integer start, @Param("number") Integer number);
+
     Integer findTopicNumberByType(@Param("typeid") Integer typeid);
+
     int addTopic(Topic topic);
 
     int addTopicType(TopicType type);

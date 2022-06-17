@@ -50,7 +50,7 @@
 											<div class="bottom_replace_user">
 												<div class="replace_img">
 													<img src="../banner/pm.jpg">
-													<a href="#">132456</a>回复<a href="#">132456</a>
+													<a href="#" class="username">123</a>回复<a href="#">132456</a>
 													我是第一个主体内容12345354
 													我是第一个主体内容12345354
 													<div class="replace_bottom">
@@ -66,7 +66,7 @@
 											<div class="bottom_replace_user">
 												<div class="replace_img">
 													<img src="../banner/pm.jpg">
-													<a href="#">132456</a>回复<a href="#">132456</a>
+													<a href="#"  class="username">666</a>回复<a href="#">132456</a>
 													我是第一个主体内容12345354
 													我是第一个主体内容12345354
 													<div class="replace_bottom">
@@ -82,7 +82,7 @@
 											<div class="bottom_replace_user">
 												<div class="replace_img">
 													<img src="../banner/pm.jpg">
-													<a href="#">132456</a>回复<a href="#">132456</a>
+													<a href="#"  class="username">535</a>回复<a href="#">132456</a>
 													我是第一个主体内容12345354
 													我是第一个主体内容12345354
 													我是第一个主体内容12345354
@@ -95,6 +95,10 @@
 														<span class="replace_zan"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>16</span>
 														<span class="replcace_time">2022-05-05 05:12:50</span>
 														<span class="answer_replace">回复</span>
+													</div>
+													<div class="answer_edit">
+														<textarea rows="" cols="" id="edit_text"></textarea>
+														<button type="button" class="edit_put">发表</button>
 													</div>
 												</div>
 											</div>
@@ -202,6 +206,12 @@
 				$(this).parent().siblings(".bottom_replace").css("display","block")
 			}
 			i++;
+		})
+		$(".answer_replace").click(function(){
+			$(".answer_edit").css("display","block")
+			let user = $(this).parent().siblings(".username").text();
+			console.log(user)
+			$("#edit_text").text("回复:"+user)
 		})
 	</script>
 </html>

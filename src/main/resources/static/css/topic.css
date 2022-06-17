@@ -198,6 +198,26 @@ textarea{
 .answer_replace{
 	cursor: pointer;
 }
+.answer_edit{
+	width: 100%;
+	min-height: 130px;
+	text-align: right;
+	display: none;
+}
+.edit_put{
+	text-align: center;
+	width: 80px;
+	height: 30px;
+	border-radius: 5px;
+	color: white;
+	border: 0;
+	margin-right: 5px;
+	background-color: #538fff;
+}
+.answer_edit textarea{
+	width: 100%;
+	min-height: 80px;
+}
 @media (max-width:1200px) {
 	.right{
 		display: none;

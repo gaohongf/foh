@@ -81,4 +81,5 @@ public class UserPageController {
         model.addAttribute("concernNumber",fansService.userConcernNumber(uid));
         return "/user";
     }
+
 }

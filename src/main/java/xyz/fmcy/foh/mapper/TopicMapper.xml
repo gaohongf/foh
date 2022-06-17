@@ -85,4 +85,13 @@
             </if>
         </where>
     </select>
+
+    <select id="findTopicLikeTitleAndType" resultType="xyz.fmcy.foh.pojo.Topic">
+        select * from topic
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%',#{title},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

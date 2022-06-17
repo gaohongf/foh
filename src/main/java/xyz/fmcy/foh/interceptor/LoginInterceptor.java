@@ -1,7 +1,7 @@
 package xyz.fmcy.foh.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
-import xyz.fmcy.foh.reflect.Interceptor.annotation.WebInterceptor;
+import xyz.fmcy.foh.reflect.interceptor.annotation.WebInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

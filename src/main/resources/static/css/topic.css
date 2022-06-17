@@ -4,7 +4,9 @@
 }
 a{
 	text-decoration: none;
-	
+}
+body{
+	background-color: #0000CC;
 }
 ul{
 	list-style: none;
@@ -17,17 +19,20 @@ ul{
 .left{
 	background-color: #ffffff;
 }
-
+.right{
+	height: 100px;
+}
 .container_top{
 	width: 900PX;
 	min-height: 200px;
-	background-color: #f7f7f7;
+	background-color: #ffffff;
+	border: 1px solid #ebebeb;
 }
 .top_img{
 	min-height: 260px;
 	width:130px;
 	position: relative;
-	background-color: #f9f9f9;
+	background-color: #f8f6ff;
 }
 .top_img>.top_img_div{
 	margin: 30px auto;
@@ -55,11 +60,11 @@ ul{
 .top_bottom{
 	height: 60px;
 	width: 100%;
-	background-color: #f5f5f5;
+	background-color: #ffffff;
 	text-align: right;
 	line-height: 60px;
 }
-.time{
+.replace{
 	margin-right:10px;
 }
 .container_top_titile{
@@ -116,6 +121,7 @@ textarea{
 	height: 100%;
 	border-radius: 15px;
 	background-color: #fffdf3;	
+	position: relative;
 }
 .recommend>span{
 	margin-bottom: 10px;
@@ -131,10 +137,66 @@ textarea{
 	font-size: 15px;
 }
 .hot{
-	margin-left: 60px;
+	position: absolute;
+	right: 0;
 }
-#edui1_elementpath{
-	display: none;
+.bottom_replace{
+	min-height: 100px;
+	width: 90%;
+	background-color: #fcfbff;
+	border: 1px solid #e3e3e3;
+	margin: auto;
+}
+
+.bottom_replace_user img{
+	width: 50px;
+	height: 50px;
+	text-align: center;
+}
+.bottom_replace_user{
+	margin-left: 20px;
+	margin-top: 10px;
+	position: relative;
+	min-height: 50px;
+	max-width: 700px;
+}
+.clear{
+	flex-wrap: nowrap;
+}
+.bottom_replace_answer{
+	font-size: 16px;
+	margin-top: 10px;
+	flex-wrap: nowrap;
+}
+.bottom_replace hr{
+	height: 3px;
+	margin-bottom: 5px;
+	background-color: #e2e2e2;
+}
+.replace_name{
+	word-wrap: break-word;
+}
+.replace_img img{
+	float: left;
+}
+.replace_text{
+	margin-top: 13px;
+	min-height: 60px;
+	width: 550px;
+	font-size: 15px;
+	word-wrap: break-word;
+}
+.replace_bottom{
+	font-size: 12px;
+	text-align: right;
+	position: relative;
+	right: 20px;
+}
+.replace{
+	cursor: pointer;
+}
+.answer_replace{
+	cursor: pointer;
 }
 @media (max-width:1200px) {
 	.right{

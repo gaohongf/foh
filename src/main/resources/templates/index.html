@@ -36,7 +36,7 @@
     <div class="hobby grid">
         <div class="item grid-cell-1" th:each="t : ${topicTypes}" th:object="${t}">
             <div class="hobby_item" th:onclick="|location='@{/type/{id}(id=*{id})}'|">
-                <img src="../static/img/password.png" th:src="@{'/'+*{typeIcon}}" alt="">
+                <img src="../static/img/news.png" th:src="@{'/'+*{typeIcon}}" alt="">
                 <div class="hobby_item_text" th:text="*{typename}">名称</div>
             </div>
         </div>
@@ -74,7 +74,6 @@
         $(this).css({
             "border-radius": "3px"
         })
-
     })
 </script>
 

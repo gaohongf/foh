@@ -53,16 +53,16 @@ img {
 	box-shadow: 0 0 20px 0px #868686;
 	border: 0;
 	font-size: 20px;
-	outline: noe;
+	outline: none;
 
 }
 
 .hobby_item img {
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	position: absolute;
-	top: 10px;
-	left: 14px;
+	top: 9px;
+	left: 10px;
 }
 
 .item {
@@ -103,7 +103,7 @@ img {
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	display: none;
-	
+	z-index: 100;
 }
 .search input{
 	border: 0;
@@ -112,6 +112,7 @@ img {
 .search_text_item {
 	width: 700px;
 	height: 200px;
+	z-index: 100;
 }
 
 .search_text_item li {

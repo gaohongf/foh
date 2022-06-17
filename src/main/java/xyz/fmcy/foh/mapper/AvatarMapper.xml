@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    author:付高宏
+    time:2022/6/15 16:52
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fmcy.foh.mapper.AvatarMapper">
+    <select id="findByUid" resultType="xyz.fmcy.foh.pojo.Avatar">
+        select *
+        from avatar
+        where id = #{id}
+    </select>
+
+    <update id="updateAvatar">
+        update avatar
+        set avatar = #{avatar}
+        where id = #{id}
+    </update>
+
+    <insert id="insertAvatar">
+        insert avatar(id, avatar) value (#{id}, #{avatar})
+    </insert>
+</mapper>

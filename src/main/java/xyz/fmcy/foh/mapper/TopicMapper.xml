@@ -1,0 +1,88 @@
+<!--
+    author:付高宏
+    time:2022/6/15 21:55
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fmcy.foh.mapper.TopicMapper">
+    <select id="findTopicTypes" resultType="xyz.fmcy.foh.pojo.TopicType">
+        select *
+        from topictype
+    </select>
+
+    <select id="findTopicsById" resultType="xyz.fmcy.foh.pojo.Topic">
+        select *
+        from topic
+        where id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findTopicsByUserId" resultType="xyz.fmcy.foh.pojo.Topic">
+        select *
+        from topic
+        where authorid = #{uid}
+        limit #{start},#{number}
+    </select>
+
+    <select id="findTopicTypeById" resultType="xyz.fmcy.foh.pojo.TopicType">
+        select *
+        from topictype
+        where id = #{typeid}
+    </select>
+
+    <select id="findTopicByType" resultType="xyz.fmcy.foh.pojo.Topic">
+        select *
+        from topic
+        where typeid = #{type.id}
+        limit #{start},#{number}
+    </select>
+
+    <insert id="addTopic">
+        insert topic(title, typeid, authorid, content, time) value (#{title}, #{typeid}, #{authorid}, #{content}, now())
+    </insert>
+
+    <insert id="addTopicType">
+        insert topictype(typename, typeicon) value (#{typename}, #{typeIcon})
+    </insert>
+
+    <update id="updateTopic">
+        update topic
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title}
+            </if>
+            <if test="content != null and content != ''">
+                , content = #{content}
+            </if>
+            <if test="typeid != null">
+                , typeid = #{typeid}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTopic">
+        delete
+        from topic
+        where id = #{id}
+    </delete>
+
+    <select id="findTopicTypeByTypename" resultType="xyz.fmcy.foh.pojo.TopicType">
+        select *
+        from topictype
+        where typename = #{typename}
+    </select>
+
+    <select id="findTopicNumberByType" resultType="java.lang.Integer">
+        select count(*)
+        from topic
+        <where>
+            <if test="typeid != null">
+                typeid = #{typeid}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -16,10 +16,12 @@ public interface UserMapper {
      *
      * @param user 会将自增的-uid-自动填入传入的对象
      */
+
     int addUser(User user);
 
     /**
      * 通过用户的-uid-来查询用户
+     *
      * @param uid 用户的id
      * @return 用户实体对象
      */
@@ -27,6 +29,7 @@ public interface UserMapper {
 
     /**
      * 通过用户的-username-来查询用户
+     *
      * @param phone 用户名
      * @return 用户实体对象
      */
@@ -36,15 +39,17 @@ public interface UserMapper {
 
     /**
      * 查看用户总数
+     *
      * @return 用户数量
      */
     int userNumber();
 
     /**
      * 查询一定范围内的用户
-     * @param start 开头
+     *
+     * @param start  开头
      * @param number 查询数量
-     * @return  被查询的用户
+     * @return 被查询的用户
      */
-    List<User> findUserByLimit(@Param("start") int start,@Param("number") int number);
+    List<User> findUserByLimit(@Param("start") int start, @Param("number") int number);
 }

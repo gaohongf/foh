@@ -1,5 +1,7 @@
 package xyz.fmcy.foh.reflect.sync;
 
+import java.util.Arrays;
+
 /**
  * 同步方法包装
  * @author 付高宏
@@ -44,5 +46,14 @@ public class MethodSign{
         this.name = name;
         this.args = args;
         this.argTypes = argTypes;
+    }
+
+    @Override
+    public String toString() {
+        return "MethodSign{" +
+                "name='" + name + '\'' +
+                ", args=" + Arrays.toString(args) +
+                ", argTypes=" + Arrays.toString(argTypes) +
+                '}';
     }
 }

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties
 @MapperScan("xyz.fmcy.foh.mapper")
+@EnableConfigurationProperties
 public class FohApplication {
 
     public static void main(String[] args) {

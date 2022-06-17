@@ -1,9 +1,11 @@
 package xyz.fmcy.foh.service.impl;
 
 import org.springframework.stereotype.Service;
+import xyz.fmcy.foh.mapper.AvatarMapper;
 import xyz.fmcy.foh.mapper.UserMapper;
+import xyz.fmcy.foh.pojo.Avatar;
 import xyz.fmcy.foh.pojo.User;
-import xyz.fmcy.foh.pojo.combo.KeyAndValue;
+import xyz.fmcy.foh.vo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
 
 import javax.annotation.Resource;
@@ -12,6 +14,8 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private AvatarMapper avatarMapper;
 
     @Override
     public KeyAndValue<Boolean, String> addUser(User user) {
@@ -46,4 +50,19 @@ public class UserServiceImpl implements UserService {
     public User findUserByPhone(String phone) {
         return userMapper.findUserByPhone(phone);
     }
+
+    @Override
+    public Avatar findByUid(Integer id) {
+        return avatarMapper.findByUid(id);
+    }
+
+    @Override
+    public boolean updateAvatar(Avatar avatar) {
+        if (findByUid(avatar.getId()) == null) {
+            return avatarMapper.insertAvatar(avatar) > 0;
+        } else {
+            return avatarMapper.updateAvatar(avatar) > 0;
+        }
+    }
+
 }

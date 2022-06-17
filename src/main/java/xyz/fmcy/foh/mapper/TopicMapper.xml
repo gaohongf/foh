@@ -15,7 +15,7 @@
         select *
         from topic
         where id in
-        <foreach collection="number" open="(" separator="," close=")" item="id">
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
             #{id}
         </foreach>
     </select>
@@ -69,4 +69,20 @@
         from topic
         where id = #{id}
     </delete>
+
+    <select id="findTopicTypeByTypename" resultType="xyz.fmcy.foh.pojo.TopicType">
+        select *
+        from topictype
+        where typename = #{typename}
+    </select>
+
+    <select id="findTopicNumberByType" resultType="java.lang.Integer">
+        select count(*)
+        from topic
+        <where>
+            <if test="typeid != null">
+                typeid = #{typeid}
+            </if>
+        </where>
+    </select>
 </mapper>

@@ -68,6 +68,9 @@ public class UserPageController {
     @GetMapping("/user/{uid}")
     public String userPage(Model model, @PathVariable Integer uid) {
         User user = userService.findUserByUid(uid);
+        if (user == null){
+            return "redirect:/";
+        }
         Avatar avatar = userService.findByUid(uid);
         model.addAttribute("user", user);
         model.addAttribute("avatar", avatar == null ?

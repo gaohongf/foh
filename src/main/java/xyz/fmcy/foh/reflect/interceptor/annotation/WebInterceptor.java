@@ -1,6 +1,6 @@
-package xyz.fmcy.foh.reflect.Interceptor.annotation;
+package xyz.fmcy.foh.reflect.interceptor.annotation;
 
-import xyz.fmcy.foh.reflect.Interceptor.InterceptorLoader;
+import xyz.fmcy.foh.reflect.interceptor.InterceptorLoader;
 
 import java.lang.annotation.*;
 

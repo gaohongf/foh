@@ -1,8 +1,8 @@
-package xyz.fmcy.foh.reflect.Interceptor;
+package xyz.fmcy.foh.reflect.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import xyz.fmcy.foh.reflect.Interceptor.annotation.WebInterceptor;
+import xyz.fmcy.foh.reflect.interceptor.annotation.WebInterceptor;
 import xyz.fmcy.foh.utils.PackLoader;
 
 import java.io.IOException;

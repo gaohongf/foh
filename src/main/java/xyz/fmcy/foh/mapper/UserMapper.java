@@ -15,6 +15,7 @@ public interface UserMapper {
      * 使用账号与密码创建一位用户
      *
      * @param user 会将自增的-uid-自动填入传入的对象
+     * @return int
      */
 
     int addUser(User user);

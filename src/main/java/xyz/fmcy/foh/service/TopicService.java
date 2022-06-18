@@ -1,10 +1,14 @@
 package xyz.fmcy.foh.service;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import xyz.fmcy.foh.pojo.Topic;
 import xyz.fmcy.foh.pojo.TopicType;
 import xyz.fmcy.foh.pojo.User;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -27,10 +31,12 @@ public interface TopicService {
      * 依据用户id查询该用户的部分帖子
      *
      * @param id 用户id
-     * @param start 页数
+     * @param label 页数
      * @return 用户的帖子
      */
-    List<Topic> findTopicByUserId(Integer id, Integer start);
+    List<Topic> findTopicByUserId(Integer id, Integer label);
+
+    boolean addTopicType(TopicType type, InputStream inputStream);
 
     List<Topic> randTopic(Integer number);
 
@@ -44,5 +50,5 @@ public interface TopicService {
 
     boolean deleteTopic(Topic topic, User user);
 
-    boolean updateTopic(Topic topic, User user);
+    Topic updateTopic(Topic topic, User user);
 }

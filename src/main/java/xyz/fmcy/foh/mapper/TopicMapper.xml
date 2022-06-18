@@ -87,11 +87,41 @@
     </select>
 
     <select id="findTopicLikeTitleAndType" resultType="xyz.fmcy.foh.pojo.Topic">
-        select * from topic
+        select *
+        from topic
         <where>
             <if test="title != null and title != ''">
-                title like concat('%',#{title},'%')
+                title like concat('%', #{title}, '%')
+            </if>
+            <if test="type != null and type.id != null">
+                and typeid = #{type.id}
             </if>
         </where>
     </select>
+
+    <select id="idList" resultType="java.lang.Integer">
+        select id
+        from topic
+        <where>
+            <if test="typeid != null">
+                typeid = #{typeid}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateTopicType">
+        update topictype
+        <set>
+            <if test="bgImg != null and bgImg != ''">
+                bgimg = #{bgImg}
+            </if>
+            <if test="typeIcon != null and typeIcon != ''">
+                , typeicon = #{typeIcon}
+            </if>
+            <if test="typename != null and typename != ''">
+                , typename = #{typename}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

@@ -62,4 +62,9 @@ public interface TopicMapper {
     int updateTopic(Topic topic);
 
     int deleteTopic(Integer id);
+
+    List<Integer> idList(@Param("typeid") Integer typeid);
+
+    int updateTopicType(TopicType type);
+
 }

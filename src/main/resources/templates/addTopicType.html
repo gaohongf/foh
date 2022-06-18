@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加类型测试</title>
+</head>
+<body>
+<form th:action="@{/topic/type/add}" enctype="multipart/form-data" method="post" th:object="${type}">
+    <label for="typename">类型名称:</label>
+    <input id="typename" name="typename" th:value="*{typename}">
+    <label for="typeIcon">图标名称:</label>
+    <input id="typeIcon" name="typeIcon" th:value="*{typeIcon}">
+    <label for="suffix">后缀:</label>
+    <select name="suffix" id="suffix">
+        <option th:selected="*{suffix eq '.ico'}" value=".ico">ico</option>
+        <option th:selected="*{suffix eq '.jpg'}" value=".jpg">jpg</option>
+        <option th:selected="*{suffix eq '.png'}" value=".png">png</option>
+        <option th:selected="*{suffix eq '.gif'}" value=".gif">gif</option>
+    </select>
+    <input type="file" name="file" accept="image/*">
+    <input type="submit">
+</form>
+</body>
+</html>

@@ -2,21 +2,37 @@ package xyz.fmcy.foh.pojo;
 
 /**
  * 帖子类型映射
+ *
  * @author 付高宏
  * @date 2022/6/15 21:33
  */
-public final class TopicType {
+public class TopicType{
     private Integer id;
     private String typename;
     private String typeIcon;
 
+    private String bgImg;
+
     public TopicType() {
     }
 
-    public TopicType(Integer id, String typename, String typeIcon) {
+    public TopicType(Integer id, String typename, String typeIcon, String bgImg) {
         this.id = id;
         this.typename = typename;
         this.typeIcon = typeIcon;
+        this.bgImg = bgImg;
+    }
+
+    public String getBgImg() {
+        return bgImg;
+    }
+
+    public void setBgImg(String bgImg) {
+        this.bgImg = bgImg;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     @Override
@@ -25,11 +41,8 @@ public final class TopicType {
                 "id=" + id +
                 ", typename='" + typename + '\'' +
                 ", typeIcon='" + typeIcon + '\'' +
+                ", bgImg='" + bgImg + '\'' +
                 '}';
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public void setId(Integer id) {

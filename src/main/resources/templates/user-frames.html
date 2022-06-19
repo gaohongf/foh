@@ -10,8 +10,8 @@
     <div class="container_body_right_item_list" th:each="topic : ${userTopicPage.topics}" th:object="${topic}">
         <div class="container_body_right_item_list_title" style="margin-top: 10px;">
             <span class="time" th:text="*{time}">时间</span>
-            <div class="list_time">
-                <img id="roll_png" src="../static/img/roll.png" th:src="@{/img/roll.png}" alt="闹钟图片">
+            <div class="list_topic_type">
+                <span th:text="${types.get(topic.typeid)}">类型</span>
             </div>
         </div>
         <div class="container_body_right_item_list_text">
@@ -19,7 +19,7 @@
             <span th:text="*{content}">内容</span>
         </div>
     </div>
-    <a style="margin: 0 auto" th:if="${userTopicPage.hasNextPage}" th:onclick="|userTopicList.loadTopics('@{/topic/user/{userid}/{page}(userid=${userid},page=${page})}',this)|">加载更多</a>
+    <div class="loadOther" style="text-align: center;background-color: #1e6dd9;color: white;border: 1px solid #62c4e3;" th:if="${userTopicPage.hasNextPage}" th:onclick="|userTopicList.loadClick('@{/topic/user/{userid}/{page}(userid=${userid},page=${page})}',this)|">加载更多</div>
 </th:block>
 </body>
 </html>

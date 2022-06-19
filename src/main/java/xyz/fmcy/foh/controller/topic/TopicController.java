@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.fmcy.foh.pojo.Topic;
+import xyz.fmcy.foh.pojo.TopicType;
 import xyz.fmcy.foh.pojo.User;
 import xyz.fmcy.foh.service.TopicService;
 import xyz.fmcy.foh.vo.UserTopicPage;
@@ -31,12 +32,14 @@ public class TopicController {
     @GetMapping("/topic/user/{userid}/{page}")
     public String loadUserTopics(@PathVariable Integer page, @PathVariable Integer userid, Model model) {
         List<Topic> topicByUserId = topicService.findTopicByUserId(userid, page).stream().peek(
+                //仅展示部分内容
                 topic -> topic.setContent(topic.getContent().replaceAll("^(\\S{0,32})(\\S*)$", "$1..."))
         ).collect(Collectors.toList());
         Boolean hasNext = topicService.findTopicByUserId(userid, page + 1).size() > 0;
         model.addAttribute("userid", userid);
         model.addAttribute("page", page + 1);
         model.addAttribute("userTopicPage", new UserTopicPage(hasNext, topicByUserId));
+        model.addAttribute("types",topicService.getTopicTypes().stream().collect(Collectors.toMap(TopicType::getId, TopicType::getTypename)));
         return "/user-frames::userTopic";
     }
 

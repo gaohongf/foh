@@ -31,7 +31,7 @@ public class BasicParametersConfig {
 
     @Bean
     public Integer userTopicPageNumber(){
-        return 8;
+        return 6;
     }
 
 

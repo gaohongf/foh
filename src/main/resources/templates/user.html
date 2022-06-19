@@ -99,50 +99,6 @@
     userTopicList.loadTopics('[(@{/topic/user/{userid}/{page}(userid=${user.uid},page=0)})]')
     $("#hide").remove()
 </script>
-<script type="text/javascript" th:inline="javascript">
-    function change() {
-        let colorStr = "#";
-        for (let i = 0; i < 6; i++) {
-            let e = Math.floor(Math.random() * 16);
-            if (e < 10) {
-                colorStr += e;
-            } else {
-                switch (e - 10) {
-                    case 0:
-                        colorStr += "A";
-                        break;
-                    case 1:
-                        colorStr += "B";
-                        break;
-                    case 2:
-                        colorStr += "C";
-                        break;
-                    case 3:
-                        colorStr += "D";
-                        break;
-                    case 4:
-                        colorStr += "E";
-                        break;
-                    case 5:
-                        colorStr += "F";
-                        break;
-                }
-            }
-        }
-        return colorStr;
-    }
-
-    $(".btn1").click(function () {
-        let $list = $("<div class='container_body_right_item_list'></div>")
-        let $title = $("<div class='container_body_right_item_list_title'></div>")
-        let $time = $("<div class='list_time' style='background-color:" + change() + " '></div>")
-        let $img = $("#roll_png").clone()
-        $list.append($title)
-        $title.append($time)
-        $time.append($img)
-        $list.appendTo("#container_body_right_item")
-    })
-</script>
 </body>
 </html>
 

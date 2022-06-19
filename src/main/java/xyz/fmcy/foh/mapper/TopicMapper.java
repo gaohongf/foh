@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import xyz.fmcy.foh.pojo.Topic;
 import xyz.fmcy.foh.pojo.TopicType;
+import xyz.fmcy.foh.pojo.User;
 
 import java.util.List;
 
@@ -63,8 +64,7 @@ public interface TopicMapper {
 
     int deleteTopic(Integer id);
 
-    List<Integer> idList(@Param("typeid") Integer typeid);
-
+    List<Integer> idList(@Param("typeid") Integer typeid,@Param("userid") Integer userid);
     int updateTopicType(TopicType type);
 
 }

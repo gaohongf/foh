@@ -7,6 +7,10 @@
 	flex-grow: 1;
 }
 
+ul,ol,dl{
+	list-style: none;
+}
+
 .grid-cell-2 {
 	flex-grow: 2;
 }

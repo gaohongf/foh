@@ -10,6 +10,8 @@ import xyz.fmcy.foh.config.UserAvatarConfig;
 import xyz.fmcy.foh.pojo.Avatar;
 import xyz.fmcy.foh.pojo.User;
 import xyz.fmcy.foh.service.FansService;
+import xyz.fmcy.foh.service.TopicService;
+import xyz.fmcy.foh.vo.VUser;
 import xyz.fmcy.foh.vo.combo.KeyAndValue;
 import xyz.fmcy.foh.service.UserService;
 
@@ -28,6 +30,8 @@ public class UserPageController {
     private UserAvatarConfig userAvatarConfig;
     @Resource
     private FansService fansService;
+    @Resource
+    private TopicService topicService;
 
     @RequestMapping("/login")
     String loginPage() {
@@ -68,11 +72,12 @@ public class UserPageController {
     @GetMapping("/user/{uid}")
     public String userPage(Model model, @PathVariable Integer uid) {
         User user = userService.findUserByUid(uid);
+        VUser vUser = new VUser(user);
         if (user == null){
             return "redirect:/";
         }
-        Avatar avatar = userService.findByUid(uid);
-        model.addAttribute("user", user);
+        Avatar avatar = userService.findAvatarByUid(uid);
+        model.addAttribute("user", vUser);
         model.addAttribute("avatar", avatar == null ?
                 "default-avatar/def01.png" :
                 userAvatarConfig.getResource().replaceFirst("/","") + avatar.getAvatar()

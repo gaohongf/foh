@@ -51,7 +51,7 @@ public interface UserService {
      * @param id 用户 id
      * @return 对应用户头像
      */
-    Avatar findByUid(Integer id);
+    Avatar findAvatarByUid(Integer id);
 
     /**
      * 为一位用户变更头像,可能会有以下两种情况<br>

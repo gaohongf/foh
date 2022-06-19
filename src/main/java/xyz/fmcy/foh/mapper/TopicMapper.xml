@@ -24,6 +24,7 @@
         select *
         from topic
         where authorid = #{uid}
+        order by time desc
         limit #{start},#{number}
     </select>
 
@@ -105,6 +106,9 @@
         <where>
             <if test="typeid != null">
                 typeid = #{typeid}
+            </if>
+            <if test="userid != null">
+                and authorid = #{userid}
             </if>
         </where>
     </select>

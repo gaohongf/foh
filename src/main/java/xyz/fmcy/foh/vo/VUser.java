@@ -1,5 +1,7 @@
 package xyz.fmcy.foh.vo;
 
+import xyz.fmcy.foh.pojo.User;
+
 /**
  * 安全的User实体视图对象
  * @see xyz.fmcy.foh.pojo.User
@@ -69,6 +71,15 @@ public class VUser {
     }
 
     public VUser() {
+    }
+
+    public VUser(User user){
+        if (user == null) return;
+        this.uid = user.getId();
+        this.age=user.getAge();
+        this.gender=user.getGender();
+        this.name=user.getName();
+        this.sign=user.getSign();
     }
 
     public VUser(Integer uid, String name, String sign, String gender, Integer age) {

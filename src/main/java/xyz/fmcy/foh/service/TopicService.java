@@ -51,4 +51,6 @@ public interface TopicService {
     boolean deleteTopic(Topic topic, User user);
 
     Topic updateTopic(Topic topic, User user);
+
+    Integer pagesByUser(User user);
 }

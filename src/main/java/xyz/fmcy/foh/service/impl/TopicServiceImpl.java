@@ -81,7 +81,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> randTopicByType(Integer typeid, Integer number) {
-        List<Integer> idList = topicMapper.idList(typeid);
+        List<Integer> idList = topicMapper.idList(typeid, null);
         number = Math.min(number, idList.size());
         Integer[] ids = new Integer[number];
         for (int i = 0; i < ids.length; i++) {
@@ -121,5 +121,15 @@ public class TopicServiceImpl implements TopicService {
             }
         }
         return null;
+    }
+
+    @Override
+    public Integer pagesByUser(User user) {
+        if (user == null) return 0;
+        List<Integer> idList = topicMapper.idList(null, user.getId());
+        int size = idList.size(); //100
+        return (size % userTopicPageNumber == 0) ?
+                (size / userTopicPageNumber) :
+                (size / userTopicPageNumber + 1);
     }
 }

@@ -52,13 +52,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Avatar findByUid(Integer id) {
+    public Avatar findAvatarByUid(Integer id) {
         return avatarMapper.findByUid(id);
     }
 
     @Override
     public boolean updateAvatar(Avatar avatar) {
-        if (findByUid(avatar.getId()) == null) {
+        if (findAvatarByUid(avatar.getId()) == null) {
             return avatarMapper.insertAvatar(avatar) > 0;
         } else {
             return avatarMapper.updateAvatar(avatar) > 0;

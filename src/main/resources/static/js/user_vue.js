@@ -15,7 +15,6 @@ const userTopicList = new Vue({
                     })
                     let $topics = $(topics.data).css({'top': '300px', 'opacity': '0'})
                     $("#container_body_right_item").append($topics)
-                    console.log($topics.find(".list_topic_type"))
                     $topics.find(".list_topic_type").each(function (e, item) {
                         $(item).css({'border-color': userTopicList.getAnColor()})
                     })

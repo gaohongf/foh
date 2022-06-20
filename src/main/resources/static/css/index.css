@@ -30,10 +30,35 @@ img {
 .ac {
 	display: none;
 }
-
+.user{
+	position: relative;
+	text-align: right;
+	margin-top: 20px;
+}
+.user button{
+	width: 100px;
+	background-color: #f6f6f6;
+	outline: none;
+	border-radius: 8px;
+	padding: 13px;
+	color: #a262ad;
+	letter-spacing: 2px;
+	border: none;
+	cursor: pointer;
+}
+.user button:hover {
+	background-color: #e3cbfa;
+	color: #f6f6f6;
+	transition: background-color 0.5s ease;
+}
+.user a{
+	width: 0;
+	height: 0;
+	position: static;
+	text-decoration: none;
+}
 .search {
-	width: 100%;
-	height: 300px;
+	height: 200px;
 	text-align: center;
 	line-height: 300px;
 	position: relative;
@@ -160,7 +185,94 @@ img {
 	top: 0px;
 	right: -1px;
 }
+.user {
+				position: relative;
+				text-align: right;
+				margin-top: 20px;
+			}
 
+			.user a {
+				width: 0;
+				height: 0;
+				position: static;
+				text-decoration: none;
+			}
+			.user a{
+				color: white;
+			}
+			 .user button {
+				width: 180px;
+				background-color: #f6f6f6;
+				outline: none;
+				border-radius: 13px;
+				padding: 13px;
+				cursor: pointer;
+				background: #34cc34;
+				color: white;
+				border-radius: 3px;
+				line-height: 1;
+				font-size: 20px;
+				padding: 15px 25px;
+				outline: 0;
+				margin: 20px;
+				box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+			}
+
+			button.shiny {
+				background: #007eaf;
+				background: linear-gradient(-45deg, #2284fb 50%, #0a0e92 60%, #2e59d4 70%);
+				background-size: 600% 100%;
+				-webkit-animation: shine 20s infinite;
+				animation: shine 20s infinite;
+				-webkit-animation-delay: 0s;
+				animation-delay: 0s;
+				-webkit-animation-timing-function: linear;
+				animation-timing-function: linear;
+			}
+
+			button.shinydarken {
+				background: #9ccc65;
+				background: linear-gradient(-45deg, #80cc41 50%, #6e983e 60%, #a9cc80 70%);
+				background-size: 600% 100%;
+				-webkit-animation: shine 20s infinite;
+				animation: shine 20s infinite;
+				-webkit-animation-delay: 0s;
+				animation-delay: 0s;
+				-webkit-animation-timing-function: linear;
+				animation-timing-function: linear;
+			}
+
+			button:active {
+				top: 2px;
+			}
+
+			@-webkit-keyframes shine {
+				0% {
+					background-position-x: 400%;
+				}
+
+				50% {
+					background-position-x: 0%;
+				}
+
+				100% {
+					background-position-x: -400%;
+				}
+			}
+
+			@keyframes shine {
+				0% {
+					background-position-x: 400%;
+				}
+
+				50% {
+					background-position-x: 0%;
+				}
+
+				100% {
+					background-position-x: -400%;
+				}
+			}
 @keyframes change {
 	from {
 		transform: scale(1);

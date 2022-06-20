@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- beautify ignore:start -->
+<html lang="en" class="dark-style layout-navbar-fixed layout-menu-fixed " dir="ltr" data-theme="theme-default"
+      data-assets-path="" data-template="vertical-menu-template-dark" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <title></title>
+
+    <meta name="description"
+          content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!">
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../static/css/rtl/core-dark.css" class="template-customizer-core-css">
+    <link rel="stylesheet" href="../static/css/rtl/theme-default-dark.css"
+          class="template-customizer-theme-css">
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../static/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../static/libs/typeahead-js/typeahead.css">
+
+
+<body>
+
+
+<div class="layout-wrapper layout-content-navbar  ">
+    <div class="layout-container">
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+
+                <!-- Content -->
+
+                <div class="container-xxl flex-grow-1 container-p-y">
+
+                    <div class="card" style="height: 600px;">
+                        <h5 class="card-header">个人信息编辑</h5>
+                        <div class="table-responsive text-nowrap">
+                            <div style="margin: 50px auto;width:500px">
+                                <img id="image" th:src="'../' + ${item.url}" width="500px"/>
+                            </div>
+                            <div style="width: 200px;margin:20px auto">
+                                <input style="width: 50vw" type="file" id="upload" class="dropify"
+                                       data-default-file="">  
+                            </div>
+							<div class="sign" style="text-align: center;">
+								<span style="display: block;margin-bottom: 10px;">个性签名修改</span>
+								<textarea rows="" cols="" style="width: 50vw;resize: none;height: 30px;"></textarea>
+							</div>
+                            <div style="margin: 20px auto;width:144px">
+                                <button type="button" th:onclick="update([[${item.id}]])"
+                                        class="btn rounded-pill btn-primary">确定
+                                </button>
+                                <button onclick="back()" type="button" class="btn rounded-pill btn-danger">返回</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr class="my-5">
+
+                </div>
+
+
+                <div class="content-backdrop fade"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function update(id) {
+        const props = {
+            id,
+            url: document.getElementById("url").value,
+        }
+        axios({url: "/updateSwiper", method: "post", data: props}).then(res => {
+            this.location.href = "/swiper"
+        })
+    }
+
+    upload = document.getElementById("upload")
+    let img = ""
+    let image = document.getElementById("image")
+
+    upload.onchange = (event) => {
+        let getFile = event.target.files[0]
+        let param = new FormData()
+        param.append('file', getFile, getFile.name)
+        let config = {
+            headers: {'Content-Type': 'multipart/form-data'}
+        };
+        axios.post('/upload', param, config).then(response => {
+            img = response.data
+            image.setAttribute("src", `../${response.data}`)
+        })
+    }
+
+
+    function back() {
+        this.location.href = "/swiper"
+    }
+
+</script>
+
+
+</body>
+
+</html>

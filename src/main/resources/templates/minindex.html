@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>醉心音乐</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/minindex.css"/>
+	</head>
+	<body>
+		<section>
+			<div class="title">
+				<h1><span style="color: crimson;font-family: 华文楷体;">音乐</span> music</h1>
+			</div>
+			<div class="naviagtion">
+				<div class="userBx">
+					<div class="imgBx">
+						<img src="../banner/pm.jpg" >
+					</div>
+					<p class="username">小高</p>
+				</div>
+				<div class="menuToggle"></div>
+				<ul class="menu">
+					<li><a href="#">
+							<ion-icon name="person-outline"></ion-icon>我的主页
+						</a></li>
+					<li><a href="#">
+							<ion-icon name="chatbubble-outline"></ion-icon>消息
+						</a></li>
+					<li><a href="#">
+							<ion-icon name="log-out-outline"></ion-icon>退出
+						</a></li>
+				</ul>
+			</div>
+			<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+			<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+			<script>
+				let menuToggle = document.querySelector('.menuToggle');
+				let naviagtion = document.querySelector('.naviagtion');
+				let userLogo = document.querySelector('.imgBx').querySelector('img');
+				menuToggle.onclick = function() {
+					naviagtion.classList.toggle('active');
+				}
+				userLogo.onclick = function() {
+					naviagtion.classList.toggle('active');
+				}
+			</script>
+			<div class="container">
+				<div class="card">
+					<div class="content">
+						<div class="imgBx">
+							<img src="../static/img/img1.jpg" >
+						</div>
+						<div class="contentBx">
+							<h3>111<br /><span>健身达人</span></h3>
+						</div>
+					</div>
+					<ul class="sci">
+						<li style="--i:1">
+							<a href="#">
+								<ion-icon name="person-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:2">
+							<a href="#">
+								<ion-icon name="chatbubble-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:3">
+							<a href="#">
+								<ion-icon name="heart-outline"></ion-icon>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="content">
+						<div class="imgBx">
+							<img src="../static/img/img2.jpg" >
+						</div>
+						<div class="contentBx">
+							<h3>333 <br /><span>美食博主</span></h3>
+						</div>
+					</div>
+					<ul class="sci">
+						<li style="--i:1">
+							<a href="#">
+								<ion-icon name="person-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:2">
+							<a href="#">
+								<ion-icon name="chatbubble-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:3">
+							<a href="#">
+								<ion-icon name="heart-outline"></ion-icon>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="content">
+						<div class="imgBx">
+							<img src="../static/img/img3.jpg" >
+						</div>
+						<div class="contentBx">
+							<h3>222<br /><span>创意设计师</span></h3>
+						</div>
+					</div>
+					<ul class="sci">
+						<li style="--i:1">
+							<a href="#">
+								<ion-icon name="person-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:2">
+							<a href="#">
+								<ion-icon name="chatbubble-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:3">
+							<a href="#">
+								<ion-icon name="heart-outline"></ion-icon>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="content">
+						<div class="imgBx">
+							<img src="../banner/pm.jpg" >
+						</div>
+						<div class="contentBx">
+							<h3>222<br /><span>小高</span></h3>
+						</div>
+					</div>
+					<ul class="sci">
+						<li style="--i:1">
+							<a href="#">
+								<ion-icon name="person-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:2">
+							<a href="#">
+								<ion-icon name="chatbubble-outline"></ion-icon>
+							</a>
+						</li>
+						<li style="--i:3">
+							<a href="#">
+								<ion-icon name="heart-outline"></ion-icon>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	</body>
+</html>

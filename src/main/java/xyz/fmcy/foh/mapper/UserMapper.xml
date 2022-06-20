@@ -33,4 +33,10 @@
         order by id
         limit #{start},#{number}
     </select>
+
+    <update id="updateState">
+        update ban
+        set state = 1
+        where userId = #{id};
+    </update>
 </mapper>

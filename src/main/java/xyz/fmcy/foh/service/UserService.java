@@ -64,4 +64,12 @@ public interface UserService {
      * @return true:变更成功 false:变更失败
      */
     boolean updateAvatar(Avatar avatar);
+
+    /**
+     * 通过ID更新用户状态
+     *
+     * @param user 用户
+     * @return boolean
+     */
+    boolean updateState(User user);
 }

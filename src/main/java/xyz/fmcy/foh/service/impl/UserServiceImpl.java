@@ -85,4 +85,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public boolean updateState(User user) {
+        return userMapper.updateState(user);
+    }
+
 }

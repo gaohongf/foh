@@ -133,6 +133,12 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public List<Topic> findTopicByTitleAndTypeId(String title, Integer typeId,
+                                                 Integer start, Integer number) {
+        return topicMapper.findTopicByTitleAndTypeId(title, typeId, start, number);
+    }
+
+    @Override
     public Integer pagesByUser(User user) {
         if (user == null) return 0;
         List<Integer> idList = topicMapper.idList(null, user.getId());

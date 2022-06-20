@@ -131,4 +131,18 @@
         </set>
         where id = #{id}
     </update>
+    <select id="findTopicByTitleAndTypeId" resultType="xyz.fmcy.foh.pojo.Topic">
+        select *
+        from topic
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%', #{title}, '%')
+            </if>
+            <if test="typeId != null">
+                and typeid = #{typeId}
+            </if>
+        </where>
+        limit #{start},#{number}
+        ;
+    </select>
 </mapper>

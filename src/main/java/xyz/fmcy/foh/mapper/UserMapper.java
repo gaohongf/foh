@@ -53,4 +53,13 @@ public interface UserMapper {
      * @return 被查询的用户
      */
     List<User> findUserByLimit(@Param("start") int start, @Param("number") int number);
+
+    /**
+     * 通过ID更新用户状态
+     *
+     * @param user 用户
+     * @return boolean
+     */
+    boolean updateState(User user);
+
 }

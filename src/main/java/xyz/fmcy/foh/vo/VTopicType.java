@@ -1,6 +1,5 @@
 package xyz.fmcy.foh.vo;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.fmcy.foh.pojo.TopicType;
 

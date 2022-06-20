@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import xyz.fmcy.foh.pojo.Topic;
 import xyz.fmcy.foh.pojo.TopicType;
-import xyz.fmcy.foh.pojo.User;
 
 import java.util.List;
 

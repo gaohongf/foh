@@ -1,9 +1,5 @@
 const userTopicList = new Vue({
     el: "#my-topics",
-    data: {
-        topics: [],
-        page: 0,
-    },
     methods: {
         loadTopics(url, obj) {
             $(obj).unbind();
@@ -42,6 +38,35 @@ const userTopicList = new Vue({
                 newColor += box[Math.floor(Math.random() * 16)]
             }
             return newColor
+        }
+    }
+})
+
+const userFavAndHistory = new Vue({
+    el: '#container_body_left',
+    data: {
+        page: 0
+    },
+    methods: {
+        loadFavData(url,obj ) {
+            $(obj).unbind()
+            $(obj).text("加载中...")
+            let split = url.split('/');
+            let newUrl = ''
+            for (let i = 0; i < split.length - 1; i++) {
+                newUrl += (split[i] + '/')
+            }
+            newUrl += parseInt(split[split.length - 1]) + 1
+            axios.get(url).then(
+                function (pages) {
+                    $(obj).text("加载完成").remove()
+                    let $fav = $(pages.data);
+                    $("#favorites-list").append($fav)
+                    $fav.filter(".loadOther").click(function () {
+                        userFavAndHistory.loadFavData(newUrl, this)
+                    })
+                }
+            )
         }
     }
 })

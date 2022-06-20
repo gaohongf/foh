@@ -47,29 +47,15 @@
     </div>
     <div class="container_body grid">
         <div class="container_body_left grid-cell-1">
-            <div class="container_body_left_text_first">
-                <div class="container_body_left_text_first_title">
-                    <span class="title_first_text">浏览历史</span>
-                    <hr class="line">
-                </div>
-                <div class="title_ul">
-                    <ul>
-                        <li><a href="#">我是测试数据</a></li>
-                        <li><a href="#">我是测试数据</a></li>
-                        <li><a href="#">我是测试数据</a></li>
-                    </ul>
-                </div>
-            </div>
             <div class="container_body_left_text_second">
                 <div class="container_body_left_title">
                     <span class="title_second_text">收藏</span>
+                    <span style="position: absolute;right: 40px;color: #00a0e9" id="favorites-hide">收起</span>
                     <hr class="line">
                 </div>
                 <div class="title_ul">
-                    <ul>
-                        <li><a href="#">我是测试数据</a></li>
-                        <li><a href="#">我是测试数据</a></li>
-                        <li><a href="#">我是测试数据</a></li>
+                    <ul id="favorites-list">
+
                     </ul>
                 </div>
             </div>
@@ -97,6 +83,23 @@
 <script src="../static/js/user_vue.js" th:src="@{/js/user_vue.js}"></script>
 <script th:inline="javascript" id="hide">
     userTopicList.loadTopics('[(@{/topic/user/{userid}/{page}(userid=${user.uid},page=0)})]')
+    userFavAndHistory.loadFavData('[(@{/user/{id}/favorites/{page}(id=${user.uid},page=0)})]')
+    let $favorites = $("#favorites-hide");
+    $favorites.click(function (){
+        shou()
+    })
+    function fang(){
+        $(".title_ul").stop().slideDown(200,function (){
+            $favorites.text("收起")
+        })
+        $favorites.unbind().click(shou)
+    }
+    function shou(){
+        $(".title_ul").stop().slideUp(200,function (){
+            $favorites.text("放下")
+        })
+        $favorites.unbind().click(fang)
+    }
     $("#hide").remove()
 </script>
 </body>

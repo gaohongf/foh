@@ -10,7 +10,6 @@ body {
 a {
     color: #1d1d1d;
     text-decoration: none;
-    min-width: 800px;
 }
 
 .top {
@@ -109,13 +108,13 @@ a {
     background-color: white;
     position: relative;
     border-radius: 5px;
+    top: -20px;
     box-shadow: 4px 6px 2px 2px #c7c7c7;
 }
 
 .line {
     background-color: #e6e6e6;
     height: 2px;
-    width: 80%;
     text-align: center;
     margin: auto;
     border: 0px;
@@ -147,6 +146,7 @@ a {
 .title_ul {
     margin-top: 10px;
     margin-left: 25px;
+    margin-right: 25px;
     padding-bottom: 10px;
 }
 

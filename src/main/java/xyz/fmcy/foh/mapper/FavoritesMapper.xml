@@ -1,0 +1,32 @@
+<!--
+    author:付高宏
+    time:2022/6/19 23:15
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fmcy.foh.mapper.FavoritesMapper">
+    <select id="findByUserId" resultType="xyz.fmcy.foh.pojo.Favorites">
+        select *
+        from favorites
+        where userid = #{userId}
+        limit #{start},#{number}
+    </select>
+
+    <select id="theNumberTimesOfTopicWasFavorites" resultType="int">
+        select count(*)
+        from favorites
+        where topicid = #{topicId}
+    </select>
+
+    <delete id="cancel">
+        delete
+        from favorites
+        where userid = #{userId}
+          and topicid = #{topicId}
+    </delete>
+
+    <insert id="addToFavorites">
+        insert favorites(userid, topicid) value (#{userId}, #{topicId})
+    </insert>
+</mapper>

@@ -29,5 +29,13 @@
     </div>
     <div class="loadOther" style="text-align: center;background-color: #1e6dd9;color: white;border: 1px solid #62c4e3;" th:if="${userTopicPage.hasNextPage}" th:onclick="|userTopicList.loadClick('@{/topic/user/{userid}/{page}(userid=${userid},page=${page})}',this)|">加载更多</div>
 </th:block>
+
+<th:block th:fragment="favoritesPage">
+    <li style="position: relative" th:each="favorite : ${userFavorites.value}" th:object="${favorite}">
+        <a href="#" style="color: #1E90FF" th:text="*{title}">我是测试数据</a><a th:href="@{/user/{id}(id=${favorite.authorid})}" style="font-size: 12px;position: absolute;right: 30px" th:text="${userService.findUserByUid(favorite.authorid).name}"></a>
+        <hr/>
+    </li>
+    <div class="loadOther" style="text-align: center" th:if="${userFavorites.key}">下拉加载更多</div>
+</th:block>
 </body>
 </html>

@@ -34,5 +34,13 @@ public class BasicParametersConfig {
         return 6;
     }
 
+    /**
+     * 收藏和历史一页的最大展示数量
+     */
+    @Bean
+    public Integer favoritesAndHistoryPage(){
+        return 2;
+    }
+
 
 }

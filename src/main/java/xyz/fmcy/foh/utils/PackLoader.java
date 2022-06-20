@@ -1,10 +1,7 @@
 package xyz.fmcy.foh.utils;
 
-import org.springframework.boot.ansi.AnsiBackground;
-
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;

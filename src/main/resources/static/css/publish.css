@@ -1,0 +1,18 @@
+.title input{
+	width: 50vw;
+	height: 30px;
+}
+body{
+	width: 80%;
+	margin: auto;
+	text-align: center;
+}
+.context{
+	margin: auto;
+	text-align: center;
+}
+.context textarea{
+	width: 50vw;
+	height: 500px;
+	 resize:none;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+		<title>Froala Editor Examples</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/edit.css" />
+		<link href="../static/css/froalaeditor.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../static/js/froala_editor.pkgd.min.js"></script>
+		<script src="../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.article_editor_savebar {
+				font: -webkit-control;
+			}
+			textarea{
+				font: -webkit-control;
+			}
+			.sort{
+				text-align: center;
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				margin-left: 10px;
+				margin-right: 10px;
+				background-color: #26f4fe;
+				border-radius: 5px;
+				color: white;
+				opacity: 0.8;
+			}
+			.article_editor_options .con li .box span {
+				position: static;
+				line-height: 0px;
+				padding-left: 0px;
+			}
+			.dropdown-menu li{
+				cursor: pointer;
+			}
+			.dropdown-menu li:hover
+			{
+				background-color: #dcdcdc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section class="article_editor">
+
+			<div class="article_editor_content">
+				<div class="wrapper">
+					<div class="article_editor_page">
+						<div class="article_editor_title"><input type="text" placeholder="请在这里输入标题" name="title"
+								max-length="64"></div>
+						<div class="article_editor_info">
+							<label>
+								<span>发布于</span>
+								<input type="text" class="l" placeholder="2020-01-31 19:47:09">
+							</label>
+						</div>
+						<div class="article_editor_textarea"><textarea id="editor"></textarea></div>
+						<div class="article_editor_options">
+							<div class="article_editor_info2">
+								<div class="tit">封面摘要</div>
+								<div class="con">
+									<div class="fr"><textarea placeholder="选填，摘要会在文章列表页显露，帮助读者快速了解内容"></textarea></div>
+								</div>
+							</div>
+							<div class="article_editor_setting">
+								<div class="tit">文章设置</div>
+								<div class="con">
+									<ul>
+										<li>
+											<div class="box"><span>关键词：</span>
+												<div class="btn-group dropup">
+													<button type="button" class="btn btn-default">帖子分类标签</button>
+													<button type="button" class="btn btn-default dropdown-toggle"
+														data-toggle="dropdown" aria-haspopup="true"
+														aria-expanded="false">
+														<span class="caret"></span>
+														<span class="sr-only"></span>
+													</button>
+													<ul class="dropdown-menu">
+														<li>游戏</li>
+														<li>音乐</li>
+														<li>运动</li>
+													</ul>
+												</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article_editor_savebar">
+				<div class="wrapper">
+					<div class="fl1"><span>正文字数<i class="article_editor_charCount">0</i></span></div>
+					<div class="fr1"><button type="submit">保存发布</button><button>取消发布</button></div>
+				</div>
+			</div>
+		</section>
+		<script>
+			$(window).scroll(setEditFixed);
+			$(document).ready(function() {
+				setEditFixed();
+				initEditor();
+			});
+			$(window).resize(function() {
+				setEditFixed();
+				initEditor();
+			});
+			$(".dropdown-menu li").click(function() {
+				console.log($(this).text())
+				$("<span class='sort' style='line-height: 30px;'>" + $(this).text() + "</span>").appendTo($(".article_editor_setting .box"))
+			})
+		</script>
+	</body>
+</html>

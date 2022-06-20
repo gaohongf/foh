@@ -6,7 +6,7 @@ a{
 	text-decoration: none;
 }
 body{
-	background-color: #0000CC;
+	background-color: #00ffb3;
 }
 ul{
 	list-style: none;
@@ -20,6 +20,7 @@ ul{
 	background-color: #ffffff;
 }
 .right{
+	width: 280px;
 	height: 100px;
 }
 .container_top{
@@ -64,6 +65,12 @@ ul{
 	text-align: right;
 	line-height: 60px;
 }
+
+.master_bottom_replace textarea{
+	width: 100%;
+	min-height: 120px;
+	
+}
 .replace{
 	margin-right:10px;
 }
@@ -79,7 +86,6 @@ ul{
 }
 .bottom_text{
 	width: 100%;
-	height: 480px;
 	background-color: #ececec;
 	text-align: center;
 }
@@ -117,9 +123,8 @@ textarea{
 }
 .recommend{
 	margin-top: 20px;
-	width:300px; 
+	width:360px; 
 	height: 100%;
-	border-radius: 15px;
 	background-color: #fffdf3;	
 	position: relative;
 }
@@ -139,6 +144,51 @@ textarea{
 .hot{
 	position: absolute;
 	right: 0;
+}
+
+.master_bottom_replace {
+	min-height: 160px;
+	width: 90%;
+	background-color: #fcfbff;
+	border: 1px solid #e3e3e3;
+	margin-bottom: 100px;
+	display: none;
+}
+.master_edit{
+	text-align: center;
+	width: 80px;
+	height: 30px;
+	border-radius: 5px;
+	color: white;
+	border: 0;
+	margin-right: 5px;
+	background-color: #538fff;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+.master_bottom_replace textarea{
+	height: 200px;
+	width: 100%;
+}
+
+.master_output{
+	text-align: center;
+	width: 80px;
+	height: 30px;
+	border-radius: 5px;
+	color: white;
+	border: 0;
+	margin-right: 5px;
+	background-color: #538fff;
+	
+}
+.master_bottom_replace{
+	margin: auto;
+	text-align: right;
+}
+.master_replace textarea{
+	width: 100%;
+	min-height: 80px;
 }
 .bottom_replace{
 	min-height: 100px;
@@ -191,6 +241,7 @@ textarea{
 	text-align: right;
 	position: relative;
 	right: 20px;
+	top: 20px;
 }
 .replace{
 	cursor: pointer;
@@ -203,6 +254,10 @@ textarea{
 	min-height: 130px;
 	text-align: right;
 	display: none;
+}
+.master_replace{
+	cursor: pointer;
+	margin-right: 10px;
 }
 .edit_put{
 	text-align: center;
@@ -218,6 +273,7 @@ textarea{
 	width: 100%;
 	min-height: 80px;
 }
+
 @media (max-width:1200px) {
 	.right{
 		display: none;

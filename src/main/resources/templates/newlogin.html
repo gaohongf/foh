@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../static/css/newlogin.css" th:href="@{/css/login.css}"/>
+		<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+	</head>
+			<div class="container">
+				<div class="form_box">
+					<form action="register" method="">
+						<div class="register_box hidden">
+							<h1>register</h1>
+							<input type="text" placeholder="用户名" name="username"/><span class="reg_user">错误</span>
+							<input type="text" placeholder="电话号码" name="phone"/><span class="reg_phone">错误</span>
+							<input type="password" placeholder="密码" name="password"/><span class="reg_password">错误</span>
+							<input type="password" placeholder="确认密码" name="repassword"/><span class="reg_repassword">错误</span>
+							<input type="submit" name="" id="input_register" value="注册" />
+							
+						</div>
+					</form>
+					<form action="login" method="">
+						<div class="login_box">
+							<h1>login</h1>
+							<input type="text" placeholder="用户名" name="username"/><span class="username_error">错误</span>
+							<input type="password" placeholder="密码" name="password"/><span class="password_eror">错误</span>
+							<input type="submit" name="" id="input_login" value="登录" />
+							
+						</div>
+					</form>
+					
+				</div>
+				<div class="con_box left">
+					<h2>欢迎来到<span>FOH</span></h2>
+					<p>加入FOH大家庭</p>
+					<img src="../static/img/news.png" >
+					<p>已有账号</p>
+					<button type= "button" id="login">去登录</button>
+				</div>
+				<div class="con_box right">
+					<h2>欢迎来到<span>FOH</span></h2>
+					<p>分享自己的想法</p>
+					<img src="../static/img/4b1cf7401755dab6e6123230935b6f7.png" >
+					<p>没有账号？</p>
+					<button type="button" id="register">去注册</button>
+				</div>
+			</div>
+		
+	</body>
+	<script type="text/javascript">
+		let $login = $("#login");
+		let $register= $("#register");
+		let $form_box = $(".form_box");
+		let $register_box= $(".register_box");
+		let $login_box= $(".login_box");
+			
+			
+			$register.click(function(){
+				$form_box.css("transform","translateX(80%)")
+				$login_box.addClass("hidden");
+				$register_box.removeClass("hidden");
+				console.log(666)
+			})
+			
+			$login.click(function(){
+				$form_box.css("transform","translateX(0%)")
+				$register_box.addClass("hidden")
+				$login_box.removeClass("hidden")
+				
+			})
+			
+			
+				$(document).ready(function () {
+				      var i = 1;
+				      setInterval(function () {
+				        if (i == 1) {
+				          i = 2;
+				        } else if (i == 2) {
+				          i = 3;
+				        } else if (i == 3){
+				          i = 4
+				        }else if (i == 4){
+				          i = 5
+				        }else if (i == 5){
+				          i = 6
+				        }else if (i == 6){
+				          i = 7
+				        }else{
+							i=1
+						}
+				        $('body').css({
+				          "background-image": "url(../static/img/" + i + ".jpg)"
+				        });
+				      }, 3000);
+				    });
+
+	</script>
+</html>

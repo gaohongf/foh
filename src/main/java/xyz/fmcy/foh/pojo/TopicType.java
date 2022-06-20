@@ -10,7 +10,6 @@ public class TopicType{
     private Integer id;
     private String typename;
     private String typeIcon;
-
     private String bgImg;
 
     public TopicType() {

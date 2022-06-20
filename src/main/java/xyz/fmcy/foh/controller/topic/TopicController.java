@@ -10,6 +10,7 @@ import xyz.fmcy.foh.pojo.Topic;
 import xyz.fmcy.foh.pojo.TopicType;
 import xyz.fmcy.foh.pojo.User;
 import xyz.fmcy.foh.service.TopicService;
+import xyz.fmcy.foh.service.UserService;
 import xyz.fmcy.foh.vo.UserTopicPage;
 
 import javax.annotation.Resource;
@@ -25,6 +26,8 @@ import java.util.stream.Collectors;
 public class TopicController {
     @Resource
     private TopicService topicService;
+    @Resource
+    private UserService userService;
 
     /**
      * 查看用户的帖子
@@ -39,8 +42,17 @@ public class TopicController {
         model.addAttribute("userid", userid);
         model.addAttribute("page", page + 1);
         model.addAttribute("userTopicPage", new UserTopicPage(hasNext, topicByUserId));
-        model.addAttribute("types",topicService.getTopicTypes().stream().collect(Collectors.toMap(TopicType::getId, TopicType::getTypename)));
+        model.addAttribute("types", topicService.getTopicTypes().stream().collect(Collectors.toMap(TopicType::getId, TopicType::getTypename)));
         return "/user-frames::userTopic";
+    }
+
+    @GetMapping("/topic/type/{id}/{number}")
+    public String topicReferralPage(@PathVariable Integer id, @PathVariable Integer number, Model model, HttpSession session) {
+        model.addAttribute("type", topicService.findTopicTypeById(id));
+        model.addAttribute("userAvatar", userService.findAvatarByUid(((User) session.getAttribute("user")).getId()));
+        model.addAttribute("userService",userService);
+        model.addAttribute("topics", topicService.randTopicByType(id, number));
+        return "/minindex";
     }
 
 }

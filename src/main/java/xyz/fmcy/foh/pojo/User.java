@@ -16,12 +16,10 @@ public final class User {
     @NotEmpty(message = "用户名不能为空")
     private String name;
 
-    @NotEmpty(message = "手机号不能为空")
     @Pattern(regexp = "^(\\d){11}$", message = "手机号为11位数字")
     private String phone;
 
-    @NotEmpty(message = "密码不能为空")
-    @Size(min = 6, max = 30, message = "密码字符位数在6-30位之间")
+    @Size(min = 6, max = 30, message = "密码位数在6-30位之间")
     private String password;
 
 

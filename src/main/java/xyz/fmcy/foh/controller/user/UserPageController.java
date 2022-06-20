@@ -34,38 +34,41 @@ public class UserPageController {
     private TopicService topicService;
 
     @RequestMapping("/login")
-    String loginPage() {
-        return "/login";
+    String loginPage(@ModelAttribute("user") User user) {
+        return "/newlogin";
     }
 
     @GetMapping("/register")
-    String registerPage(@ModelAttribute("user") User user) {
-        return "/register";
+    String registerPage(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("isRegister", true);
+        return "/newlogin";
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/user/sign/up")
     String registered(@ModelAttribute("user") @Validated User user, BindingResult result, Model model, HttpSession session) {
+        model.addAttribute("isRegister", true);
         if (result.hasErrors()) {
-            return "/register";
+            return "/newlogin";
         }
         KeyAndValue<Boolean, String> keyAndValue = userService.addUser(user);
         if (keyAndValue.getKey()) {
             return login(user, model, session);
         } else {
             model.addAttribute("reg_err", keyAndValue.getValue());
-            return "/register";
+            return "/newlogin";
         }
     }
 
-    @PostMapping("/user/login")
+    @PostMapping("/user/sign/in")
     public String login(User user, Model model, HttpSession session) {
         KeyAndValue<Boolean, Object> login = userService.login(user);
         if (login.getKey()) {
-            session.setAttribute("user", login.getValue());
+            User user1 = (User) login.getValue();
+            session.setAttribute("user", user1);
             return "redirect:/index";
         } else {
             model.addAttribute("error", login.getValue());
-            return "/login";
+            return "/newlogin";
         }
     }
 
@@ -73,18 +76,21 @@ public class UserPageController {
     public String userPage(Model model, @PathVariable Integer uid) {
         User user = userService.findUserByUid(uid);
         VUser vUser = new VUser(user);
-        if (user == null){
+        if (user == null) {
             return "redirect:/";
         }
         Avatar avatar = userService.findAvatarByUid(uid);
         model.addAttribute("user", vUser);
-        model.addAttribute("avatar", avatar == null ?
-                "default-avatar/def01.png" :
-                userAvatarConfig.getResource().replaceFirst("/","") + avatar.getAvatar()
-        );
-        model.addAttribute("fansNumber",fansService.userFansNumber(uid));
-        model.addAttribute("concernNumber",fansService.userConcernNumber(uid));
+        model.addAttribute("avatar", avatar.getAvatar());
+        model.addAttribute("fansNumber", fansService.userFansNumber(uid));
+        model.addAttribute("concernNumber", fansService.userConcernNumber(uid));
         return "/user";
+    }
+
+    @GetMapping("/user/sign/out")
+    public String signOut(HttpSession session) {
+        session.invalidate();
+        return "redirect:/welcome";
     }
 
 }

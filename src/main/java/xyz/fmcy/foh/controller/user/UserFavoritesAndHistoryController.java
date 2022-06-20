@@ -26,7 +26,6 @@ public class UserFavoritesAndHistoryController {
     private FavoritesService favoritesService;
     @Resource
     private TopicService topicService;
-
     @Resource
     private UserService userService;
 

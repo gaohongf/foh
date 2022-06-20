@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-Hans-CN">
+<html lang="zh-Hans-CN" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="renderer" content="webkit">
 		<meta name="viewport" content="width=device-width" />
 		<title></title>
-		<link href="../static/layui/css/layui.css" rel="stylesheet" type="text/css">
-		<link href="../static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="../static/css/index_style.css" rel="stylesheet" type="text/css">
-		<link href="../static/css/animate.min.css" rel="stylesheet" type="text/css">
-		<style type="text/css">
+		<link href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}" rel="stylesheet" type="text/css">
+		<link href="../static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+		<link href="../static/css/index_style.css" th:href="@{/css/index_style.css}" rel="stylesheet" type="text/css">
+		<style>
 			video {
 
 				height: auto;
@@ -38,14 +37,14 @@
 		</div>
 		<div id="navgation" class="navgation navgation_close">
 			<ul class="point">
-				<li><a href="#">首页</a></li>
-				<li><a href="">登录</a></li>
-				<li><a href="">注册</a></li>
+				<li><a href="index.html" th:href="@{/index}">首页</a></li>
+				<li><a href="newlogin.html" th:href="@{/login}">登录</a></li>
+				<li><a href="newlogin.html" th:href="@{/register}">注册</a></li>
 			</ul>
 		</div>
 		<div class="section" id="section1">
 			<video height="90%" autoplay="autoplay" loop="loop" muted="muted">
-				<source src="../static/img/Beach%20in%20Porto%20Santo.mp4" type="video/mp4">
+				<source src="../static/img/BeachinPortoSanto.mp4" th:src="@{/img/BeachinPortoSanto.mp4}" type="video/mp4">
 				</source>
 			</video>
 			<div class="fp-tablecell">
@@ -79,7 +78,7 @@
 								style="padding: 0 10px">
 								<div class="single-news">
 									<div class="news-head">
-										<img src="../static/img/java.jpg">
+										<img src="../static/img/java.jpg" th:src="@{/img/java.jpg}">
 										<a href="#" class="link"><i class="fa fa-link"></i></a>
 									</div>
 									<div class="news-content">
@@ -104,7 +103,7 @@
 								style="padding: 0 10px">
 								<div class="single-news">
 									<div class="news-head">
-										<img src="../static/img/sport.png">
+										<img src="../static/img/sport.png" th:src="@{/img/sport.png}">
 										<a href="#" class="link"><i class="fa fa-link"></i></a>
 									</div>
 									<div class="news-content">
@@ -129,7 +128,7 @@
 								style="padding: 0 10px">
 								<div class="single-news">
 									<div class="news-head">
-										<img src="../static/img/game.jpg">
+										<img src="../static/img/game.jpg" th:src="@{/img/game.jpg}">
 										<a href="#" class="link"><i class="fa fa-link"></i></a>
 									</div>
 									<div class="news-content">
@@ -164,7 +163,6 @@
 								<div class="links">
 									<ul>
 										<li class="wow fadeInLeft"><a href="#">关于我们</a></li>
-
 									</ul>
 								</div>
 							</div>
@@ -189,7 +187,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="../static/layui/layui.js"></script>
-		<script src="../static/js/preface.js"></script>
+		<script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+		<script src="../static/js/preface.js" th:src="@{/js/preface.js}"></script>
 	</body>
 </html>

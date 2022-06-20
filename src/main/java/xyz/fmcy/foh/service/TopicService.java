@@ -36,6 +36,8 @@ public interface TopicService {
      */
     List<Topic> findTopicByUserId(Integer id, Integer label);
 
+    TopicType findTopicTypeById(Integer id);
+
     boolean addTopicType(TopicType type, InputStream inputStream);
 
     List<Topic> randTopic(Integer number);

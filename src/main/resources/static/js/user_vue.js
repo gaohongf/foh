@@ -14,13 +14,11 @@ const userTopicList = new Vue({
                     $topics.find(".list_topic_type").each(function (e, item) {
                         $(item).css({'border-color': userTopicList.getAnColor()})
                     })
-                    $topics.filter(".container_body_right_item_list").animate({
-                        'top': '0',
-                        'opacity': '1'
-                    }, 800, function () {
-                        $topics.filter(".loadOther").css({cursor: 'pointer'})
-                        $topics.filter(".loadOther").animate({'opacity': '1'}, 300)
-                    })
+                    $topics.filter(".container_body_right_item_list").animate(
+                        {'top': '0', 'opacity': '1'}, 800, function () {
+                            $topics.filter(".loadOther").css({cursor: 'pointer'})
+                            $topics.filter(".loadOther").animate({'opacity': '1'}, 300)
+                        })
                 }
             )
         },
@@ -48,7 +46,7 @@ const userFavAndHistory = new Vue({
         page: 0
     },
     methods: {
-        loadFavData(url,obj ) {
+        loadFavData(url, obj) {
             $(obj).unbind()
             $(obj).text("加载中...")
             let split = url.split('/');

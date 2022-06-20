@@ -12,15 +12,15 @@ import javax.servlet.http.HttpSession;
  * @see xyz.fmcy.foh.config.WebInterceptorConfig
  */
 @WebInterceptor(
-        pathPatterns = {"/*","/avatar/**","/user/**"},
-        exclude = {"/login", "/user/login", "/user/register", "/register"}
+        pathPatterns = {"/*","/avatar/**","/user/**","/topic/**"},
+        exclude = {"/welcome","/login", "/user/sign/*", "/register"}
 )
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/welcome");
             return false;
         }
         return true;

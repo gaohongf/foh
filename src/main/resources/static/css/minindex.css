@@ -14,27 +14,27 @@ body {
 	min-height: 100vh;
 }
 
-section::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(#f00, #f0f);
-	clip-path: circle(30% at right 70%);
-}
+/*section::before {*/
+/*	content: '';*/
+/*	position: absolute;*/
+/*	top: 0;*/
+/*	left: 0;*/
+/*	width: 100%;*/
+/*	height: 100%;*/
+/*	background: linear-gradient(#f00, #f0f);*/
+/*	clip-path: circle(30% at right 70%);*/
+/*}*/
 
-section::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(#2196f3, #e91e63);
-	clip-path: circle(20% at 10% 10%);
-}
+/*section::after {*/
+/*	content: '';*/
+/*	position: absolute;*/
+/*	top: 0;*/
+/*	left: 0;*/
+/*	width: 100%;*/
+/*	height: 100%;*/
+/*	background: linear-gradient(#2196f3, #e91e63);*/
+/*	clip-path: circle(20% at 10% 10%);*/
+/*}*/
 
 .container {
 	position: relative;
@@ -58,7 +58,7 @@ section::after {
 	justify-content: center;
 	align-items: center;
 	backdrop-filter: blur(10px);
-	opacity: 0%;
+	opacity: 0;
 	animation: card 2s ease 0s;
 	animation-fill-mode: forwards;
 }
@@ -70,7 +70,7 @@ section::after {
 	align-items: center;
 	flex-direction: column;
 	opacity: 0.5;
-	transition: 0.5;
+	transition: 200ms;
 }
 
 .container .card:hover .content {
@@ -141,6 +141,7 @@ section::after {
 	position: absolute;
 	top: 25%;
 	left: 50%;
+	z-index: 1;
 	animation: mymove 2s ease 0s;
 	animation-fill-mode: forwards;
 	transform: translate(-50%, -50%);
@@ -149,7 +150,7 @@ section::after {
 .title h1 {
 	color: #fff;
 	font-size: 70px;
-	font-family: Century Gothic;
+	font-family: Century Gothic, serif;
 }
 
 @keyframes mymove {
@@ -162,11 +163,13 @@ section::after {
 		top: 10%;
 	}
 }
-
+.card{
+	z-index: 5;
+}
 @keyframes card {
 
 	from {
-		opacity: 0%;
+		opacity: 0;
 	}
 
 	to {
@@ -194,9 +197,9 @@ section::after {
 
 .naviagtion.active {
 	width: 200px;
-	height: 250px;
-	transition: width 0.5s, height 0.5s;
-	transition-delay: 0s, 0.75s;
+	height: 200px;
+	transition: width 200ms, height 200ms;
+	transition-delay: 0s, 200ms;
 }
 
 .naviagtion .userBx {
@@ -208,7 +211,7 @@ section::after {
 	align-items: center;
 	overflow: hidden;
 	transition: 0.5s;
-	transition-delay: 0.5s;
+	transition-delay: 200ms;
 }
 
 .naviagtion.active .userBx {
@@ -261,7 +264,7 @@ section::after {
 	background: #555;
 	transform: translateY(-10px);
 	box-shadow: 0 10px #555;
-	transition: 0.5s;
+	transition: 100ms;
 }
 
 .naviagtion .menuToggle::after {
@@ -271,7 +274,7 @@ section::after {
 	height: 2px;
 	background: #555;
 	transform: translateY(10px);
-	transition: 0.5s;
+	transition: 100ms;
 }
 
 .naviagtion.active .menuToggle::before {
@@ -288,7 +291,7 @@ section::after {
 	position: absolute;
 	width: 100%;
 	height: calc(100% - 60px);
-	margin-top: 60px;
+	margin-top: 50px;
 	padding: 20px;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -313,4 +316,10 @@ section::after {
 
 .menu li a ion-icon {
 	font-size: 1.5em;
+}
+
+@media (max-width: 800px) {
+	.title{
+		display: none;
+	}
 }

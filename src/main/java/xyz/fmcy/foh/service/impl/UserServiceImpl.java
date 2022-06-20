@@ -1,6 +1,7 @@
 package xyz.fmcy.foh.service.impl;
 
 import org.springframework.stereotype.Service;
+import xyz.fmcy.foh.config.UserAvatarConfig;
 import xyz.fmcy.foh.mapper.AvatarMapper;
 import xyz.fmcy.foh.mapper.UserMapper;
 import xyz.fmcy.foh.pojo.Avatar;
@@ -16,10 +17,22 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Resource
     private AvatarMapper avatarMapper;
+    @Resource
+    private UserAvatarConfig userAvatarConfig;
 
     @Override
     public KeyAndValue<Boolean, String> addUser(User user) {
-        if (user == null || hasUserByPhone(user.getPhone())) return new KeyAndValue<>(false, "msg2");
+        KeyAndValue<Boolean, String> msg = new KeyAndValue<>();
+        if (user == null) {
+            msg.setKey(false);
+            msg.setValue("msg2");
+            return msg;
+        }
+        if (hasUserByPhone(user.getPhone())) {
+            msg.setKey(false);
+            msg.setValue("err4");
+            return msg;
+        }
         return userMapper.addUser(user) > 0 ? new KeyAndValue<>(true, "msg1") : new KeyAndValue<>(false, "msg2");
     }
 
@@ -53,7 +66,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Avatar findAvatarByUid(Integer id) {
-        return avatarMapper.findByUid(id);
+        Avatar avatar = avatarMapper.findByUid(id);
+        if (avatar == null) {
+            avatar = new Avatar(id,"default-avatar/def01.png");
+        }else {
+            String s = userAvatarConfig.getResource().replaceFirst("/", "") + avatar.getAvatar();
+            avatar.setAvatar(s);
+        }
+        return avatar;
     }
 
     @Override

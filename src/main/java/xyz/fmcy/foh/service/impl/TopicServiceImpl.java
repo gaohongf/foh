@@ -10,6 +10,7 @@ import xyz.fmcy.foh.service.TopicService;
 
 import javax.annotation.Resource;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -48,6 +49,11 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public TopicType findTopicTypeById(Integer id) {
+        return topicMapper.findTopicTypeById(id);
+    }
+
+    @Override
     public boolean addTopicType(TopicType type, InputStream inputStream) {
         String fileName = type.getTypeIcon();
         type.setTypeIcon(topicTypeConfig.getResource().replaceFirst("/", "") + type.getTypeIcon());
@@ -82,6 +88,9 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public List<Topic> randTopicByType(Integer typeid, Integer number) {
         List<Integer> idList = topicMapper.idList(typeid, null);
+        if (idList.size() == 0) {
+            return new ArrayList<>();
+        }
         number = Math.min(number, idList.size());
         Integer[] ids = new Integer[number];
         for (int i = 0; i < ids.length; i++) {

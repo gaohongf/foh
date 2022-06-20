@@ -39,7 +39,7 @@ public class BasicParametersConfig {
      */
     @Bean
     public Integer favoritesAndHistoryPage(){
-        return 2;
+        return 5;
     }
 
 

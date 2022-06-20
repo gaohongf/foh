@@ -6,6 +6,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.fmcy.foh.mapper.TopicMapper">
+    <resultMap id="typeMap" type="xyz.fmcy.foh.pojo.TopicType">
+        <result column="bgimg" property="bgImg"/>
+    </resultMap>
     <select id="findTopicTypes" resultType="xyz.fmcy.foh.pojo.TopicType">
         select *
         from topictype
@@ -28,7 +31,7 @@
         limit #{start},#{number}
     </select>
 
-    <select id="findTopicTypeById" resultType="xyz.fmcy.foh.pojo.TopicType">
+    <select id="findTopicTypeById" resultMap="typeMap">
         select *
         from topictype
         where id = #{typeid}

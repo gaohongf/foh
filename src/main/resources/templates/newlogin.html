@@ -1,99 +1,149 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="../static/css/newlogin.css" th:href="@{/css/login.css}"/>
-		<script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8" th:src="@{/js/jquery-3.6.0.min.js}"></script>
-	</head>
-	<body>
-			<div class="container">
-				<div class="form_box">
-					<form action="register" method="">
-						<div class="register_box hidden">
-							<h1>register</h1>
-							<input type="text" placeholder="用户名" name="username"/><span class="reg_user">错误</span>
-							<input type="text" placeholder="电话号码" name="phone"/><span class="reg_phone">错误</span>
-							<input type="password" placeholder="密码" name="password"/><span class="reg_password">错误</span>
-							<input type="password" placeholder="确认密码" name="repassword"/><span class="reg_repassword">错误</span>
-							<input type="submit" name="" id="input_register" value="注册" />
-							
-						</div>
-					</form>
-					<form action="login" method="">
-						<div class="login_box">
-							<h1>login</h1>
-							<input type="text" placeholder="用户名" name="username"/><span class="username_error">错误</span>
-							<input type="password" placeholder="密码" name="password"/><span class="password_eror">错误</span>
-							<input type="submit" name="" id="input_login" value="登录" />
-							
-						</div>
-					</form>
-					
-				</div>
-				<div class="con_box left">
-					<h2>欢迎来到<span>FOH</span></h2>
-					<p>加入FOH大家庭</p>
-					<img src="../static/img/news.png" >
-					<p>已有账号</p>
-					<button type= "button" id="login">去登录</button>
-				</div>
-				<div class="con_box right">
-					<h2>欢迎来到<span>FOH</span></h2>
-					<p>分享自己的想法</p>
-					<img src="../static/img/4b1cf7401755dab6e6123230935b6f7.png" >
-					<p>没有账号？</p>
-					<button type="button" id="register">去注册</button>
-				</div>
-			</div>
-		
-	</body>
-	<script type="text/javascript">
-		let $login = $("#login");
-		let $register= $("#register");
-		let $form_box = $(".form_box");
-		let $register_box= $(".register_box");
-		let $login_box= $(".login_box");
-			
-			
-			$register.click(function(){
-				$form_box.css("transform","translateX(80%)")
-				$login_box.addClass("hidden");
-				$register_box.removeClass("hidden");
-				console.log(666)
-			})
-			
-			$login.click(function(){
-				$form_box.css("transform","translateX(0%)")
-				$register_box.addClass("hidden")
-				$login_box.removeClass("hidden")
-				
-			})
-			
-			
-				$(document).ready(function () {
-				      var i = 1;
-				      setInterval(function () {
-				        if (i == 1) {
-				          i = 2;
-				        } else if (i == 2) {
-				          i = 3;
-				        } else if (i == 3){
-				          i = 4
-				        }else if (i == 4){
-				          i = 5
-				        }else if (i == 5){
-				          i = 6
-				        }else if (i == 6){
-				          i = 7
-				        }else{
-							i=1
-						}
-				        $('body').css({
-				          "background-image": "url(../static/img/" + i + ".jpg)"
-				        });
-				      }, 3000);
-				    });
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../static/css/newlogin.css" th:href="@{/css/newlogin.css}"/>
+    <script src="../static/js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"
+            th:src="@{/js/jquery-3.6.0.min.js}"></script>
+</head>
+<body>
+<img src="../static/img/1.jpg" th:src="@{/img/1.jpg}" id="backImg" style="position: absolute;left: 0;width: 100%"
+     alt="">
+<div class="container">
+    <div class="form_box">
+        <script>
+            const errorMsgMap = {
+                'name': () => {
+                    alert("请填写用户名")
+                },
+                'phone': () => {
+                    alert("请填写手机号")
+                },
+                'password': () => {
+                    alert("请填写密码")
+                }
+            }
 
-	</script>
+            function registerDataValid(obj) {
+                let serializeArray = $(obj).serializeArray();
+                let flag = true;
+                for (let i = 0; i < serializeArray.length; i++) {
+                    let item = serializeArray[i]
+                    if (!item.value) {
+                        flag = false;
+                        errorMsgMap[item.name]()
+                        break;
+                    }
+                    if (item.name === 'password'){
+                        if ($("#register-re-password").val() !== item.value){
+                            flag = false;
+                            $("#register-re-password-err").text("两次输入的密码不相同!")
+                            break;
+                        }
+                    }
+                }
+                return flag;
+            }
+            function loginDataValid(obj){
+                let serializeArray = $(obj).serializeArray();
+                let flag = true;
+                for (let i = 0; i < serializeArray.length; i++) {
+                    let item = serializeArray[i];
+                    if (!item.value) {
+                        console.log(item)
+                        flag = false;
+                        errorMsgMap[item.name]()
+                        break;
+                    }
+                }
+                return flag;
+            }
+        </script>
+        <form action="/user/sign/up" method="post" th:action="@{/user/sign/up}" th:object="${user}"
+              onsubmit="return registerDataValid(this)">
+            <div class="register_box hidden">
+                <h1>register</h1>
+                <input type="text" autocapitalize="off" placeholder="用户名" name="name" th:field="*{name}"/>
+                <span class="reg_user error-msg" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">错误</span>
+                <input type="text" autocapitalize="off" placeholder="电话号码" name="phone" th:field="*{phone}"/>
+                <span class="reg_phone error-msg" th:if="${reg_err != null}" th:text="#{${reg_err}}"></span>
+                <span class="reg_phone error-msg" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">错误</span>
+                <input type="password" autocapitalize="off" placeholder="密码" name="password" th:field="*{password}"/>
+                <span class="reg_password error-msg" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}">错误</span>
+                <input type="password" id="register-re-password" autocapitalize="off" placeholder="确认密码"/>
+                <span id="register-re-password-err" class="reg_repassword error-msg"></span>
+                <input type="submit" name="" id="input_register" value="注册"/>
+            </div>
+        </form>
+        <form action="/user/sign/in" method="post" th:action="@{/user/sign/in}" onsubmit="return loginDataValid(this)" th:object="${user}">
+            <div class="login_box">
+                <h1>login</h1>
+                <input type="text" placeholder="手机号" name="phone" th:value="${user.phone}"/>
+                <span class="username_error error-msg"
+                      th:if="${error eq 'err1' or error eq 'err3'}"
+                      th:text="#{${error}}">错误</span>
+                <input type="password" placeholder="密码" name="password"/>
+                <span class="password_eror error-msg"
+                      th:if="${error eq 'err2'}"
+                      th:text="#{${error}}">错误</span>
+                <input type="submit" style="color: #00a0e9" id="input_login" value="登录"/>
+            </div>
+        </form>
+
+    </div>
+    <div class="con_box left">
+        <h2>欢迎来到<span>FOH</span></h2>
+        <p>加入FOH大家庭</p>
+        <img src="../static/img/news.png" th:src="@{/img/news.png}" alt="">
+        <p>已有账号</p>
+        <button type="button" id="login">去登录</button>
+    </div>
+    <div class="con_box right">
+        <h2>欢迎来到<span style="color: rgba(35,183,255,0.68)">FOH</span></h2>
+        <p>分享自己的想法</p>
+        <img src="../static/img/4b1cf7401755dab6e6123230935b6f7.png"
+             th:src="@{/img/4b1cf7401755dab6e6123230935b6f7.png}">
+        <p>没有账号？</p>
+        <button type="button" id="register">去注册</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+    let $login = $("#login");
+    let $register = $("#register");
+    let $form_box = $(".form_box");
+    let $register_box = $(".register_box");
+    let $login_box = $(".login_box");
+    $register.click(function () {
+        $form_box.css("transform", "translateX(80%)")
+        $login_box.addClass("hidden");
+        $register_box.removeClass("hidden");
+        $('body').css('background-color', 'rgba(112, 108, 227, 0.4)')
+        $('.form_box').css('background-color', 'rgb(204,156,255)')
+    })
+    $login.click(function () {
+        $form_box.css("transform", "translateX(0%)")
+        $register_box.addClass("hidden")
+        $login_box.removeClass("hidden")
+        $('body').css('background-color', 'rgba(134,230,255,0.4)')
+        $('.form_box').css('background-color', 'rgb(155,217,255)')
+    }).click();
+    if ('[(${isRegister})]') {
+        $register.click()
+    }
+
+    $(document).ready(function () {
+        let i = 1;
+        setInterval(function () {
+            let img = '[(@{/img})]' + '/' + ((i !== 7) ? ++i : (i = 1)) + ".jpg"
+            $("#backImg").attr('src', img)
+        }, 3000);
+    });
+
+</script>
 </html>

@@ -31,8 +31,8 @@
 </th:block>
 
 <th:block th:fragment="favoritesPage">
-    <li style="position: relative" th:each="favorite : ${userFavorites.value}" th:object="${favorite}">
-        <a href="#" style="color: #1E90FF" th:text="*{title}">我是测试数据</a><a th:href="@{/user/{id}(id=${favorite.authorid})}" style="font-size: 12px;position: absolute;right: 30px" th:text="${userService.findUserByUid(favorite.authorid).name}"></a>
+    <li style="position: relative;margin-top: 20px" th:each="favorite : ${userFavorites.value}" th:object="${favorite}">
+        <a href="#" style="color: #1E90FF;vertical-align: middle;" th:text="*{title}">我是测试数据</a><a th:href="@{/user/{id}(id=${favorite.authorid})}" style="font-size: 12px;position: absolute;right: 30px;vertical-align: middle;" th:text="${userService.findUserByUid(favorite.authorid).name}"></a>
         <hr/>
     </li>
     <div class="loadOther" style="text-align: center" th:if="${userFavorites.key}">下拉加载更多</div>

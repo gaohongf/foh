@@ -15,6 +15,7 @@ public interface UserMapper {
      * 使用账号与密码创建一位用户
      *
      * @param user 会将自增的-uid-自动填入传入的对象
+     * @return int
      */
 
     int addUser(User user);
@@ -52,4 +53,13 @@ public interface UserMapper {
      * @return 被查询的用户
      */
     List<User> findUserByLimit(@Param("start") int start, @Param("number") int number);
+
+    /**
+     * 通过ID更新用户状态
+     *
+     * @param user 用户
+     * @return boolean
+     */
+    boolean updateState(User user);
+
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    author:缪正浩
+    time:2022/6/17 16:00
+-->
+<mapper namespace="xyz.fmcy.foh.mapper.AdminMapper">
+    <select id="selectByUser" resultType="xyz.fmcy.foh.pojo.Admin">
+        select *
+        from admin
+        where user = #{user};
+    </select>
+    <select id="selectByPassword" resultType="xyz.fmcy.foh.pojo.Admin">
+        select *
+        from admin
+        where password = #{password};
+    </select>
+</mapper>

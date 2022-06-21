@@ -1,5 +1,6 @@
 package xyz.fmcy.foh.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +31,7 @@ public interface TopicService {
     /**
      * 依据用户id查询该用户的部分帖子
      *
-     * @param id 用户id
+     * @param id    用户id
      * @param label 页数
      * @return 用户的帖子
      */
@@ -53,6 +54,18 @@ public interface TopicService {
     boolean deleteTopic(Topic topic, User user);
 
     Topic updateTopic(Topic topic, User user);
+
+    /**
+     * 根据标题或类型查询数据，交给后台管理
+     *
+     * @param title  帖子标题
+     * @param start  开始
+     * @param number 数量
+     * @param typeId id类型
+     * @return {@link List}<{@link Topic}>
+     */
+    List<Topic> findTopicByTitleAndTypeId(String title, Integer typeId,
+                                          Integer start, Integer number);
 
     Integer pagesByUser(User user);
 }

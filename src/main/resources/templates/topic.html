@@ -22,7 +22,7 @@
         }
     </style>
 </head>
-<body style="background-color: black">
+<body>
 <div id="container" class="grid">
     <div class="grid-cell-1 left">
         <div class="container_top_titile" th:text="${topicContext.title}">
@@ -96,7 +96,7 @@
                             </div>
                             <div class="top_bottom">
                                 <span class="zan"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>16</span>
-                                <span th:with="louStart = (${louStart + 1})">[(${louStart})]楼</span>
+                                <span th:text="|${louStart.move(1)}楼|">楼</span>
                                 <span class="time" th:text="*{#dates.format(time,'yyyy-MM-dd HH:mm:ss')}">2022-05-05 05:12:50</span>
                                 <span class="replace" onclick="blockInput(this,0)"
                                       th:attr="data-id=*{id},data-username=*{user.name}"
@@ -109,12 +109,13 @@
                                     <li th:each="sub : ${comment.subComments}" th:fragment="subComments">
                                         <div class="bottom_replace_user">
                                             <div class="replace_img">
-                                                <img src="../banner/pm.jpg" alt=""
+                                                <img src="../banner/pm.jpg"
                                                      th:src="@{/{link}(link=${sub.avatar.avatar})}">
-                                                <a href="" th:href="@{/user/{uid}(uid=${sub.user.uid})}"
-                                                   class="username" th:text="${sub.user.name}">123</a>回复<a href="#"
-                                                                                                           th:href="@{/user/{uid}(uid=${commentLooker.apply(sub.targetId).user.uid})}"
-                                                                                                           th:text="${commentLooker.apply(sub.targetId).user.name}">132456</a>
+                                                <a th:href="@{/user/{uid}(uid=${sub.user.uid})}"
+                                                   class="username" th:text="${sub.user.name}">123</a>回复
+                                                <a href="#"
+                                                   th:href="@{/user/{uid}(uid=${commentLooker.apply(sub.targetId).user.uid})}"
+                                                   th:text="${commentLooker.apply(sub.targetId).user.name}">132456</a>
                                                 [(${sub.content})]
                                                 <div class="replace_bottom">
 														<span class="replace_zan"><i class="fa fa-thumbs-o-up"
@@ -140,9 +141,6 @@
     </div>
     <div class="bottom_text">
     </div>
-    <script src="../static/js/particles.min.js" th:src="@{/js/particles.min.js}" type="text/javascript"
-            charset="utf-8"></script>
-    <script src="../static/js/app.js" th:src="@{/js/app.js}" type="text/javascript" charset="utf-8"></script>
 </div>
 </body>
 <script type="text/javascript" th:inline="javascript">
@@ -178,7 +176,7 @@
         let targetId = id;
         let content = $(obj).parent().find(".answer-content").val();
         $(obj).unbind()
-        if (content.trim() === ''){
+        if (content.trim() === '') {
             alert("请输入内容!")
             return;
         }

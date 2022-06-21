@@ -46,4 +46,5 @@ public class BasicParametersConfig {
     public Integer commentsPageNumber(){
         return 5;
     }
+
 }

@@ -11,6 +11,7 @@ import xyz.fmcy.foh.pojo.*;
 import xyz.fmcy.foh.service.CommentsService;
 import xyz.fmcy.foh.service.TopicService;
 import xyz.fmcy.foh.service.UserService;
+import xyz.fmcy.foh.vo.Storey;
 import xyz.fmcy.foh.vo.UserTopicPage;
 import xyz.fmcy.foh.vo.VComments;
 import xyz.fmcy.foh.vo.VUser;
@@ -50,7 +51,7 @@ public class TopicController {
                 .peek(vComments -> vComments.setSubComments(commentsService.subComments(vComments.getId()).stream()
                         .map((comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments))).collect(Collectors.toList()))
                 ).collect(Collectors.toList()));
-        model.addAttribute("louStart", 1);
+        model.addAttribute("louStart", new Storey(1));
         model.addAttribute("commentLooker", (Function<Integer, VComments>) targetId -> {
             Comments comment = commentsService.getCommentById(targetId);
             return new VComments(new VUser(userService.findUserByUid(comment.getUid())), userService.findAvatarByUid(comment.getUid()), comment);
@@ -63,7 +64,7 @@ public class TopicController {
         model.addAttribute("comments", commentsService.findByTopicId(tid, page).stream().map(
                 (comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments))
         ).collect(Collectors.toList()));
-        model.addAttribute("louStart", commentsPageNumber * page + 1);
+        model.addAttribute("louStart", new Storey(commentsPageNumber * page + 1));
         return "/topic::topicComments";
     }
 
@@ -135,17 +136,17 @@ public class TopicController {
     }
 
     @GetMapping("/topic/write/page")
-    public String writeTopic(Model model){
-        model.addAttribute("types",topicService.getTopicTypes());
+    public String writeTopic(Model model) {
+        model.addAttribute("types", topicService.getTopicTypes());
         return "/edit";
     }
 
     @PostMapping("/topic/write/post")
-    public String writeTopic(Topic topic,HttpSession session){
+    public String writeTopic(Topic topic, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Topic topic1 = topicService.addTopic(topic, user);
-        if (topic1!=null){
-            return "redirect:/topic/read/"+topic1.getId();
+        if (topic1 != null) {
+            return "redirect:/topic/read/" + topic1.getId();
         }
         return "redirect:/";
     }

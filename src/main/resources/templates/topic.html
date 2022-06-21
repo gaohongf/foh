@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
     <title></title>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="grid-cell-4">
-                        <div class="top_titile" th:text="${topicContext.content}">
+                        <div class="top_titile" id="content" th:text="${topicContext.content}">
                             我是第一个主体内容12345354
                             我是第一个主体内容12345354
                         </div>
@@ -54,10 +54,11 @@
                         <div class="master_bottom_replace">
                             <div class="master_replace_text">
                                 <script>
-                                    function replyTopicForm() {
+                                    function replyTopicForm(obj) {
                                         let flag = true;
-                                        $($("#replyTopicForm").serializeArray()).each((index, item) => {
-                                            if (item.value === '') {
+                                        $($(obj).serializeArray()).each((index, item) => {
+                                            if (item.value.trim() === '') {
+                                                alert("请输入内容!")
                                                 flag = false;
                                             }
                                         })
@@ -65,7 +66,7 @@
                                     }
                                 </script>
                                 <form action="/topic/reply/{tid}" id="replyTopicForm" method="post"
-                                      onsubmit="return replyTopicForm()"
+                                      onsubmit="return replyTopicForm(this)"
                                       th:action="@{/topic/reply/{tid}(tid=${topicContext.id})}">
                                     <label for="master_text" class="master_name" style="position: absolute">回复楼主</label>
                                     <textarea name="content" style="position: relative;margin-top: 20px"
@@ -100,10 +101,11 @@
                                 <span class="replace" onclick="blockInput(this,0)"
                                       th:attr="data-id=*{id},data-username=*{user.name}"
                                       th:onclick="|blockInput(this,0)|">回复</span>
-                                <span style="margin-right: 10px" onclick="shouPingLun(this)">收起评论区</span>
+                                <span class="comments-section-status" style="margin-right: 10px;cursor: pointer;"
+                                      onclick="shouPingLun(this)">打开评论区</span>
                             </div>
                             <div class="bottom_replace">
-                                <ul class="bottom_ul">
+                                <ul class="bottom_ul" style="display: none">
                                     <li th:each="sub : ${comment.subComments}" th:fragment="subComments">
                                         <div class="bottom_replace_user">
                                             <div class="replace_img">
@@ -157,24 +159,29 @@
             "<textarea class='answer-content' type='text'></textarea>" +
             "<button type='button' class='edit_put'>发表</button>" +
             "</div>")
-        $input_edit.children('.edit_put').click(function (){
-            edit_put(this,id ,type)
+        $input_edit.children('.edit_put').click(function () {
+            edit_put(this, id, type)
         });
         $(obj).parent().after($input_edit)
     }
 
     function shouPingLun(obj) {
         $(obj).text($(obj).text() === '收起评论区' ? "打开评论区" : "收起评论区")
-        $(obj).parent().siblings(".bottom_replace").children(".bottom_ul").slideToggle(300)
+        $(obj).parent().siblings(".bottom_replace").children(".bottom_ul").stop().slideToggle(300)
     }
 
     $(document).on('click', '.master_replace', function () {
         $(".master_bottom_replace").toggle()
     })
+
     function edit_put(obj, id, type) {
         let targetId = id;
         let content = $(obj).parent().find(".answer-content").val();
         $(obj).unbind()
+        if (content.trim() === ''){
+            alert("请输入内容!")
+            return;
+        }
         $.post("[(@{/topic/reply/comment})]/" + targetId, {'content': content}, function (data) {
             if (type === 1) {
                 $(obj).parent().parent().parent().parent().parent().append($(data))
@@ -185,5 +192,9 @@
         })
     }
 
+    $(function () {
+        let $content = $("#content");
+        $content.html($content.text())
+    })
 </script>
 </html>

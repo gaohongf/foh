@@ -32,7 +32,6 @@ public class TopicController {
     private TopicService topicService;
     @Resource
     private UserService userService;
-
     @Resource
     private CommentsService commentsService;
     @Resource
@@ -134,4 +133,21 @@ public class TopicController {
         }
         return "/topic::subComments";
     }
+
+    @GetMapping("/topic/write/page")
+    public String writeTopic(Model model){
+        model.addAttribute("types",topicService.getTopicTypes());
+        return "/edit";
+    }
+
+    @PostMapping("/topic/write/post")
+    public String writeTopic(Topic topic,HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Topic topic1 = topicService.addTopic(topic, user);
+        if (topic1!=null){
+            return "redirect:/topic/read/"+topic1.getId();
+        }
+        return "redirect:/";
+    }
+
 }

@@ -44,7 +44,7 @@
         limit #{start},#{number}
     </select>
 
-    <insert id="addTopic">
+    <insert id="addTopic" useGeneratedKeys="true" keyProperty="id">
         insert topic(title, typeid, authorid, content, time) value (#{title}, #{typeid}, #{authorid}, #{content}, now())
     </insert>
 
@@ -143,6 +143,5 @@
             </if>
         </where>
         limit #{start},#{number}
-        ;
     </select>
 </mapper>

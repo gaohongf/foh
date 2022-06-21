@@ -1,6 +1,6 @@
 package xyz.fmcy.foh.pojo;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 帖子数据映射

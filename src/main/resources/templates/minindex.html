@@ -56,10 +56,11 @@
     </script>
     <div class="container">
         <th:block th:fragment="topicsShelves">
-            <div th:if="${topics.size() eq 0}"><h1 style="text-align: center;color: white;text-shadow: black 5px 5px 3px">这个模块没有还没有帖子哦</h1></div>
+            <div th:if="${topics.size() eq 0}"><h1
+                    style="text-align: center;color: white;text-shadow: black 5px 5px 3px">这个模块没有还没有帖子哦</h1></div>
             <div class="card" th:each="topic : ${topics}">
                 <div class="topic">
-                    <a href="topic.html">
+                    <a href="topic.html" th:href="@{/topic/read/{id}(id=${topic.id})}">
                         <div class="content">
                             <div class="imgBx">
                                 <img src="../static/img/img1.jpg"
@@ -74,18 +75,8 @@
                 </div>
                 <ul class="sci">
                     <li style="--i:1">
-                        <a href="#">
+                        <a href="/user/3" th:href="@{/user/{uid}(uid=${topic.authorid})}">
                             <ion-icon name="person-outline"></ion-icon>
-                        </a>
-                    </li>
-                    <li style="--i:2">
-                        <a href="#">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </a>
-                    </li>
-                    <li style="--i:3">
-                        <a href="#">
-                            <ion-icon name="heart-outline"></ion-icon>
                         </a>
                     </li>
                 </ul>

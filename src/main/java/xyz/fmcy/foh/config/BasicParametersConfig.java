@@ -42,5 +42,8 @@ public class BasicParametersConfig {
         return 5;
     }
 
-
+    @Bean
+    public Integer commentsPageNumber(){
+        return 5;
+    }
 }

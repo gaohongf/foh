@@ -1,0 +1,42 @@
+<!--
+    author:付高宏
+    time:2022/6/20 22:41
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fmcy.foh.mapper.CommentsMapper">
+    <resultMap id="comMap" type="xyz.fmcy.foh.pojo.Comments">
+        <result property="targetId" column="target_id"/>
+        <result property="targetType" column="target_type"/>
+    </resultMap>
+    <select id="findByTopicId" resultMap="comMap">
+        select *
+        from comments
+        where target_type = 0
+          and target_id = #{id}
+        limit #{start},#{number}
+    </select>
+
+    <select id="subComments" resultMap="comMap">
+        select *
+        from comments
+        where target_type = 1
+          and parent = #{parentId}
+    </select>
+
+    <insert id="addComment" useGeneratedKeys="true" keyProperty="id">
+        insert comments(target_id, target_type, content, uid, time, parent)
+            value (#{targetId}, #{targetType}, #{content}, #{uid}, now(), #{parent})
+    </insert>
+
+    <delete id="deleteComment">
+        delete
+        from comments
+        where id = #{id}
+    </delete>
+
+    <select id="getCommentById" resultMap="comMap">
+        select * from comments where id = #{id}
+    </select>
+</mapper>

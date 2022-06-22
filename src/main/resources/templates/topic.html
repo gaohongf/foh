@@ -21,6 +21,18 @@
         .master_name {
             text-align: left;
         }
+
+        #del-topic {
+            border: #85cbee 1px solid;
+            border-radius: 5px;
+            width: 80px;
+            background-color: #E2FAFAFF;
+        }
+
+        #del-topic:hover {
+            color: #ffffff;
+            background-color: #1E90FF;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +69,7 @@
             </ul>
         </div>
         <script>
-            function beforePage(){
+            function beforePage() {
                 history.back()
             }
         </script>
@@ -74,6 +86,14 @@
                         <div class="top_img_name">
                             <a href="#" th:text="${topicAuthor.name}" th:href="@{/user/{uid}(uid=${topicAuthor.id})}">132456</a>
                         </div>
+                        <div style="margin-top: 10px;margin-bottom: 20px" th:if="${topicAuthor.id eq session.user.id}">
+                            <form method="post" style="text-align: center" action="/topic/del/id"
+                                  onsubmit="return confirm('确认要删除这个帖子吗?')"
+                                  th:action="@{/topic/del}">
+                                <input name="id" type="hidden" th:value="${topicContext.id}">
+                                <input type="submit" id="del-topic" value="删除本贴">
+                            </form>
+                        </div>
                     </div>
                     <div class="grid-cell-4">
                         <div class="top_titile" id="content" th:text="${topicContext.content}">
@@ -81,7 +101,11 @@
                             我是第一个主体内容12345354
                         </div>
                         <div class="top_bottom">
-                            <span class="zan"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>16</span>
+                            <span onclick="zan(this)" class="zan"
+                                  th:attr="data-zan=@{/topic/praise/{id}(id=${topicContext.id})},data-cancel=@{/topic/praise/cancel/{id}(id=${topicContext.id})},hasPraise=${hasPraise}">
+                                <i class="fa fa-thumbs-o-up" th:style="${hasPraise} ? 'color: #ff7e7e'"
+                                   aria-hidden="true"></i><span id="zan-number">[(${praises})]</span>
+                            </span>
                             <span style="cursor: pointer"
                                   th:attr="data-addHref=@{/topic/user/favorites/add/{tid}(tid=${topicContext.id})},data-cancel=@{/topic/user/favorites/cancel/{tid}(tid=${topicContext.id})}"
                                   onclick="setFavorite(this)" th:text="${isFavorites?'取消收藏':'收藏'}">收藏</span>
@@ -91,7 +115,33 @@
                         </div>
                         <div class="master_bottom_replace">
                             <div class="master_replace_text">
-                                <script>
+                                <script th:inline="javascript">
+                                    function zan(obj) {
+                                        let hasPraise = $(obj).attr("hasPraise");
+                                        let url
+                                        if (eval(hasPraise)) {
+                                            url = $(obj).attr("data-cancel")
+                                        } else {
+                                            url = $(obj).attr("data-zan");
+                                        }
+                                        $.post(url, function (data) {
+                                            if (data) {
+                                                alert("操作成功")
+                                                let $zan = $("#zan-number");
+                                                if (eval(hasPraise)) {
+                                                    $zan.text(eval($zan.text()) - 1)
+                                                    $(obj).find("i").css("color", "black")
+                                                } else {
+                                                    $zan.text(eval($zan.text()) + 1)
+                                                    $(obj).find("i").css("color", "#ff7e7e")
+                                                }
+                                                $(obj).attr("hasPraise",!eval(hasPraise))
+                                            } else {
+                                                alert("发生了意外了哦")
+                                            }
+                                        })
+                                    }
+
                                     function setFavorite(obj) {
                                         let dataHref;
                                         if ($(obj).text() === "收藏") {
@@ -155,7 +205,6 @@
                                 我是测试
                             </div>
                             <div class="top_bottom">
-                                <span class="zan"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>16</span>
                                 <span th:text="|${louStart.move(1)}楼|">楼</span>
                                 <span class="time" th:text="*{#dates.format(time,'yyyy-MM-dd HH:mm:ss')}">2022-05-05 05:12:50</span>
                                 <span class="replace" onclick="blockInput(this,0)"
@@ -170,7 +219,7 @@
                                         <div class="bottom_replace_user">
                                             <div class="replace_img">
                                                 <img src="../banner/pm.jpg"
-                                                     th:src="@{/{link}(link=${sub.avatar.avatar})}">
+                                                     th:src="@{/{link}(link=${sub.avatar.avatar})}" alt="">
                                                 <a th:href="@{/user/{uid}(uid=${sub.user.uid})}"
                                                    class="username" th:text="${sub.user.name}">123</a>回复
                                                 <a href="#"
@@ -284,7 +333,7 @@
             if ($("#stop").length > 0) {
                 stop = true
             }
-            if (!stop){
+            if (!stop) {
                 firstLoad()
             }
         })
@@ -296,11 +345,11 @@
         }
     }
     $(window).resize(function () {
-        if (!stop){
+        if (!stop) {
             firstLoad()
         }
     })
-    $(function (){
+    $(function () {
         firstLoad()
     })
     $(function () {

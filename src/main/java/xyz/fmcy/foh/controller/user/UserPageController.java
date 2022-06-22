@@ -17,6 +17,7 @@ import xyz.fmcy.foh.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.function.Function;
 
 /**
  * @author 付高宏
@@ -32,6 +33,8 @@ public class UserPageController {
     private FansService fansService;
     @Resource
     private TopicService topicService;
+    @Resource
+    private Function<User, Integer> userPraiseNumber;
 
     @RequestMapping("/login")
     String loginPage(@ModelAttribute("user") User user) {
@@ -84,6 +87,7 @@ public class UserPageController {
         model.addAttribute("avatar", avatar.getAvatar());
         model.addAttribute("fansNumber", fansService.userFansNumber(uid));
         model.addAttribute("concernNumber", fansService.userConcernNumber(uid));
+        model.addAttribute("userZan", userPraiseNumber.apply(user));
         return "/user";
     }
 

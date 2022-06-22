@@ -15,9 +15,11 @@
 <body>
 <div class="container">
     <div class="user">
-        <button class="shiny"><a href="user.html" th:href="@{/user/{uid}(uid=${session.user.id})}">
-            <i class="fa fa-user-o" aria-hidden="true"></i>个人中心</a>
-        </button>
+        <a href="user.html" th:href="@{/user/{uid}(uid=${session.user.id})}">
+            <button class="shiny">
+                <i class="fa fa-user-o" aria-hidden="true"></i>个人中心
+            </button>
+        </a>
     </div>
     <div class="search">
         <div @mouseleave="isHover=false" @mouseover="isHover=true" style="width: 700px;margin: 0 auto;">
@@ -29,7 +31,8 @@
                     <li v-for="topic in topics">
                         <input type="hidden" v-model="topic.id">
                         <a href="/topic/read/" th:attr="data-url=@{/topic/read}" onclick="return souSuo.linkTopic(this)"
-                           style="display: block;padding-left:6px;width: 100%;height: 100%;position: static;text-decoration: none;color: black;">{{topic.title}}<span style="color: rgba(111,179,224,0.99);font-size: 14px;position: absolute;right: 20px">{{topic.author.name}}</span></a>
+                           style="display: block;padding-left:6px;width: 100%;height: 100%;position: static;text-decoration: none;color: black;">{{topic.title}}<span
+                                style="color: rgba(111,179,224,0.99);font-size: 14px;position: absolute;right: 20px">{{topic.author.name}}</span></a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +40,8 @@
     </div>
     <div class="hobby grid">
         <div class="item grid-cell-1" th:each="t : ${topicTypes}" th:object="${t}">
-            <div style="cursor: pointer" class="hobby_item" th:onclick="|location='@{/topic/type/{id}/{number}(id=*{id},number=10)}'|">
+            <div style="cursor: pointer" class="hobby_item"
+                 th:onclick="|location='@{/topic/type/{id}/{number}(id=*{id},number=10)}'|">
                 <img src="../static/img/news.png" th:src="@{/{icon}(icon=*{typeIcon})}" alt="">
                 <div class="hobby_item_text" th:text="*{typename}">名称</div>
             </div>
@@ -51,7 +55,7 @@
 <script src="../static/js/index-vue.js" th:src="@{/js/index-vue.js}"></script>
 </body>
 <script type="text/javascript">
-    $("#shou-suo").on("input",function (){
+    $("#shou-suo").on("input", function () {
         souSuo.sou(this)
     })
 </script>

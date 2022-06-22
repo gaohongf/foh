@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.fmcy.foh.pojo.Praise;
 import xyz.fmcy.foh.pojo.Topic;
 import xyz.fmcy.foh.pojo.TopicType;
 import xyz.fmcy.foh.pojo.User;
@@ -70,4 +71,16 @@ public interface TopicService {
                                           Integer start, Integer number);
 
     Integer pagesByUser(User user);
+
+    /**
+     * 获取帖子赞的数量
+     * @param id 帖子id
+     */
+    Integer topicPraiseNumber(Integer id);
+
+    boolean yiZan(Praise praise);
+
+    boolean addPraise(Praise praise);
+
+    boolean deletePraise(Praise praise);
 }

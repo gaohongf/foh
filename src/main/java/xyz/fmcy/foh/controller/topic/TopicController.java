@@ -44,12 +44,17 @@ public class TopicController {
     public String topicPage(@PathVariable Integer id, @Nullable Integer page, Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Topic topic = topicService.getTopicById(id);
+        if (topic == null) {
+            return "redirect:/";
+        }
         User author = userService.findUserByUid(topic.getAuthorid());
         Avatar avatar = userService.findAvatarByUid(author.getId());
         model.addAttribute("topicContext", topic);
         model.addAttribute("topicAuthor", author);
         model.addAttribute("authorAvatar", avatar);
+        model.addAttribute("praises", topicService.topicPraiseNumber(topic.getId()));
         model.addAttribute("isFavorites", favoritesService.isFavorites(new Favorites(user.getId(), topic.getId())));
+        model.addAttribute("hasPraise", topicService.yiZan(new Praise(user.getId(), topic.getId())));
         List<VComments> commentsList = new ArrayList<>();
         if (page == null) {
             page = 0;
@@ -213,4 +218,29 @@ public class TopicController {
         }).collect(Collectors.toList());
     }
 
+    @PostMapping("/topic/del")
+    public String delTopic(Integer id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Topic topic = topicService.getTopicById(id);
+        topicService.deleteTopic(topic, user);
+        return "redirect:/user/" + user.getId();
+    }
+
+    @PostMapping("/topic/praise/{id}")
+    @ResponseBody
+    public Boolean zan(@PathVariable Integer id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return topicService.addPraise(new Praise(user.getId(), id));
+    }
+
+    /**
+     * 取消赞
+     * 这就是拼音不要怀疑
+     */
+    @PostMapping("/topic/praise/cancel/{id}")
+    @ResponseBody
+    public Boolean quXiaoZan(@PathVariable Integer id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return topicService.deletePraise(new Praise(user.getId(), id));
+    }
 }

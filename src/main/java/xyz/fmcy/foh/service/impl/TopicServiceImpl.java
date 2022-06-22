@@ -2,7 +2,9 @@ package xyz.fmcy.foh.service.impl;
 
 import org.springframework.stereotype.Service;
 import xyz.fmcy.foh.config.TopicTypeConfig;
+import xyz.fmcy.foh.mapper.PraiseMapper;
 import xyz.fmcy.foh.mapper.TopicMapper;
+import xyz.fmcy.foh.pojo.Praise;
 import xyz.fmcy.foh.pojo.Topic;
 import xyz.fmcy.foh.pojo.TopicType;
 import xyz.fmcy.foh.pojo.User;
@@ -32,6 +34,9 @@ public class TopicServiceImpl implements TopicService {
 
     @Resource
     private TopicTypeConfig topicTypeConfig;
+
+    @Resource
+    private PraiseMapper praiseMapper;
 
     @Override
     public Topic addTopic(Topic topic, User user) {
@@ -82,7 +87,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> findTopicLikeTitleAndType(String title, TopicType type) {
-        return topicMapper.findTopicLikeTitleAndType(title,type);
+        return topicMapper.findTopicLikeTitleAndType(title, type);
     }
 
     @Override
@@ -151,5 +156,25 @@ public class TopicServiceImpl implements TopicService {
         return (size % userTopicPageNumber == 0) ?
                 (size / userTopicPageNumber) :
                 (size / userTopicPageNumber + 1);
+    }
+
+    @Override
+    public Integer topicPraiseNumber(Integer id) {
+        return praiseMapper.topicPraiseNumber(id);
+    }
+
+    @Override
+    public boolean yiZan(Praise praise) {
+        return praiseMapper.lovedIt(praise) > 0;
+    }
+
+    @Override
+    public boolean addPraise(Praise praise) {
+        return praiseMapper.addPraise(praise) > 0;
+    }
+
+    @Override
+    public boolean deletePraise(Praise praise) {
+        return praiseMapper.deletePraise(praise) > 0;
     }
 }

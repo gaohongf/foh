@@ -51,7 +51,7 @@
         </ul>
     </div>
     <script>
-        function beforePage(){
+        function beforePage() {
             history.back()
         }
     </script>
@@ -82,7 +82,8 @@
                                      alt="">
                             </div>
                             <div class="contentBx">
-                                <h3>[(${topic.title})]<br/><span>[(${session.user.name})]</span></h3>
+                                <h3><b style="text-shadow: #1E90FF 1px 1px 1px;color: #fff0f0" th:text="${topic.title}">标题</b><br/>
+                                    <span style="text-shadow: #1E90FF 1px 1px 1px;color: #fff0f0" th:text="${userService.findUserByUid(topic.authorid).name}">名字</span></h3>
                             </div>
                         </div>
                     </a>
@@ -100,7 +101,8 @@
 </section>
 <div id="box"></div>
 <script th:inline="javascript">
-    let loading = false;
+    let s = '[(${topics.size() eq 0})]';
+    let loading = eval(s);
 
     const postData = () => {
         $.get("[(@{/topic/type/further/{id}/{number}(id=${type.id},number=8)})]", function (page) {
@@ -117,7 +119,7 @@
         }
     })
     const firstLoad = () => {
-        if ($("#topic-cards").height() < $(window).height()) {
+        if ($("#topic-cards").height() < $(window).height() && !loading) {
             loading = true;
             postData()
         }
@@ -125,7 +127,7 @@
     $(window).resize(function () {
         firstLoad()
     })
-    $(function (){
+    $(function () {
         firstLoad()
     })
 </script>

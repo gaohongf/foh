@@ -10,7 +10,8 @@ const userTopicList = new Vue({
                         $(this).remove()
                     })
                     let $topics = $(topics.data).css({'top': '300px', 'opacity': '0'})
-                    $("#container_body_right_item").append($topics)
+                    let $containerBodyRightItem = $("#container_body_right_item");
+                    $containerBodyRightItem.append($topics)
                     $topics.find(".list_topic_type").each(function (e, item) {
                         $(item).css({'border-color': userTopicList.getAnColor()})
                     })
@@ -19,6 +20,9 @@ const userTopicList = new Vue({
                             $topics.filter(".loadOther").css({cursor: 'pointer'})
                             $topics.filter(".loadOther").animate({'opacity': '1'}, 300)
                         })
+                    if ($containerBodyRightItem.find(".container_body_right_item_list").length === 0) {
+                        $containerBodyRightItem.append($("<h1 style='width: 100%;text-align: center;color: #1E90FF'>没有任何帖子,快去发布一个吧!</h1>"))
+                    }
                 }
             )
         },

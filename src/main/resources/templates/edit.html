@@ -55,7 +55,25 @@
 
 <body>
 <section class="article_editor">
-    <form th:action="@{/topic/write/post}" method="post" action="/topic/write/post">
+    <script>
+        function fmSubmit() {
+            let serializeArray = $("#fm").serializeArray();
+            for (let i = 0; i < serializeArray.length; i++) {
+                let item = serializeArray[i];
+                if (item.value.trim() === '') {
+                    if (item.name === 'title') {
+                        alert("请输入标题")
+                    } else if (item.name === 'content') {
+                        alert("请输入内容")
+                    }
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+
+    <form id="fm" th:action="@{/topic/write/post}" onsubmit="return fmSubmit()" method="post" action="/topic/write/post">
         <div class="article_editor_content">
             <div class="wrapper">
                 <div class="article_editor_page">
@@ -63,12 +81,6 @@
                                                              maxlength="64"></div>
                     <div class="article_editor_textarea"><textarea name="content" id="editor"></textarea></div>
                     <div class="article_editor_options">
-                        <div class="article_editor_info2">
-                            <div class="tit">封面摘要</div>
-                            <div class="con">
-                                <div class="fr"><textarea placeholder="选填，摘要会在文章列表页显露，帮助读者快速了解内容"></textarea></div>
-                            </div>
-                        </div>
                         <div class="article_editor_setting">
                             <div class="tit">文章设置</div>
                             <div class="con">
@@ -76,8 +88,10 @@
                                     <li>
                                         <div class="box"><span>关键词：</span>
                                             <div class="btn-group dropup">
-                                                <button type="button" id="typeButton" class="btn btn-default" th:text="${types.get(0).typename}"></button>
-                                                <input name="typeid" id="typeInput" type="hidden" th:value="${types.get(0).id}">
+                                                <button type="button" id="typeButton" class="btn btn-default"
+                                                        th:text="${types.get(0).typename}"></button>
+                                                <input name="typeid" id="typeInput" type="hidden"
+                                                       th:value="${types.get(0).id}">
                                                 <button type="button" class="btn btn-default dropdown-toggle"
                                                         data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
@@ -85,7 +99,10 @@
                                                     <span class="sr-only"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li th:each="type : ${types}" th:attr="data-type=${type.typename},data-typeid=${type.id}" th:text="${type.typename}">标签</li>
+                                                    <li th:each="type : ${types}"
+                                                        th:attr="data-type=${type.typename},data-typeid=${type.id}"
+                                                        th:text="${type.typename}">标签
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

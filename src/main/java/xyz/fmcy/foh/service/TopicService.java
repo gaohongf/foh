@@ -41,6 +41,8 @@ public interface TopicService {
 
     boolean addTopicType(TopicType type, InputStream inputStream);
 
+    List<Topic> findTopicLikeTitleAndType(String title, TopicType type);
+
     List<Topic> randTopic(Integer number);
 
     List<Topic> randTopicByType(Integer typeid, Integer number);

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title th:text="'醉心'+${type.typename}">醉心音乐</title>
     <link rel="stylesheet" type="text/css" href="../static/css/minindex.css" th:href="@{/css/minindex.css}"/>
+    <script src="../static/js/jquery-3.6.0.min.js" th:src="@{/js/jquery-3.6.0.min.js}"></script>
     <style>
         a {
             text-decoration: none;
@@ -35,12 +36,25 @@
                 <ion-icon name="person-outline"></ion-icon>
                 我的主页
             </a></li>
+            <li><a href="/topic/write/page" th:href="@{/topic/write/page}">
+                <ion-icon name="create-outline"></ion-icon>
+                发帖
+            </a></li>
+            <li><a style="cursor: pointer" onclick="beforePage()">
+                <ion-icon name="return-up-back-outline"></ion-icon>
+                上一页
+            </a></li>
             <li><a href="/user/sign/out" th:href="@{/user/sign/out}">
                 <ion-icon name="log-out-outline"></ion-icon>
-                退出
+                退出登录
             </a></li>
         </ul>
     </div>
+    <script>
+        function beforePage(){
+            history.back()
+        }
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
@@ -54,7 +68,7 @@
             naviagtion.classList.toggle('active');
         }
     </script>
-    <div class="container">
+    <div class="container" id="topic-cards">
         <th:block th:fragment="topicsShelves">
             <div th:if="${topics.size() eq 0}"><h1
                     style="text-align: center;color: white;text-shadow: black 5px 5px 3px">这个模块没有还没有帖子哦</h1></div>
@@ -84,6 +98,37 @@
         </th:block>
     </div>
 </section>
+<div id="box"></div>
+<script th:inline="javascript">
+    let loading = false;
+
+    const postData = () => {
+        $.get("[(@{/topic/type/further/{id}/{number}(id=${type.id},number=8)})]", function (page) {
+            $(".container").append($(page))
+            loading = false
+            firstLoad()
+        })
+    }
+
+    $(window).scroll(function () {
+        if (($(this).scrollTop() + $(this).height() > $(document).height() - 200) && !loading) {
+            loading = true;
+            postData()
+        }
+    })
+    const firstLoad = () => {
+        if ($("#topic-cards").height() < $(window).height()) {
+            loading = true;
+            postData()
+        }
+    }
+    $(window).resize(function () {
+        firstLoad()
+    })
+    $(function (){
+        firstLoad()
+    })
+</script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

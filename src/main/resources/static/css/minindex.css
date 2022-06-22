@@ -197,7 +197,7 @@ body {
 
 .naviagtion.active {
 	width: 200px;
-	height: 200px;
+	height: 280px;
 	transition: width 200ms, height 200ms;
 	transition-delay: 0s, 200ms;
 }
@@ -291,8 +291,8 @@ body {
 	position: absolute;
 	width: 100%;
 	height: calc(100% - 60px);
-	margin-top: 50px;
-	padding: 20px;
+	margin-top: 60px;
+	padding: 5px 20px 20px;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 

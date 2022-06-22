@@ -7,7 +7,7 @@ import java.util.Date;
  * @author 付高宏
  * @date 2022/6/15 21:51
  */
-public final class Topic {
+public class Topic {
     private Integer id;
     private String title;
     private Integer typeid;

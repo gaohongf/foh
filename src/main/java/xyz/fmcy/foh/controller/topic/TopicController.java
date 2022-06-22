@@ -1,6 +1,7 @@
 package xyz.fmcy.foh.controller.topic;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.fmcy.foh.pojo.*;
 import xyz.fmcy.foh.service.CommentsService;
+import xyz.fmcy.foh.service.FavoritesService;
 import xyz.fmcy.foh.service.TopicService;
 import xyz.fmcy.foh.service.UserService;
-import xyz.fmcy.foh.vo.Storey;
-import xyz.fmcy.foh.vo.UserTopicPage;
-import xyz.fmcy.foh.vo.VComments;
-import xyz.fmcy.foh.vo.VUser;
+import xyz.fmcy.foh.vo.*;
+import xyz.fmcy.foh.vo.combo.KeyAndValue;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -37,25 +37,39 @@ public class TopicController {
     private CommentsService commentsService;
     @Resource
     private Integer commentsPageNumber;
+    @Resource
+    private FavoritesService favoritesService;
 
     @GetMapping("/topic/read/{id}")
-    public String topicPage(@PathVariable Integer id, Model model) {
+    public String topicPage(@PathVariable Integer id, @Nullable Integer page, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
         Topic topic = topicService.getTopicById(id);
         User author = userService.findUserByUid(topic.getAuthorid());
         Avatar avatar = userService.findAvatarByUid(author.getId());
         model.addAttribute("topicContext", topic);
         model.addAttribute("topicAuthor", author);
         model.addAttribute("authorAvatar", avatar);
-        model.addAttribute("comments", commentsService.findByTopicId(id, 0).stream()
-                .map((comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments)))
-                .peek(vComments -> vComments.setSubComments(commentsService.subComments(vComments.getId()).stream()
-                        .map((comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments))).collect(Collectors.toList()))
-                ).collect(Collectors.toList()));
+        model.addAttribute("isFavorites", favoritesService.isFavorites(new Favorites(user.getId(), topic.getId())));
+        List<VComments> commentsList = new ArrayList<>();
+        if (page == null) {
+            page = 0;
+        }
+        for (int i = 0; i <= page; i++) {
+            commentsList.addAll(commentsService.findByTopicId(id, i).stream()
+                    .map((comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments)))
+                    .peek(vComments -> vComments.setSubComments(commentsService.subComments(vComments.getId()).stream()
+                            .map((comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments))).collect(Collectors.toList()))
+                    ).collect(Collectors.toList()));
+        }
+        model.addAttribute("stop", commentsService.findByTopicId(id, page + 1).size() == 0);
+        model.addAttribute("comments", commentsList);
+        model.addAttribute("page", page);
         model.addAttribute("louStart", new Storey(1));
         model.addAttribute("commentLooker", (Function<Integer, VComments>) targetId -> {
             Comments comment = commentsService.getCommentById(targetId);
             return new VComments(new VUser(userService.findUserByUid(comment.getUid())), userService.findAvatarByUid(comment.getUid()), comment);
         });
+        model.addAttribute("userAvatar", userService.findAvatarByUid(((User) session.getAttribute("user")).getId()));
         return "/topic";
     }
 
@@ -64,6 +78,11 @@ public class TopicController {
         model.addAttribute("comments", commentsService.findByTopicId(tid, page).stream().map(
                 (comments -> new VComments(new VUser(userService.findUserByUid(comments.getUid())), userService.findAvatarByUid(comments.getUid()), comments))
         ).collect(Collectors.toList()));
+        model.addAttribute("stop", commentsService.findByTopicId(tid, page + 1).size() == 0);
+        model.addAttribute("commentLooker", (Function<Integer, VComments>) targetId -> {
+            Comments comment = commentsService.getCommentById(targetId);
+            return new VComments(new VUser(userService.findUserByUid(comment.getUid())), userService.findAvatarByUid(comment.getUid()), comment);
+        });
         model.addAttribute("louStart", new Storey(commentsPageNumber * page + 1));
         return "/topic::topicComments";
     }
@@ -75,7 +94,7 @@ public class TopicController {
     public String loadUserTopics(@PathVariable Integer page, @PathVariable Integer userid, Model model) {
         List<Topic> topicByUserId = topicService.findTopicByUserId(userid, page).stream().peek(
                 //仅展示部分内容
-                topic -> topic.setContent(topic.getContent().replaceAll("^(\\S{0,32})(\\S*)$", "$1..."))
+                topic -> topic.setContent(topic.getContent().replaceAll("^([\\s\\S]{0,32})([\\s\\S]*)$", "$1..."))
         ).collect(Collectors.toList());
         Boolean hasNext = topicService.findTopicByUserId(userid, page + 1).size() > 0;
         model.addAttribute("userid", userid);
@@ -94,8 +113,15 @@ public class TopicController {
         return "/minindex";
     }
 
+    @GetMapping("/topic/type/further/{id}/{number}")
+    public String topicsShelves(@PathVariable Integer id, @PathVariable Integer number, Model model, HttpSession session) {
+        topicReferralPage(id, number, model, session);
+        return "/minindex::topicsShelves";
+    }
+
+
     @PostMapping("/topic/reply/{tid}")
-    public String addComments(String content, @PathVariable Integer tid, HttpSession session) {
+    public String addComments(String content, @Nullable Integer page, @PathVariable Integer tid, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Comments comments = new Comments();
         comments.setTargetId(tid);
@@ -104,7 +130,7 @@ public class TopicController {
         comments.setTargetType(0);
         comments.setParent(tid);
         commentsService.addComment(comments);
-        return "redirect:/topic/read/" + tid;
+        return "redirect:/topic/read/" + tid + "?page=" + page;
     }
 
     @PostMapping("/topic/reply/comment/{tid}")
@@ -149,6 +175,42 @@ public class TopicController {
             return "redirect:/topic/read/" + topic1.getId();
         }
         return "redirect:/";
+    }
+
+    @PostMapping("/topic/user/favorites/add/{tid}")
+    @ResponseBody
+    public KeyAndValue<Boolean, String> addFavorites(@PathVariable Integer tid, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (favoritesService.addToFavorites(new Favorites(user.getId(), tid)) > 0) {
+            return new KeyAndValue<>(true, "收藏成功");
+        } else {
+            return new KeyAndValue<>(false, "收藏失败");
+        }
+    }
+
+    @PostMapping("/topic/user/favorites/cancel/{tid}")
+    @ResponseBody
+    public KeyAndValue<Boolean, String> cancelFavorites(@PathVariable Integer tid, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (favoritesService.cancel(new Favorites(user.getId(), tid)) > 0) {
+            return new KeyAndValue<>(true, "取消成功");
+        } else {
+            return new KeyAndValue<>(false, "取消失败");
+        }
+    }
+
+    @GetMapping("/topic/sou/{key}")
+    @ResponseBody
+    public List<VTopic> souSuo(@PathVariable @Nullable String key) {
+        if (key == null) {
+            return new ArrayList<>();
+        }
+        return topicService.findTopicLikeTitleAndType(key, null).stream().map(topic -> {
+            VTopic vTopic = new VTopic(topic);
+            vTopic.setType(topicService.findTopicTypeById(topic.getTypeid()));
+            vTopic.setAuthor(new VUser(userService.findUserByUid(topic.getAuthorid())));
+            return vTopic;
+        }).collect(Collectors.toList());
     }
 
 }

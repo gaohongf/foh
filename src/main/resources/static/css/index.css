@@ -60,9 +60,9 @@ img {
 .search {
 	height: 200px;
 	text-align: center;
-	line-height: 300px;
+	/*line-height: 300px;*/
 	position: relative;
-	margin: auto;
+	margin:auto auto;
 }
 
 .hobby {
@@ -117,9 +117,9 @@ img {
 
 .text_item {
 	width: 700px;
-	height: 200px;
+	/*height: 200px;*/
 	background-color: white;
-	position: absolute;
+	/*position: absolute;*/
 	margin: auto;
 	top: 245px;
 	left: 0px;
@@ -136,7 +136,7 @@ img {
 }
 .search_text_item {
 	width: 700px;
-	height: 200px;
+	height: auto;
 	z-index: 100;
 }
 
@@ -144,7 +144,7 @@ img {
 	text-align: left;
 	line-height: 38px;
 	list-style: none;
-	border: 0px;
+	border: 0;
 }
 
 .item:hover {
@@ -286,7 +286,7 @@ img {
 @media (max-width:1200px) {
 	.search{
 		height: 850px;
-		line-height: 1200px;
+		/*line-height: 1200px;*/
 	}
 
 	.hobby{
@@ -295,7 +295,7 @@ img {
 	}
 	
 	.text_item{
-		top: 580px;
+		/*top: 580px;*/
 	}
 	.item{
 		margin-right: 10px;

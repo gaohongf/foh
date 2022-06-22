@@ -42,4 +42,9 @@ public class FavoritesServiceImpl implements FavoritesService {
     public int addToFavorites(Favorites favorites) {
         return favoritesMapper.addToFavorites(favorites);
     }
+
+    @Override
+    public boolean isFavorites(Favorites favorites) {
+        return favoritesMapper.isFavorites(favorites) > 0;
+    }
 }

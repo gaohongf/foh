@@ -29,6 +29,9 @@ public class BasicParametersConfig {
         return new Random();
     }
 
+    /**
+     * 用户一次展示的帖子数量
+     */
     @Bean
     public Integer userTopicPageNumber(){
         return 6;
@@ -42,9 +45,12 @@ public class BasicParametersConfig {
         return 5;
     }
 
+    /**
+     * 一次加载的最大评论数
+     */
     @Bean
     public Integer commentsPageNumber(){
-        return 5;
+        return 1;
     }
 
 }

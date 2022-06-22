@@ -25,8 +25,7 @@ public class Storey {
     }
 
     public int move(int step) {
-        this.number += step;
-        return number;
+        return this.number += step;
     }
 
     @Override

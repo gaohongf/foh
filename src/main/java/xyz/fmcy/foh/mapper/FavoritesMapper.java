@@ -36,4 +36,6 @@ public interface FavoritesMapper {
      * 增加一条收藏信息
      */
     int addToFavorites(Favorites favorites);
+
+    int isFavorites(Favorites favorites);
 }

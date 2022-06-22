@@ -35,4 +35,6 @@ public interface FavoritesService {
      * 增加一条收藏信息
      */
     int addToFavorites(Favorites favorites);
+
+    boolean isFavorites(Favorites favorites);
 }

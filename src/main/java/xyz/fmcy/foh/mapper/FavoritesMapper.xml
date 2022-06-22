@@ -29,4 +29,8 @@
     <insert id="addToFavorites">
         insert favorites(userid, topicid) value (#{userId}, #{topicId})
     </insert>
+
+    <select id="isFavorites" resultType="int">
+        select count(*) from favorites where userid = #{userId} and topicid = #{topicId}
+    </select>
 </mapper>

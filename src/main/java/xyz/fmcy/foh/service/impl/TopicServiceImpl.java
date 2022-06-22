@@ -81,6 +81,11 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public List<Topic> findTopicLikeTitleAndType(String title, TopicType type) {
+        return topicMapper.findTopicLikeTitleAndType(title,type);
+    }
+
+    @Override
     public List<Topic> randTopic(Integer number) {
         return randTopicByType(null, number);
     }
